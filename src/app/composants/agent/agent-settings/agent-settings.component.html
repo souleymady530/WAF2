@@ -1,0 +1,198 @@
+<div class="panel col-8 bg-white offset-2 p-4 border shadow">
+    <div class="row header    mx-2 text-center text-primary p-2 ">
+        <h1 style="color: rgb(84,108,166);">Formulaire de modification des informations d'un agent</h1>
+    </div>
+    <br>
+    <div class="row form">
+        <form [formGroup]="agent_form" (ngSubmit)="submit_form()"> 
+            <div class="row">
+                <div class="row">
+                     <button type="button" mat-raised-button (click)="fileInput.click()"   class="col-3 col-sm-6 col-xs-16 mx-3 ">Changer la photo de profile</button>
+                     <input   (change)="onFileSelected()" #fileInput type="file" id="file" formControlName="profile_image"  hidden>
+                     <span class="green col"> {{agent.profile_image}}</span>
+                </div>
+         
+                <br><br><br> 
+                 <div class="row">
+                     <mat-form-field appearance="outline" class="col" >
+                         <mat-label>Nom d'utilisateur</mat-label>
+                         <input matInput type="text" value=" {{agent.username}} " formControlName="username">
+                     </mat-form-field>
+                  
+         
+                      
+         
+                 </div>
+         
+                 <div class="row">
+                     
+         
+                     <mat-form-field appearance="outline" class="col" >
+                         <mat-label>Email</mat-label>
+                         <input matInput type="text" value="{{agent.email}}" formControlName="email">
+                     </mat-form-field>
+                       <!-- Error div -->
+                       <div 
+                       *ngIf="
+                       agent_form.controls.email.errors?.['email']  " 
+                       class="error_div">
+                           Veuillez entrer une adresse email valide
+                       </div>
+                   <!-- /End Error div -->
+                 </div>
+                 <div class="row">
+                     <mat-form-field appearance="outline" class="col" >
+                         <mat-label>Nom</mat-label>
+                         <input matInput type="text"  value="{{agent.first_name}}" formControlName="first_name">
+                     </mat-form-field>
+                      <!-- Error div -->
+                      <div 
+                      *ngIf="
+                      agent_form.controls.first_name.errors?.['minlength'] || 
+                      agent_form.controls.first_name.errors?.['maxlength']" 
+                      class="error_div">
+                      Le nombre de caractere doit etre superieur ou egale a 2
+                      </div>
+                  <!-- /End Error div -->
+         
+         
+                     
+                     <mat-form-field appearance="outline" class="col" >
+                         <mat-label>Prénom</mat-label>
+                         <input matInput type="text"  value="{{agent.last_name}}"  formControlName="last_name">
+                     </mat-form-field>
+                     <!-- Error div -->
+                     <div 
+                     *ngIf="
+                     agent_form.controls.last_name.errors?.['minlength'] || 
+                     agent_form.controls.last_name.errors?.['maxlength']" 
+                     class="error_div">
+                         Le nombre de caractere doit etre superieur ou egale a 2
+                     </div>
+                     <!-- /End Error div -->
+                     
+                 </div>
+                 <div class="row">
+                     <mat-form-field appearance="outline" class="col" >
+                         <mat-label>Mot de passe</mat-label>
+                         <input matInput type="password" placeholder="Ex:Nicolas" formControlName="password">
+                     </mat-form-field>
+         
+                     <mat-form-field appearance="outline" class="col" >
+                         <mat-label>Confirmer le mot de passe</mat-label>
+                         <input matInput type="password" placeholder="Ex:Cage" formControlName="password2">
+                     </mat-form-field>
+                 </div>
+                 <div class="row">
+                     <mat-form-field class="col">
+                     <mat-label >Genre</mat-label>
+                     <mat-select formControlName="gender">
+                         <mat-option  value="M">Masculin</mat-option>
+                         <mat-option  value="F">Feminin</mat-option>
+                     </mat-select>
+                     </mat-form-field>
+         
+                     <mat-form-field class="col">
+                         <mat-label>Date de naissance</mat-label>
+                         <input matInput [matDatepicker]="picker" formControlName="d_naissance" value="{{agent.d_naissance}}">
+                        
+                         <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                         <mat-datepicker #picker ></mat-datepicker>
+                       </mat-form-field>
+                 </div>
+                 <div class="row">
+                     
+                     <mat-form-field appearance="outline" class="col">
+                         <mat-label>Téléphone</mat-label>
+                         <input matInput type="text"  value="{{agent.phone_number}}" formControlName="phone_number">
+                       </mat-form-field>
+                         <!-- Error div -->
+                      <div 
+                      *ngIf="
+                      agent_form.controls.phone_number.errors?.['minlength'] || 
+                      agent_form.controls.phone_number.errors?.['maxlength']" 
+                      class="error_div">
+                      Le nombre de caractere doit etre superieur ou egale a 8
+                      </div>
+                  <!-- /End Error div -->
+                 </div>
+                 <div class="row">
+                     <mat-form-field appearance="outline" class="col">
+                         <mat-label>Numero Nic</mat-label>
+                         <input matInput type="text" value="{{ agent.nic_number }}"  formControlName="nic_number" >
+                     </mat-form-field>
+                      <!-- /End Error div -->
+                     <div 
+                      *ngIf="
+                      agent_form.controls.nic_number.errors?.['minlength'] || 
+                      agent_form.controls.nic_number.errors?.['maxlength']" 
+                      class="error_div">
+                      Le nombre de caractere doit etre superieur ou egale a 8
+                      </div>
+                  <!-- /End Error div -->
+                   </div>
+                 
+                 <div class="row">
+                     <mat-form-field appearance="outline" class="col">
+                         <mat-label>Pays</mat-label>
+                         <input matInput type="text"  value="{{ agent.state }}"  formControlName="state">
+                     </mat-form-field>
+                     <!-- /End Error div -->
+                     <div 
+                     *ngIf="
+                     agent_form.controls.state.errors?.['minlength'] || 
+                     agent_form.controls.state.errors?.['maxlength']" 
+                     class="error_div">
+                     Le nombre de caractere doit etre superieur ou egale a 8
+                     </div>
+                     <!-- /End Error div -->
+                     <mat-form-field appearance="outline" class="col">
+                         <mat-label>Ville</mat-label>
+                         <input matInput type="text" value="{{ agent.city }}" formControlName="city">
+                     </mat-form-field>
+                         <!-- /End Error div -->
+                         <div 
+                         *ngIf="
+                         agent_form.controls.city.errors?.['minlength'] || 
+                         agent_form.controls.city.errors?.['maxlength']" 
+                         class="error_div">
+                         Le nombre de caractere doit etre superieur ou egale a 8
+                         </div>
+                         <!-- /End Error div -->
+                 </div>
+                 <div class="row">
+                     <mat-form-field appearance="outline" class="col">
+                         <mat-label>Addresse</mat-label>
+                         <input matInput type="text"  value="{{ agent.address }}" formControlName="address">
+                     </mat-form-field>
+                         <!-- /End Error div -->
+                         <div 
+                         *ngIf="
+                         agent_form.controls.address.errors?.['minlength'] || 
+                         agent_form.controls.address.errors?.['maxlength']" 
+                         class="error_div">
+                         Le nombre de caractere doit etre superieur ou egale a 8
+                         </div>
+                         <!-- /End Error div -->
+                     <mat-form-field appearance="outline" class="col">
+                         <mat-label>Agence</mat-label>
+                         <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="point">
+                     </mat-form-field>
+                       <!-- /End Error div -->
+                       <div 
+                       *ngIf="
+                       agent_form.controls.point.errors?.['minlength'] || 
+                       agent_form.controls.point.errors?.['maxlength']" 
+                       class="error_div">
+                       Le nombre de caractere doit etre superieur ou egale a 8
+                       </div>
+                       <!-- /End Error div -->
+                 </div>
+         </div>  
+               <button mat-raised-button color="primary" type="submit"> Enregistrer </button>
+
+        </form>
+    </div>
+    <div class="row bg-light footer">
+    </div>
+</div>

@@ -1,0 +1,29 @@
+
+.dark-container{
+   
+    
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    
+  }
+
+  .bg-darked{
+    color: white;
+    background-color:rgb(20,20,50);
+    border:solid 1px white;
+
+  }
+
+
+  .dark-container .form, .dark-container input,.dark-container mat-label{
+    background-color:rgb(20,20,50);
+    color: white;
+  }
+  .dark-container ::ng-deep .mat-step-header .mat-step-label
+  {
+    color: white;
+  }
+  
+  .dark-container .mat-form-field-appearance-outline .mat-form-field-outline{
+    color:solid 1px red;
+  }

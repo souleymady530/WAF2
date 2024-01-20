@@ -1,0 +1,69 @@
+
+
+<div id="content-main">
+    <div mat-dialog-title>
+        <h1>Ajouter/Editer un niveau(Formule 2)</h1>
+    </div>
+    <form  [formGroup]="level_form" (ngSubmit)="formule_submit_add()">
+        <div mat-dialog-content id="content">
+
+            <div class="row "  >
+                <mat-form-field >
+                  <mat-label>Palier</mat-label>
+                  <input matInput #input  formControlName="name" >
+                  
+                </mat-form-field>
+            </div>
+            
+            <div class="row ">
+                <mat-form-field >
+                  <mat-label>Pret</mat-label>
+                  <input matInput #input type="number" min="0" formControlName="loan_limit">
+                  
+                </mat-form-field>
+            </div>
+            
+            
+         
+            
+            
+            <!--- 1er emprunt  -->  
+            <div class="row">
+                  
+            
+                <mat-form-field >
+                  <mat-label>Pourcentage 1er au 6eme emprunt</mat-label>
+                  <input type="number" min="0" matInput #input  formControlName="loan_rate">
+                  
+                </mat-form-field>
+            </div>
+
+            <div class="row ">
+                <mat-form-field >
+                  <mat-label>Pourcentage Normal</mat-label>
+                  <input type="number" min="0" matInput #input  formControlName="normal_loan_rate">
+                  
+                </mat-form-field>
+            </div>
+            
+            <div class="row">
+              <mat-form-field >
+                <mat-label>Duree</mat-label>
+                <input type="number" min="0" matInput #input  formControlName="mounthly_restitution_duration">
+                
+              </mat-form-field>
+            </div>
+            
+           
+
+           
+          <div mat-dialog-actions class="actions">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit"> {{data ? "Update":"Save"}} </button>
+        </div>
+            
+            
+            
+        </div>
+    </form>
+</div>

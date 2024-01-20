@@ -1,0 +1,36 @@
+
+.footer{
+  color:rgb(192,192,192);
+  position:relative;
+  top:45%;
+  left:2%;
+
+}
+
+mat-card{
+  width: 90%;
+  max-width: 400px;
+  position:relative;
+  top:15%;
+  left:35%;
+}
+
+mat-card-header{
+  display: block;
+  text-align: center;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+#btn-login {
+  width: 100% ;
+}
+
+mat-error{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: smaller;
+}

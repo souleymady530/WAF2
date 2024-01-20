@@ -1,0 +1,20 @@
+ 
+    <div mat-dialog-title [ngClass]="!is_light_mode? 'bg-darked':'border bg-white'">Faire un remboursement</div>
+<div mat-dialog-content *ngIf="!is_ok" [ngClass]="!is_light_mode? 'bg-darked':'border bg-white'">
+    {{loan.loan_amount}} / {{nbre_echeance_valide}} Echeance validés / {{nbre_echeance}}
+    <form [formGroup]="repaymentFormGroup">
+        <mat-form-field appearance="outline" class="col" >
+            <mat-label>Entrez le montant</mat-label>
+            <input matInput type="text" placeholder="Ex:Nicolas" formControlName="montant">
+        </mat-form-field>
+    </form>
+    
+      
+</div>
+<div mat-dialog-content *ngIf="is_ok">
+  <img src="../../../../assets/images/sucess2.gif" alt="">
+</div>
+<div mat-dialog-actions [ngClass]="!is_light_mode? 'bg-darked':'border bg-white'">
+        <button mat-dialog-close="true" mat-button type="button" class="bg-danger text-white">Fermer</button>
+        <button mat-button class="bg-success text-white" (click)="valider()" *ngIf="!is_ok">Valider</button>
+</div>

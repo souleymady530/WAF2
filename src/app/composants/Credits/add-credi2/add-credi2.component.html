@@ -1,0 +1,269 @@
+<div class="col-12    "  [ngClass]="!is_light_mode? 'dark-container':'border bg-white'" >
+    <div class="row p-3">
+      <h1 class="text-center">Formulaire de creation de Credit</h1>
+        
+        <div class="col-10 offset-1">
+           
+            <mat-stepper class="panel_stepper"  [linear]="isLinear" #stepper [ngClass]="!is_light_mode? 'bg-darked':'border bg-white'">
+                <mat-step [stepControl]="firstFormGroup"> 
+                  <ng-template  matStepLabel>Tapper le numero de reference de la piece</ng-template>
+                  <form [formGroup]="firstFormGroup">
+                    <div class="row mt-2">
+                      <mat-form-field appearance="outline" class="col-5 ">
+                      <input type="text" matInput placeholder="B5654564 ou A543454" formControlName="app_nic_number" class="">    
+                    </mat-form-field> 
+                    <button type="button" mat-raised-button (click)="check_if_applicant($event)" class="col-2 p-3 mt-2  bg-primary text-white">Rechercher</button>
+
+                   </div>
+                    
+                    
+                    <div class="row mt-3 p-5">
+                        <div class="col-lg-5 col-md-5 col-sm-12-col xs-12 carte_applicant mt-3 p-2" *ngIf="current_app">
+                          {{current_app.applicant.nic_number}} /  {{current_app.applicant.first_name}} - {{current_app.applicant.last_name}}
+                          <hr>
+                          <button mat-button matStepperNext type="submit" class="col-1 btn btn-primary border" >Suivant</button>
+
+                           <input type="button" value="Voir les antecedants" class="btn  btn-secondary" (click)="view_resume_of(current_app.applicant.nic_number)">
+                        </div>
+
+                        <div class="col-lg-5 col-md-5 col-sm-12-col xs-12" *ngIf="!current_app">
+                          Applicant Non trouve, voulez creer un nouveau emprunt pour un nouveau client?
+                         </div>
+                    </div>
+                  </form>
+                </mat-step>
+            
+            
+                  <!-- ----------------------------------------------Endorser details ----------------------------------------------------------------------------------- -->
+            
+                <mat-step [stepControl]="secondFormGroup">
+                  <ng-template  matStepLabel>Details sur le credit</ng-template>
+                  <form [formGroup]="secondFormGroup">
+                      
+                
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Formule du Credit</mat-label>
+                            <mat-select formControlName="loan_type" (valueChange)="load_loans_list($event)">
+                                <mat-option  value="Formule Classique">Formule Classique</mat-option>
+                                <mat-option  value="Formule 2">Formule 2</mat-option>  
+                            </mat-select>
+                         </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                      <mat-form-field appearance="outline" class="col">
+                          <mat-label>Type de duree</mat-label>
+                          <mat-select formControlName="type_repayement">
+                              <mat-option value="Hebdomadaire">Hebdomadaire</mat-option>
+                              <mat-option value="Mensuel">Mensuel</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+          
+                  </div>
+
+
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Montant du credits</mat-label>
+                            <mat-select formControlName="loan_amount" (valueChange)="load_loan_details($event)">
+                                <mat-option *ngFor="let loans of loan_list"  value="{{loans.Pret?loans.Pret:loans.loan_limit}}"> {{loans.Pret?loans.Pret:loans.loan_limit}} FCFA</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+            
+                    </div>
+
+                    
+                    
+                    <div class="row">
+                      <mat-form-field appearance="outline" class="col">
+                          <mat-label>Temps supplementaire:</mat-label>
+                          <mat-select formControlName="during_supp" (valueChange)="load_extension_details($event)">
+                              <mat-option *ngFor="let i of extension_duree"  value="{{i}}"> {{i}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+          
+                  </div>
+
+                  
+
+
+                    <div class="row">
+                        <ul style="margin:10px;list-style: none;">
+                            <li>Pourcentage:{{loan_rate? loan_rate:0 }}</li>
+                            <li>Montant a rembourser:{{total_payment}}</li>
+                            
+                            <li>Duree (Hebdomadaire) / {{nbre_semaine}}</li>
+                            <li>Duree(Mensuel) / {{nbre_mois}}</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="row" hidden>
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Pourcentage</mat-label>
+                            <input matInput type="number"   formControlName="loan_rate" min="0" max="1" placeholder="Ex:0.6%"   [value]="loan_rate">
+                        </mat-form-field>
+                         
+                    </div>
+                    <div class="row" hidden>
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Montant a rembourser</mat-label>
+                            <input matInput type="number"   formControlName="repayment_amount"   [value]="total_payment">
+                        </mat-form-field>
+                    </div>
+            
+                     
+                   <div class="row" hidden>
+                    <mat-form-field appearance="outline" class="col"> 
+                        <mat-label>Type de duree de remboursement</mat-label>
+                        <input matInput type="text"   formControlName="type_duree"    >
+
+                        
+                        </mat-form-field>
+                   </div>
+            
+                   
+                    <div class="row" hidden>
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Duree</mat-label>
+                            <input matInput type="number" placeholder="Ex: 176" formControlName="loan_delay"   [value]="nbre_semaine">
+                            
+                        </mat-form-field>
+                    </div>
+            
+                    <div>
+                        <button mat-button matStepperPrevious>Retour</button>
+                        <button mat-button matStepperNext type="submit" class="col-1 btn btn-primary ">Suivant</button>
+
+<!--                        
+  <button mat-button (click)="stepper.reset()">Recommencer</button>
+--> 
+                       <button mat-button (click)="valider()">Valider</button>
+                    </div>
+                  </form>
+            
+                </mat-step>
+            
+            
+                  <!-- ----------------------------------------------Loan details ---------------------------------------------------- -->
+            
+                <mat-step [stepControl]="thirdFormGroup"> 
+                  <input type="button" value="Faire la demande" class="btn btn-success mt-2 mb-2" (click)="valider()">
+                  <hr>
+                  <ng-template  matStepLabel>Recapitulatifs et validation de la nouvelle démande</ng-template>
+                   
+                    <div class="example-action-buttons">
+                      <button mat-button (click)="accordion.openAll()">Tout étendre</button>
+                      <button mat-button (click)="accordion.closeAll()">Tout réduire</button>
+                    </div>
+
+                    <mat-accordion class="example-headers-align" multi *ngIf="current_app" [ngClass]="!is_light_mode? 'dark-accordion':''"> 
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                           Applicant
+                          </mat-panel-title> 
+                          <mat-icon>account_circle</mat-icon>
+                        </mat-expansion-panel-header>
+                    
+                        <mat-panel-description>
+                          <ul class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                            <li><span>Nom :</span>{{current_app.applicant.first_name}}</li>
+                            <li><span>Prénom :</span>{{current_app.applicant.last_name}}</li>
+                            <li><span>Genre :</span>{{current_app.applicant.gender}}</li>
+                            <li><span>Date de naissance :</span>{{current_app.applicant.d_naissance}}</li>
+                            <li><span>Téléphone (Orange Money) :</span>{{current_app.applicant.phone_number}}</li>
+                            <li><span>Reference de la piece :</span>{{current_app.applicant.nic_number}}</li>
+                            <li><span>Secteur Primaire :</span>{{current_app.applicant.profession}}</li>
+                            <li><span>Secteur secondaire :</span>{{current_app.applicant.app_secondary_profession}}</li>
+                            <li><span>Avez vous un conjoint? </span>{{current_app.applicant.app_conjoint}}</li>
+                            <li><span>Si Oui est que votre conjoint participe aux depenses? </span>{{current_app.applicant.participation_conjoint}} </li>
+                            <li><span>Arrivez vous a epargne? </span>{{current_app.applicant.app_epargne}}</li>
+                            <li><span>Avez vous rembourser :</span>{{current_app.applicant.app_experience_statut}}</li>
+                            <li><span>Tranche de l'epargne :</span>{{current_app.applicant.app_epargne_hateur}}</li>
+                            <li><span>Avez deja eu une experience avec une strucutre? </span>{{current_app.applicant.app_experience_structure}}</li>
+                            <li><span>Si oui quelle type de structure :</span>{{current_app.applicant.app_experience_structure}}</li>
+                            <li><span>Si Autre, structure :</span>{{current_app.applicant.app_experience_structure_name}}</li>
+                            <li><span>Téléphone de bureau :</span>{{current_app.applicant.business_line}}</li>
+                            
+                        </ul>
+                       </mat-panel-description>
+                    
+                      </mat-expansion-panel>
+                       
+
+
+
+
+                      
+                    
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Endorser
+                          </mat-panel-title>
+                          <mat-icon>account_circle</mat-icon>
+                           
+                        </mat-expansion-panel-header>
+                    
+                        <mat-panel-description>
+                          <ul>
+                            <li><span>Nom :</span>: {{current_app.endorser.first_name}}</li>
+                            <li><span>Prénom :</span>: {{current_app.endorser.last_name}}</li>
+                            <li><span>Genre :</span>: {{current_app.endorser.gender}}</li>
+                            <li><span>Date de naissance :</span>{{current_app.endorser.d_naissance}}</li>
+                            <li><span>Téléphone :</span>{{current_app.endorser.phone_number}}</li>
+                            <li><span>Reference de la piece :</span>{{current_app.endorser.endorser_nic_number}}</li>
+                            <li><span>Profession :</span>{{current_app.endorser.profession}}</li>
+                          </ul>
+                          
+                        
+                       </mat-panel-description>
+                         
+                      </mat-expansion-panel>
+
+
+
+
+
+
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                          Nouvelle demande de credit
+                          </mat-panel-title>
+                          <mat-icon>add</mat-icon>
+                        </mat-expansion-panel-header>
+                        <mat-panel-description>
+                          <ul>
+                            <li>Pourcentage:{{loan_rate? loan_rate:0 }}</li>
+                            <li>Montant a rembourser:{{total_payment}}</li>
+                            <li>Duree (Hebdomadaire) / {{nbre_semaine}}</li>
+                            <li>Duree(Mensuel) / {{nbre_mois}}</li>
+                        </ul>
+                        </mat-panel-description>
+                        
+                         
+                      </mat-expansion-panel>
+
+                    </mat-accordion>
+
+
+
+                     
+                    
+                     
+                     
+                    
+                 
+                </mat-step>
+
+                 
+              </mat-stepper>
+              
+         </div>
+    </div>
+</div>
+
+
+

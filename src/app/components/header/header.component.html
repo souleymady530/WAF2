@@ -1,0 +1,50 @@
+<div class="header col-12  {{theme}}">
+    <div class="row">
+        <div class="col-1 offset-lg-8 offset-md-5 offset-sm-4  offset-xs-4  widget widget-theme">
+            
+        </div>
+
+        <div class="col-1  widget widget-notification  ">
+            <span class="material-icons" (click)="active_message()">
+                message
+                 </span>
+                 <div class="card contenu message_container" [hidden]="is_message_active">
+                     <div class="card-header">
+                         Mes Messages
+                     </div>
+                     <ul class="list-group list-group-flush">
+                       <li class="list-group-item">Cras justo odio</li>
+                       <li class="list-group-item">Dapibus ac facilisis in</li>
+                       <li class="list-group-item">Vestibulum at eros</li>
+                     </ul>
+                   </div>
+        </div>
+
+
+
+        <div class="col-1 widget widget-message ">
+            <span class="material-icons" (click)="active_notif()">
+                notifications
+                </span>
+                <div class="card contenu notif_container" [hidden]="is_notif_active" >
+                    <div class="card-header">
+                        Mes Notifications
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Cras justo odio</li>
+                      <li class="list-group-item">Dapibus ac facilisis in</li>
+                      <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                  </div>
+        </div>
+
+        <div class="col-1 widget widget-profil">
+            <span class="material-icons">
+                        account_circle
+                        </span>
+                        <br>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="sidenav {{theme_mode}}" [ngClass]="colllapsed? 'sidenav-collapsed':''" >
+    <div class="logo-container">
+        <button class="logo" (click)="toggle_collapse()"> <img src="../../../assets/images/logo WAF.jpg" alt="logo" width="50"></button>
+        <div class="logo-text" *ngIf="colllapsed">
+            WAF
+        </div>
+        <button class="btn-close" *ngIf="colllapsed" (click)="close_side_nav()" >
+            <i class="fa fa-times close-icon"></i>
+        </button>
+    </div>
+
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" *ngFor="let data of navbardata">
+            <a   class="sidenav-nav-link" [routerLink]="data.routeLink" routerLinkActive="active" [routerLinkActiveOptions] ="{exact: true}">
+                <i class="sidenav-link-icon" [class]="data.icon" title="{{data.title}}"></i>
+                <span class="sidenav-link-text" *ngIf="colllapsed"> {{data.label}} </span>
+            </a>
+        </li>
+
+
+        <li class="sidenav-nav-item">
+            <a   class="sidenav-nav-link"  (click)="logout()">
+                <i class="sidenav-link-icon fa fa-sign-out" title="Deconnexion"></i>
+                <span class="sidenav-link-text" *ngIf="colllapsed">Deconnexion</span>
+            </a>
+        </li>
+        
+       
+    </ul>
+    
+
+  
+</div>

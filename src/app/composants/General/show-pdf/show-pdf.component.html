@@ -1,0 +1,13 @@
+<div class="main" [ngClass]="!is_light_mode? 'bg-darked text-white':'border bg-white'">
+        
+<div mat-dialog-title [ngClass]="!is_light_mode? 'bg-darked text-white':'border bg-white'">Visionneur de PDF</div>
+<div mat-dialog-content>
+     
+        <iframe [src]="''+pdf_src|safe:'resourceUrl' " frameborder="1" id="pdf_container"></iframe>
+      
+</div>
+ 
+</div>
+<div mat-dialog-actions [ngClass]="!is_light_mode? 'bg-darked text-white':''">
+        <button mat-dialog-close="true" mat-button type="button" class="bg-danger text-white">Fermer</button>
+ </div>

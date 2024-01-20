@@ -1,0 +1,135 @@
+<div class="panel col-8   offset-2 p-4 " [ngClass]="!is_light_mode? 'dark-container text-white':'bg-white border'">
+    <div class="row header    mx-2 text-center text-primary p-2 ">
+        <h1 style="color: rgb(84,108,166);">Formulaire d'ajout d'un manageur</h1>
+    </div>
+    <br>
+    <div class="row form">
+        <form  [formGroup]="man_form" (ngSubmit)="submit_form()">
+            <div class="row">
+                <div class="row">
+                    <section class="example-section">
+                        
+                         <mat-checkbox class="example-margin" color="primary" formControlName="is_autorised"  >Activer le compte?</mat-checkbox>
+                    </section>
+              </div>
+        
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Nom d'utilisateur</mat-label>
+                        <input matInput type="text" placeholder="Ex:Nicolas" formControlName="username">
+                    </mat-form-field>
+                     <!-- Error div -->
+                     <div 
+                     *ngIf="
+                     man_form.controls.username.errors?.['minlength'] || 
+                     man_form.controls.username.errors?.['maxlength']" 
+                     class="error_div">
+                     Le nombre de caractere doit etre superieur ou egale a 2
+                     </div>
+        
+         
+        
+                 <!-- /End Error div -->
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" placeholder="Ex:nicolascage@gmail.com" formControlName="email">
+                    </mat-form-field>
+                      <!-- Error div -->
+                      <div 
+                      *ngIf="
+                      man_form.controls.email.errors?.['email'] " 
+                      class="error_div">
+                     Veuillez entrer une adresse email valide
+                      </div>
+                  <!-- /End Error div -->
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Nom</mat-label>
+                        <input matInput type="text" placeholder="Ex:Nicolas" formControlName="first_name">
+                    </mat-form-field>
+                            <!-- Error div -->
+                            <div 
+                            *ngIf="
+                            man_form.controls.first_name.errors?.['minlength'] || 
+                            man_form.controls.first_name.errors?.['maxlength']" 
+                            class="error_div">
+                            Le nombre de caractere doit etre superieur ou egale a 2
+                            </div>
+                            <!-- /End Error div -->
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Prénom</mat-label>
+                        <input matInput type="text" placeholder="Ex:Cage" formControlName="last_name">
+                    </mat-form-field>
+                     <!-- Error div -->
+                     <div 
+                     *ngIf="
+                     man_form.controls.last_name.errors?.['minlength'] || 
+                     man_form.controls.last_name.errors?.['maxlength']" 
+                     class="error_div">
+                     Le nombre de caractere doit etre superieur ou egale a 2
+                     </div>
+                 <!-- /End Error div -->
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Mot de passe</mat-label>
+                        <input matInput type="password" placeholder="Ex:Nicolas" formControlName="password">
+                    </mat-form-field>
+                        <!-- Error div -->
+                        <div 
+                        *ngIf="
+                        man_form.controls.password.errors?.['minlength'] || 
+                        man_form.controls.password.errors?.['maxlength']" 
+                        class="error_div">
+                        Le nombre de caractere doit etre superieur ou egale a 8
+                        </div>
+                        <!-- /End Error div -->
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Confirmer le mot de passe</mat-label>
+                        <input matInput type="password" placeholder="Ex:Cage" formControlName="password2">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="col">
+                    <mat-label >Genre</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option  value="M">Masculin</mat-option>
+                        <mat-option  value="F">Feminin</mat-option>
+                         
+                    </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field class="col">
+                        <mat-label>Date de naissance</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="d_naissance">
+                         <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                        <mat-datepicker #picker ></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                <div class="row">
+                    
+                    <mat-form-field appearance="outline" class="col">
+                        <mat-label>Telephone</mat-label>
+                        <input matInput type="text" placeholder="Ex:+226 XX XX XX XX" formControlName="phone_number">
+                      </mat-form-field>
+                      <!-- Error div -->
+                      <div 
+                      *ngIf="
+                      man_form.controls.phone_number.errors?.['minlength'] || 
+                      man_form.controls.phone_number.errors?.['maxlength']" 
+                      class="error_div">
+                      Le nombre de caractere doit etre superieur ou egale a 8
+                      </div>
+                      <!-- /End Error div -->
+                </div>
+               
+        </div> 
+            <button mat-raised-button color="primary" type="submit"> Enregistrer </button>
+        </form>
+    </div>
+    <div class="row bg-light footer">
+    </div>
+</div>

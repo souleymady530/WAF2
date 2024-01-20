@@ -1,0 +1,511 @@
+
+
+<div mat-dialog-content id="content"  >
+
+  <!-- ----------------------------------------------Applicants details --------------------------------------------------------------------------------- -->
+  <mat-stepper  [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Details sur l'applicant</ng-template>
+       
+        <div class="row">
+         
+        
+            <div class="row">
+                <mat-form-field appearance="outline" class="col" >
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" placeholder="Ex:Nicolas" formControlName="app_email">
+ <!-- Error div -->
+                <div *ngIf="firstFormGroup.controls.app_email.errors?.['email']" class="error_div">
+                    Veuillez entrer une addresse email valide
+                  </div>
+                   <!-- /Error div -->
+                    
+                </mat-form-field>
+               
+                   <mat-form-field appearance="outline" class="col">
+                    <mat-label>Telephone</mat-label>
+                    <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="app_phone_number">
+                    <!-- Error div -->
+                <div 
+                *ngIf="
+                firstFormGroup.controls.app_phone_number.errors?.['minlength'] || 
+                firstFormGroup.controls.app_phone_number.errors?.['maxlength']" 
+                class="error_div">
+                    Veuillez entrer un numero de telephone compris entre 2 et 20 caracteres
+                  </div>
+                  <!-- /End Error div -->
+                </mat-form-field>
+               
+                
+                  
+            </div>
+
+
+
+            <div class="row">
+                <mat-form-field appearance="outline" class="col" >
+                    <mat-label>First Name</mat-label>
+                    <input matInput type="text" placeholder="Ex:Nicolas" formControlName="app_first_name">
+                     <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    firstFormGroup.controls.app_first_name.errors?.['minlength'] || 
+                    firstFormGroup.controls.app_first_name.errors?.['maxlength']" 
+                    class="error_div">
+                        Veuillez entrer un nom compris entre 2 et 100 caracteres
+                    </div>
+                    <!-- /Error div -->
+                </mat-form-field>
+                   
+
+
+
+                <mat-form-field appearance="outline" class="col" >
+                    <mat-label>Last Name</mat-label>
+                    <input matInput type="text" placeholder="Ex:Cage" formControlName="app_last_name">
+                     <!-- Error div -->
+                  <div 
+                  *ngIf="
+                  firstFormGroup.controls.app_last_name.errors?.['minlength'] || 
+                  firstFormGroup.controls.app_last_name.errors?.['maxlength']" 
+                  class="error_div">
+                      Veuillez entrer un prenom compris entre 2 et 100 caracteres
+                    </div>
+                    <!-- /End Error div -->
+                </mat-form-field>
+                 
+            </div>
+            
+            <div class="row">
+                <mat-form-field class="col">
+                <mat-label >Genre</mat-label>
+                <mat-select formControlName="app_gender"> 
+                    <mat-option  value="F">Feminin</mat-option>
+                    <mat-option  value="M">Masculin</mat-option>
+                 </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field class="col">
+                    <mat-label>Date de naissance</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="app_d_naissance">
+                     <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                    <mat-datepicker #picker ></mat-datepicker>
+                  </mat-form-field>
+            </div>
+           
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Numero Nic</mat-label>
+                    <input matInput type="text" placeholder="Ex: XX XX XX" formControlName="app_nic_number" >
+                     <!-- Error div -->
+                <div 
+                *ngIf="
+                firstFormGroup.controls.app_nic_number.errors?.['minlength'] || 
+                firstFormGroup.controls.app_nic_number.errors?.['maxlength']" 
+                class="error_div">
+                    Veuillez entrer un numero de carte compris entre 2 et 20 caracteres
+                  </div>
+                  <!-- /End Error div -->
+                </mat-form-field>
+               
+                  <mat-form-field appearance="outline" class="col">
+                    <mat-label>Repertoire de la photo</mat-label>
+                    <input matInput type="url" placeholder="Ex:Cage" formControlName="app_profile_image">
+                </mat-form-field>
+              </div>
+            
+
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Pays</mat-label>
+                    <input matInput type="text" placeholder="Ex:Burkina Fasa" formControlName="app_state">
+                     <!-- Error div -->
+                        <div 
+                        *ngIf="
+                        firstFormGroup.controls.app_state.errors?.['minlength'] || 
+                        firstFormGroup.controls.app_state.errors?.['maxlength']" 
+                        class="error_div">
+                            Veuillez entrer un pays valide
+                        </div>
+                    <!-- /End Error div -->
+                </mat-form-field>
+                    
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Ville</mat-label>
+                    <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="app_city">
+                     <!-- Error div -->
+                  <div 
+                  *ngIf="
+                  firstFormGroup.controls.app_city.errors?.['minlength'] || 
+                  firstFormGroup.controls.app_city.errors?.['maxlength']" 
+                  class="error_div">
+                      Le caracteres doit etre superieur ou egale a 2
+                  </div>
+              <!-- /End Error div -->
+                </mat-form-field>
+                 
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Addresse</mat-label>
+                    <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="app_address">
+                       <!-- Error div -->
+                 <div 
+                 *ngIf="
+                 firstFormGroup.controls.app_address.errors?.['minlength'] || 
+                 firstFormGroup.controls.app_address.errors?.['maxlength']" 
+                 class="error_div">
+                     Le caracteres doit etre superieur ou egale a 2
+                 </div>
+             <!-- /End Error div -->
+                </mat-form-field>
+              
+
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Agence</mat-label>
+                    <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="app_point">
+                     <!-- Error div -->
+                 <div 
+                 *ngIf="
+                 firstFormGroup.controls.app_point.errors?.['minlength'] || 
+                 firstFormGroup.controls.app_point.errors?.['maxlength']" 
+                 class="error_div">
+                     Le caracteres doit etre superieur ou egale a 2
+                 </div>
+                 <!-- /End Error div -->
+                </mat-form-field>
+                
+            </div>
+    
+    
+    
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Numero de telephone wave</mat-label>
+                    <input matInput type="text" placeholder="" formControlName="app_wave_phone_number">
+                     <!-- Error div -->
+                 <div 
+                 *ngIf="
+                 firstFormGroup.controls.app_wave_phone_number.errors?.['minlength'] || 
+                 firstFormGroup.controls.app_wave_phone_number.errors?.['maxlength']" 
+                 class="error_div">
+                     Le caracteres doit etre superieur ou egale a 2 et inferieur a 20
+                 </div>
+                 <!-- /End Error div -->
+                </mat-form-field>
+                
+
+
+
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Numero de telephone de bureau</mat-label>
+                    <input matInput type="text" placeholder="" formControlName="app_business_line">
+                     <!-- Error div -->
+                 <div 
+                 *ngIf="
+                 firstFormGroup.controls.app_business_line.errors?.['minlength'] || 
+                 firstFormGroup.controls.app_business_line.errors?.['maxlength']" 
+                 class="error_div">
+                 Le caracteres doit etre superieur ou egale a 2 et inferieur a 20
+                </div>
+                 <!-- /End Error div -->
+                </mat-form-field>
+                
+            </div>
+    
+    
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Profession</mat-label>
+                    <input matInput type="text" placeholder="" formControlName="app_profession">
+               
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    firstFormGroup.controls.app_profession.errors?.['minlength'] || 
+                    firstFormGroup.controls.app_profession.errors?.['maxlength']" 
+                    class="error_div">
+                    Le nombre de caracteres doit etre superieur ou egale a 2 et inferieur a 100
+                    </div>
+                    <!-- /End Error div -->
+                     </mat-form-field>
+
+
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Salaire</mat-label>
+                    <input matInput type="text" placeholder="" formControlName="app_revenue">
+              
+                  <!-- Error div -->
+                  <div 
+                  *ngIf="
+                  firstFormGroup.controls.app_revenue.errors?.['minlength'] || 
+                  firstFormGroup.controls.app_revenue.errors?.['maxlength']" 
+                  class="error_div">
+                  Le caracteres doit etre superieur ou egale a 2 et inferieur a 20
+                 </div>
+                  <!-- /End Error div -->  
+                </mat-form-field>
+            </div>
+    
+    
+    
+    
+    
+    
+            <div class="row">
+                <button mat-button matStepperNext type="submit" class="col-1" >Suivant</button>
+              </div>
+    
+    
+    
+    </div>
+
+
+       
+      </form>
+    </mat-step>
+
+
+      <!-- ----------------------------------------------Endorser details ----------------------------------------------------------------------------------- -->
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Details sur l'avale</ng-template>
+         
+            <div class="row">
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>First Name</mat-label>
+                        <input matInput type="text" placeholder="Ex:Nicolas" formControlName="first_name">
+                    
+        
+                        <!-- Error div -->
+                        <div 
+                        *ngIf="
+                        secondFormGroup.controls.first_name.errors?.['minlength'] || 
+                        secondFormGroup.controls.first_name.errors?.['maxlength']" 
+                        class="error_div">
+                            Veuillez entrer un nom compris entre 2 et 100 caracteres
+                        </div>
+                        <!-- /Error div -->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="col" >
+                        <mat-label>Last Name</mat-label>
+                        <input matInput type="text" placeholder="Ex:Cage" formControlName="last_name">
+                   
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    secondFormGroup.controls.last_name.errors?.['minlength'] || 
+                    secondFormGroup.controls.last_name.errors?.['maxlength']" 
+                    class="error_div">
+                        Veuillez entrer un prenom compris entre 2 et 100 caracteres
+                    </div>
+                    <!-- /Error div -->
+
+                </mat-form-field>
+
+                </div>
+            
+                <div class="row">
+                    <mat-form-field class="col">
+                    <mat-label >Genre</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option  value="F">Feminin</mat-option>
+                        <mat-option  value="M">Masculin</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+    
+                        <mat-form-field class="col">
+                        <mat-label>Date de naissance</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="d_naissance">
+                    
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1" ></mat-datepicker-toggle>
+                        <mat-datepicker #picker1 ></mat-datepicker>
+                        </mat-form-field>
+                </div>
+    
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col">
+                    <mat-label>Profession</mat-label>
+                    <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="profession">
+                   
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    secondFormGroup.controls.profession.errors?.['minlength'] || 
+                    secondFormGroup.controls.profession.errors?.['maxlength']" 
+                    class="error_div">
+                        Le nombre de caractere doit etre compris entre 2 et 100
+                    </div>
+                    <!-- /Error div -->
+ </mat-form-field>
+                    
+                </div>
+    
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col">
+                    <mat-label>Telephone</mat-label>
+                    <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="phone_number">
+                    
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    secondFormGroup.controls.phone_number.errors?.['minlength'] || 
+                    secondFormGroup.controls.phone_number.errors?.['maxlength']" 
+                    class="error_div">
+                        Le nombre de caractere doit etre compris entre 2 et 20
+                    </div>
+                    <!-- /Error div -->
+                </mat-form-field>
+                </div>
+    
+    
+    
+                <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Image carte d identite nationale</mat-label>
+                    <input matInput type="url"   formControlName="nic_image" >
+              
+                 <!-- Error div -->
+                 <div 
+                 *ngIf="
+                 secondFormGroup.controls.nic_image.errors?.['minlength'] || 
+                 secondFormGroup.controls.nic_image.errors?.['maxlength']" 
+                 class="error_div">
+                    Veuillez indiquer un chemin d image valide(png,jpg,jpeg)
+                 </div>
+                 <!-- /Error div --> 
+                 </mat-form-field>
+                </div>
+    
+    
+            
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Pays</mat-label>
+                    <input matInput type="text" placeholder="Ex:Burkina Fasa" formControlName="state">
+              
+                <!-- Error div -->
+                <div 
+                *ngIf="
+                secondFormGroup.controls.state.errors?.['minlength'] || 
+                secondFormGroup.controls.state.errors?.['maxlength']" 
+                class="error_div">
+                    Le nombre de caractere doit etre compris entre 2 et 100
+                </div>
+                <!-- /Error div --> 
+             </mat-form-field>
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Ville</mat-label>
+                    <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="city">
+               
+
+                <!-- Error div -->
+                <div 
+                *ngIf="
+                secondFormGroup.controls.city.errors?.['minlength'] || 
+                secondFormGroup.controls.city.errors?.['maxlength']" 
+                class="error_div">
+                    Le nombre de caractere doit etre compris entre 2 et 100
+                </div> </mat-form-field>
+                <!-- /Error div -->
+    
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Addresse</mat-label>
+                    <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="address">
+               
+                <!-- Error div -->
+                <div 
+                *ngIf="
+                secondFormGroup.controls.address.errors?.['minlength'] || 
+                secondFormGroup.controls.address.errors?.['maxlength']" 
+                class="error_div">
+                    Le nombre de caractere doit etre compris entre 2 et 100
+                </div>
+                <!-- /Error div -->
+                 </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Agence</mat-label>
+                    <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="point">
+               
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    secondFormGroup.controls.point.errors?.['minlength'] || 
+                    secondFormGroup.controls.point.errors?.['maxlength']" 
+                    class="error_div">
+                        Le nombre de caractere doit etre compris entre 2 et 100
+                    </div>
+                    <!-- /Error div -->
+                 </mat-form-field>
+            </div>
+            <div class="row">
+                <button mat-button matStepperPrevious class="col-1">Retour</button>
+                <button mat-button matStepperNext type="submit" class="col-1">Suivant</button>
+              </div>
+            </div>
+        
+      </form>
+    </mat-step>
+
+
+      <!-- ----------------------------------------------Loan details ---------------------------------------------------- -->
+
+    <mat-step>
+      <ng-template matStepLabel>Details sur le credit</ng-template>
+      <form [formGroup]="thirdFormGroup">
+          
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Montant du credits</mat-label>
+                <input matInput type="number"  formControlName="loan_amount">
+            </mat-form-field>
+
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Pourcentage</mat-label>
+                <input matInput type="number"   formControlName="loan_rate" min="0" max="1" placeholder="Ex:0.6%">
+            </mat-form-field>
+             
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Montant a rembourser</mat-label>
+                <input matInput type="number"   formControlName="repayment_amount">
+            </mat-form-field>
+
+             
+
+
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>A rembourser dans un delai(nbre de jours)</mat-label>
+                <input matInput type="number" placeholder="Ex: 176 " formControlName="loan_delay">
+            </mat-form-field>
+        </div>
+
+
+      
+
+
+        <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button (click)="stepper.reset()">Recommencer</button>
+            <button mat-button (click)="valider()">Valider</button>
+        </div>
+      </form>
+
+      
+    </mat-step>
+  </mat-stepper>
+</div>

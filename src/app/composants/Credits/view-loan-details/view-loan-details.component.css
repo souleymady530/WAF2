@@ -1,0 +1,57 @@
+li span{
+    font-weight: bold;
+}
+ul {
+    list-style: none;
+}
+
+.img_div{
+    height: 80px;
+    cursor: pointer;
+}
+.img_div img{
+   
+    width: 150px;
+    height: 80px;
+    
+}
+
+.echeance .icon i{
+    font-size: 4em;
+    height: 100%;
+    padding: 5px;
+    background-color: lightblue;
+    border:solid 1px rgb(242,242,242);
+
+}
+ 
+
+.echeance .row{ 
+    padding: 10px;
+    align-items: center;
+}
+.echeance:hover{
+    cursor: pointer;
+    
+}
+
+.echeance .montant{
+    font-weight: bold;
+}
+
+.dark-container{
+    color: white;
+    box-shadow: 3px 3px 3px black;
+
+  }
+
+  .dark-echeance-pan{
+    box-shadow: 3px 3px 3px black;
+    border-top:solid 1px rgb(127, 127, 184);
+  }
+
+  /*
+    border:solid 1px rgb(127, 127, 184);
+    background-color:rgb(20,20,50);
+
+*/

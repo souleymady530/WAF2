@@ -1,0 +1,22 @@
+
+<div mat-dialog-title [ngClass]="!is_light_mode? 'bg-darked text-white':''">
+        Importer le contrat signé(PDF)
+
+</div>
+
+<div id="my_container" [ngClass]="!is_light_mode? 'bg-darked text-white':'border bg-white'">
+        
+        <form [formGroup]="firstFormGroup">
+               
+                <div mat-dialog-content [ngClass]="!is_light_mode? 'text-white':''">
+                
+                        <button type="button" mat-raised-button (click)="fileInput.click()" [class]="name=='Aucun Fichier importé'? '':'green'" class="">{{name}} </button>
+                        <input    (change)="onFileSelected('applicant')" #fileInput type="file" id="file1"    accept=".pdf" formControlName="contrat_signer" hidden>   
+
+                </div>
+                <div mat-dialog-actions [ngClass]="!is_light_mode? 'text-white':''">
+                        <button mat-dialog-close="true" mat-button type="button" class="bg-danger text-white">Fermer</button>
+                        <button mat-button class="bg-success text-white" (click)="valider()">Valider</button>
+                </div>
+        </form>
+</div>

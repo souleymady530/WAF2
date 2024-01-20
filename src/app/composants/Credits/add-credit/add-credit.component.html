@@ -1,0 +1,1225 @@
+<div class="col-12 " [ngClass]="!is_light_mode? 'dark-container':'border bg-white'">
+    <div class="row p-3">
+      <h1 class="text-center">Formulaire de creation de Credit</h1>
+         <div class="col-10 offset-1">
+           
+            <mat-stepper  [linear]="isLinear" #stepper [ngClass]="!is_light_mode? 'bg-darked':'border bg-white'">
+    <!-- ----------------------------------------------Applicant details ----------------------------------------------------------------------------------- -->
+
+                <mat-step [stepControl]="firstFormGroup">
+                  <form [formGroup]="firstFormGroup">
+                    <ng-template  matStepLabel>Details sur l'applicant</ng-template>
+                   
+                    <div class="row">
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col" >
+                                <mat-label>Nom</mat-label>
+                                <input matInput type="text" placeholder="Ex:Nicolas" formControlName="app_first_name">
+                                 <!-- Error div -->
+                                <div 
+                                *ngIf="
+                                firstFormGroup.controls.app_first_name.errors?.['minlength'] || 
+                                firstFormGroup.controls.app_first_name.errors?.['maxlength']" 
+                                class="error_div">
+                                    Veuillez entrer un nom compris entre 2 et 100 caracteres
+                                </div>
+                                <!-- /Error div -->
+                            </mat-form-field>
+                               
+            
+            
+            
+                            <mat-form-field appearance="outline" class="col" >
+                                <mat-label>Prénom</mat-label>
+                                <input matInput type="text" placeholder="Ex:Cage" formControlName="app_last_name">
+                                 <!-- Error div -->
+                              <div 
+                              *ngIf="
+                              firstFormGroup.controls.app_last_name.errors?.['minlength'] || 
+                              firstFormGroup.controls.app_last_name.errors?.['maxlength']" 
+                              class="error_div">
+                                  Veuillez entrer un prenom compris entre 2 et 100 caracteres
+                                </div>
+                                <!-- /End Error div -->
+                            </mat-form-field>
+                             
+                        </div>
+                        
+                        <div class="row">
+                            <mat-form-field class="col">
+                            <mat-label >Genre</mat-label>
+                            <mat-select formControlName="app_gender"> 
+                                <mat-option  value="F">Feminin</mat-option>
+                                <mat-option  value="M">Masculin</mat-option>
+                             </mat-select>
+                            </mat-form-field>
+                
+                            <mat-form-field class="col">
+                                <mat-label>Date de naissance</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="app_d_naissance">
+                                 <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                                <mat-datepicker #picker ></mat-datepicker>
+                              </mat-form-field>
+                        </div>
+                       
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Référence de la pièce</mat-label>
+                                <input matInput type="text" placeholder="Ex: XX XX XX" formControlName="app_nic_number" (keyup)="check_if_applicant($event)">
+                                 <!-- Error div -->
+                            <div 
+                            *ngIf="
+                            firstFormGroup.controls.app_nic_number.errors?.['minlength'] || 
+                            firstFormGroup.controls.app_nic_number.errors?.['maxlength']" 
+                            class="error_div">
+                                Veuillez entrer un numero de carte compris entre 2 et 20 caracteres
+                              </div>
+                              <!-- /End Error div -->
+                              
+                            </mat-form-field>
+                           
+                           <div class="col">
+                            
+                                <button type="button" mat-raised-button (click)="fileInput.click()" [class]="img_name2=='Aucune image'? '':'green'" class="">{{img_name}} </button>
+                                <input    (change)="onFileSelected('applicant')" #fileInput type="file" id="file1" formControlName="app_profile_image"  accept=".png,.PNG,.jpg,.JPG,.jpeg,.JPEG" hidden>
+                                
+                     
+                           </div>
+                           <div class="row" *ngIf="is_old_client">
+                            Cet identifiant a deja fait une demande de credit, il s agit donc d'un ancien client. <br>
+                            <button (click)="add_for_old_client()" class="col-2 offset-1 btn btn-info text-white">Ancien Client</button>
+
+                      </div>
+ 
+                            
+                          </div>
+                        
+            
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Pays</mat-label>
+
+                                <mat-select formControlName="app_state"> 
+
+
+
+                                <mat-option value="Burkina Faso" selected="selected">Burkina Faso</mat-option>
+
+                                <mat-option value="Afghanistan">Afghanistan </mat-option>
+                                <mat-option value="Afrique_Centrale">Afrique_Centrale </mat-option>
+                                <mat-option value="Afrique_du_sud">Afrique_du_Sud </mat-option>
+                                <mat-option value="Albanie">Albanie </mat-option>
+                                <mat-option value="Algerie">Algerie </mat-option>
+                                <mat-option value="Allemagne">Allemagne </mat-option>
+                                <mat-option value="Andorre">Andorre </mat-option>
+                                <mat-option value="Angola">Angola </mat-option>
+                                <mat-option value="Anguilla">Anguilla </mat-option>
+                                <mat-option value="Arabie_Saoudite">Arabie_Saoudite </mat-option>
+                                <mat-option value="Argentine">Argentine </mat-option>
+                                <mat-option value="Armenie">Armenie </mat-option>
+                                <mat-option value="Australie">Australie </mat-option>
+                                <mat-option value="Autriche">Autriche </mat-option>
+                                <mat-option value="Azerbaidjan">Azerbaidjan </mat-option>
+                                
+                                <mat-option value="Bahamas">Bahamas </mat-option>
+                                <mat-option value="Bangladesh">Bangladesh </mat-option>
+                                <mat-option value="Barbade">Barbade </mat-option>
+                                <mat-option value="Bahrein">Bahrein </mat-option>
+                                <mat-option value="Belgique">Belgique </mat-option>
+                                <mat-option value="Belize">Belize </mat-option>
+                                <mat-option value="Benin">Benin </mat-option>
+                                <mat-option value="Bermudes">Bermudes </mat-option>
+                                <mat-option value="Bielorussie">Bielorussie </mat-option>
+                                <mat-option value="Bolivie">Bolivie </mat-option>
+                                <mat-option value="Botswana">Botswana </mat-option>
+                                <mat-option value="Bhoutan">Bhoutan </mat-option>
+                                <mat-option value="Boznie_Herzegovine">Boznie_Herzegovine </mat-option>
+                                <mat-option value="Bresil">Bresil </mat-option>
+                                <mat-option value="Brunei">Brunei </mat-option>
+                                <mat-option value="Bulgarie">Bulgarie </mat-option>
+                                <mat-option value="Burkina_Faso">Burkina_Faso </mat-option>
+                                <mat-option value="Burundi">Burundi </mat-option>
+                                
+                                <mat-option value="Caiman">Caiman </mat-option>
+                                <mat-option value="Cambodge">Cambodge </mat-option>
+                                <mat-option value="Cameroun">Cameroun </mat-option>
+                                <mat-option value="Canada">Canada </mat-option>
+                                <mat-option value="Canaries">Canaries </mat-option>
+                                <mat-option value="Cap_vert">Cap_Vert </mat-option>
+                                <mat-option value="Chili">Chili </mat-option>
+                                <mat-option value="Chine">Chine </mat-option>
+                                <mat-option value="Chypre">Chypre </mat-option>
+                                <mat-option value="Colombie">Colombie </mat-option>
+                                <mat-option value="Comores">Colombie </mat-option>
+                                <mat-option value="Congo">Congo </mat-option>
+                                <mat-option value="Congo_democratique">Congo_democratique </mat-option>
+                                <mat-option value="Cook">Cook </mat-option>
+                                <mat-option value="Coree_du_Nord">Coree_du_Nord </mat-option>
+                                <mat-option value="Coree_du_Sud">Coree_du_Sud </mat-option>
+                                <mat-option value="Costa_Rica">Costa_Rica </mat-option>
+                                <mat-option value="Cote_d_Ivoire">Côte_d_Ivoire </mat-option>
+                                <mat-option value="Croatie">Croatie </mat-option>
+                                <mat-option value="Cuba">Cuba </mat-option>
+                                
+                                <mat-option value="Danemark">Danemark </mat-option>
+                                <mat-option value="Djibouti">Djibouti </mat-option>
+                                <mat-option value="Dominique">Dominique </mat-option>
+                                
+                                <mat-option value="Egypte">Egypte </mat-option>
+                                <mat-option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </mat-option>
+                                <mat-option value="Equateur">Equateur </mat-option>
+                                <mat-option value="Erythree">Erythree </mat-option>
+                                <mat-option value="Espagne">Espagne </mat-option>
+                                <mat-option value="Estonie">Estonie </mat-option>
+                                <mat-option value="Etats_Unis">Etats_Unis </mat-option>
+                                <mat-option value="Ethiopie">Ethiopie </mat-option>
+                                
+                                <mat-option value="Falkland">Falkland </mat-option>
+                                <mat-option value="Feroe">Feroe </mat-option>
+                                <mat-option value="Fidji">Fidji </mat-option>
+                                <mat-option value="Finlande">Finlande </mat-option>
+                                <mat-option value="France">France </mat-option>
+                                
+                                <mat-option value="Gabon">Gabon </mat-option>
+                                <mat-option value="Gambie">Gambie </mat-option>
+                                <mat-option value="Georgie">Georgie </mat-option>
+                                <mat-option value="Ghana">Ghana </mat-option>
+                                <mat-option value="Gibraltar">Gibraltar </mat-option>
+                                <mat-option value="Grece">Grece </mat-option>
+                                <mat-option value="Grenade">Grenade </mat-option>
+                                <mat-option value="Groenland">Groenland </mat-option>
+                                <mat-option value="Guadeloupe">Guadeloupe </mat-option>
+                                <mat-option value="Guam">Guam </mat-option>
+                                <mat-option value="Guatemala">Guatemala</mat-option>
+                                <mat-option value="Guernesey">Guernesey </mat-option>
+                                <mat-option value="Guinee">Guinee </mat-option>
+                                <mat-option value="Guinee_Bissau">Guinee_Bissau </mat-option>
+                                <mat-option value="Guinee equatoriale">Guinee_Equatoriale </mat-option>
+                                <mat-option value="Guyana">Guyana </mat-option>
+                                <mat-option value="Guyane_Francaise ">Guyane_Francaise </mat-option>
+                                
+                                <mat-option value="Haiti">Haiti </mat-option>
+                                <mat-option value="Hawaii">Hawaii </mat-option>
+                                <mat-option value="Honduras">Honduras </mat-option>
+                                <mat-option value="Hong_Kong">Hong_Kong </mat-option>
+                                <mat-option value="Hongrie">Hongrie </mat-option>
+                                
+                                <mat-option value="Inde">Inde </mat-option>
+                                <mat-option value="Indonesie">Indonesie </mat-option>
+                                <mat-option value="Iran">Iran </mat-option>
+                                <mat-option value="Iraq">Iraq </mat-option>
+                                <mat-option value="Irlande">Irlande </mat-option>
+                                <mat-option value="Islande">Islande </mat-option>
+                                <mat-option value="Israel">Israel </mat-option>
+                                <mat-option value="Italie">italie </mat-option>
+                                
+                                <mat-option value="Jamaique">Jamaique </mat-option>
+                                <mat-option value="Jan Mayen">Jan Mayen </mat-option>
+                                <mat-option value="Japon">Japon </mat-option>
+                                <mat-option value="Jersey">Jersey </mat-option>
+                                <mat-option value="Jordanie">Jordanie </mat-option>
+                                
+                                <mat-option value="Kazakhstan">Kazakhstan </mat-option>
+                                <mat-option value="Kenya">Kenya </mat-option>
+                                <mat-option value="Kirghizstan">Kirghizistan </mat-option>
+                                <mat-option value="Kiribati">Kiribati </mat-option>
+                                <mat-option value="Koweit">Koweit </mat-option>
+                                
+                                <mat-option value="Laos">Laos </mat-option>
+                                <mat-option value="Lesotho">Lesotho </mat-option>
+                                <mat-option value="Lettonie">Lettonie </mat-option>
+                                <mat-option value="Liban">Liban </mat-option>
+                                <mat-option value="Liberia">Liberia </mat-option>
+                                <mat-option value="Liechtenstein">Liechtenstein </mat-option>
+                                <mat-option value="Lituanie">Lituanie </mat-option>
+                                <mat-option value="Luxembourg">Luxembourg </mat-option>
+                                <mat-option value="Lybie">Lybie </mat-option>
+                                
+                                <mat-option value="Macao">Macao </mat-option>
+                                <mat-option value="Macedoine">Macedoine </mat-option>
+                                <mat-option value="Madagascar">Madagascar </mat-option>
+                                <mat-option value="Madère">Madère </mat-option>
+                                <mat-option value="Malaisie">Malaisie </mat-option>
+                                <mat-option value="Malawi">Malawi </mat-option>
+                                <mat-option value="Maldives">Maldives </mat-option>
+                                <mat-option value="Mali">Mali </mat-option>
+                                <mat-option value="Malte">Malte </mat-option>
+                                <mat-option value="Man">Man </mat-option>
+                                <mat-option value="Mariannes du Nord">Mariannes du Nord </mat-option>
+                                <mat-option value="Maroc">Maroc </mat-option>
+                                <mat-option value="Marshall">Marshall </mat-option>
+                                <mat-option value="Martinique">Martinique </mat-option>
+                                <mat-option value="Maurice">Maurice </mat-option>
+                                <mat-option value="Mauritanie">Mauritanie </mat-option>
+                                <mat-option value="Mayotte">Mayotte </mat-option>
+                                <mat-option value="Mexique">Mexique </mat-option>
+                                <mat-option value="Micronesie">Micronesie </mat-option>
+                                <mat-option value="Midway">Midway </mat-option>
+                                <mat-option value="Moldavie">Moldavie </mat-option>
+                                <mat-option value="Monaco">Monaco </mat-option>
+                                <mat-option value="Mongolie">Mongolie </mat-option>
+                                <mat-option value="Montserrat">Montserrat </mat-option>
+                                <mat-option value="Mozambique">Mozambique </mat-option>
+                                
+                                <mat-option value="Namibie">Namibie </mat-option>
+                                <mat-option value="Nauru">Nauru </mat-option>
+                                <mat-option value="Nepal">Nepal </mat-option>
+                                <mat-option value="Nicaragua">Nicaragua </mat-option>
+                                <mat-option value="Niger">Niger </mat-option>
+                                <mat-option value="Nigeria">Nigeria </mat-option>
+                                <mat-option value="Niue">Niue </mat-option>
+                                <mat-option value="Norfolk">Norfolk </mat-option>
+                                <mat-option value="Norvege">Norvege </mat-option>
+                                <mat-option value="Nouvelle_Caledonie">Nouvelle_Caledonie </mat-option>
+                                <mat-option value="Nouvelle_Zelande">Nouvelle_Zelande </mat-option>
+                                
+                                <mat-option value="Oman">Oman </mat-option>
+                                <mat-option value="Ouganda">Ouganda </mat-option>
+                                <mat-option value="Ouzbekistan">Ouzbekistan </mat-option>
+                                
+                                <mat-option value="Pakistan">Pakistan </mat-option>
+                                <mat-option value="Palau">Palau </mat-option>
+                                <mat-option value="Palestine">Palestine </mat-option>
+                                <mat-option value="Panama">Panama </mat-option>
+                                <mat-option value="Papouasie_Nouvelle_Guinee">Papouasie_Nouvelle_Guinee </mat-option>
+                                <mat-option value="Paraguay">Paraguay </mat-option>
+                                <mat-option value="Pays_Bas">Pays_Bas </mat-option>
+                                <mat-option value="Perou">Perou </mat-option>
+                                <mat-option value="Philippines">Philippines </mat-option>
+                                <mat-option value="Pologne">Pologne </mat-option>
+                                <mat-option value="Polynesie">Polynesie </mat-option>
+                                <mat-option value="Porto_Rico">Porto_Rico </mat-option>
+                                <mat-option value="Portugal">Portugal </mat-option>
+                                
+                                <mat-option value="Qatar">Qatar </mat-option>
+                                
+                                <mat-option value="Republique_Dominicaine">Republique_Dominicaine </mat-option>
+                                <mat-option value="Republique_Tcheque">Republique_Tcheque </mat-option>
+                                <mat-option value="Reunion">Reunion </mat-option>
+                                <mat-option value="Roumanie">Roumanie </mat-option>
+                                <mat-option value="Royaume_Uni">Royaume_Uni </mat-option>
+                                <mat-option value="Russie">Russie </mat-option>
+                                <mat-option value="Rwanda">Rwanda </mat-option>
+                                
+                                <mat-option value="Sahara Occidental">Sahara Occidental </mat-option>
+                                <mat-option value="Sainte_Lucie">Sainte_Lucie </mat-option>
+                                <mat-option value="Saint_Marin">Saint_Marin </mat-option>
+                                <mat-option value="Salomon">Salomon </mat-option>
+                                <mat-option value="Salvador">Salvador </mat-option>
+                                <mat-option value="Samoa_Occidentales">Samoa_Occidentales</mat-option>
+                                <mat-option value="Samoa_Americaine">Samoa_Americaine </mat-option>
+                                <mat-option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </mat-option>
+                                <mat-option value="Senegal">Senegal </mat-option>
+                                <mat-option value="Seychelles">Seychelles </mat-option>
+                                <mat-option value="Sierra Leone">Sierra Leone </mat-option>
+                                <mat-option value="Singapour">Singapour </mat-option>
+                                <mat-option value="Slovaquie">Slovaquie </mat-option>
+                                <mat-option value="Slovenie">Slovenie</mat-option>
+                                <mat-option value="Somalie">Somalie </mat-option>
+                                <mat-option value="Soudan">Soudan </mat-option>
+                                <mat-option value="Sri_Lanka">Sri_Lanka </mat-option>
+                                <mat-option value="Suede">Suede </mat-option>
+                                <mat-option value="Suisse">Suisse </mat-option>
+                                <mat-option value="Surinam">Surinam </mat-option>
+                                <mat-option value="Swaziland">Swaziland </mat-option>
+                                <mat-option value="Syrie">Syrie </mat-option>
+                                
+                                <mat-option value="Tadjikistan">Tadjikistan </mat-option>
+                                <mat-option value="Taiwan">Taiwan </mat-option>
+                                <mat-option value="Tonga">Tonga </mat-option>
+                                <mat-option value="Tanzanie">Tanzanie </mat-option>
+                                <mat-option value="Tchad">Tchad </mat-option>
+                                <mat-option value="Thailande">Thailande </mat-option>
+                                <mat-option value="Tibet">Tibet </mat-option>
+                                <mat-option value="Timor_Oriental">Timor_Oriental </mat-option>
+                                <mat-option value="Togo">Togo </mat-option>
+                                <mat-option value="Trinite_et_Tobago">Trinite_et_Tobago </mat-option>
+                                <mat-option value="Tristan da cunha">Tristan de cuncha </mat-option>
+                                <mat-option value="Tunisie">Tunisie </mat-option>
+                                <mat-option value="Turkmenistan">Turmenistan </mat-option>
+                                <mat-option value="Turquie">Turquie </mat-option>
+                                
+                                <mat-option value="Ukraine">Ukraine </mat-option>
+                                <mat-option value="Uruguay">Uruguay </mat-option>
+                                
+                                <mat-option value="Vanuatu">Vanuatu </mat-option>
+                                <mat-option value="Vatican">Vatican </mat-option>
+                                <mat-option value="Venezuela">Venezuela </mat-option>
+                                <mat-option value="Vierges_Americaines">Vierges_Americaines </mat-option>
+                                <mat-option value="Vierges_Britanniques">Vierges_Britanniques </mat-option>
+                                <mat-option value="Vietnam">Vietnam </mat-option>
+                                
+                                <mat-option value="Wake">Wake </mat-option>
+                                <mat-option value="Wallis et Futuma">Wallis et Futuma </mat-option>
+                                
+                                <mat-option value="Yemen">Yemen </mat-option>
+                                <mat-option value="Yougoslavie">Yougoslavie </mat-option>
+                                
+                                <mat-option value="Zambie">Zambie </mat-option>
+                                <mat-option value="Zimbabwe">Zimbabwe </mat-option>
+
+                            </mat-select>
+
+
+                                   
+                            </mat-form-field>
+                                
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Ville</mat-label>
+                                <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="app_city">
+                                 <!-- Error div -->
+                              <div 
+                              *ngIf="
+                              firstFormGroup.controls.app_city.errors?.['minlength'] || 
+                              firstFormGroup.controls.app_city.errors?.['maxlength']" 
+                              class="error_div">
+                                  Le caracteres doit etre superieur ou egale a 2
+                              </div>
+                          <!-- /End Error div -->
+                            </mat-form-field>
+                             
+                        </div>
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Addresse domicile</mat-label>
+                                <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="app_address">
+                                   <!-- Error div -->
+                             <div 
+                             *ngIf="
+                             firstFormGroup.controls.app_address.errors?.['minlength'] || 
+                             firstFormGroup.controls.app_address.errors?.['maxlength']" 
+                             class="error_div">
+                                 Le nombre de caracteres doit etre superieur ou egale a 2
+                             </div>
+                         <!-- /End Error div -->
+                            </mat-form-field>
+                          
+            
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Agence</mat-label>
+                                <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="app_point">
+                                 <!-- Error div -->
+                             <div 
+                             *ngIf="
+                             firstFormGroup.controls.app_point.errors?.['minlength'] || 
+                             firstFormGroup.controls.app_point.errors?.['maxlength']" 
+                             class="error_div">
+                                 Le caracteres doit etre superieur ou egale a 2
+                             </div>
+                             <!-- /End Error div -->
+                            </mat-form-field>
+                            
+                        </div>
+                
+                
+                
+                        <div class="row">
+                         
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Téléphone (Orange)</mat-label>
+                                <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="app_phone_number">
+                                <!-- Error div -->
+                            <div 
+                            *ngIf="
+                            firstFormGroup.controls.app_phone_number.errors?.['minlength'] || 
+                            firstFormGroup.controls.app_phone_number.errors?.['maxlength']" 
+                            class="error_div">
+                                Veuillez entrer un numero de Téléphone compris entre 2 et 20 caracteres
+                              </div>
+                              <!-- /End Error div -->
+                            </mat-form-field>
+                           
+
+            
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Autre Numéro de téléphone(Autre)</mat-label>
+                                <input matInput type="text" placeholder="" formControlName="app_business_line">
+                                 <!-- Error div -->
+                             <div 
+                             *ngIf="
+                             firstFormGroup.controls.app_business_line.errors?.['minlength'] || 
+                             firstFormGroup.controls.app_business_line.errors?.['maxlength']" 
+                             class="error_div">
+                             Le caracteres doit etre superieur ou egale a 2 et inferieur a 20
+                            </div>
+                             <!-- /End Error div -->
+                            </mat-form-field>
+                            
+                        </div>
+                
+                
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Secteur - Activité primaire</mat-label>
+                                 <mat-select formControlName="app_profession"> 
+                                    <mat-option *ngFor="let secteur of les_secteurs" value="{{secteur}}">{{secteur}}</mat-option>
+                                    
+                                 </mat-select>
+                                 
+                                 </mat-form-field>
+            
+                                 <mat-form-field appearance="outline" class="col">
+                                    <mat-label>Secteur - Activité Secondaire</mat-label>
+                                     <mat-select formControlName="app_secondary_profession"> 
+                                        <mat-option *ngFor="let secteur of les_secteurs" value="{{secteur}}">{{secteur}}</mat-option>
+                                        
+                                     </mat-select>
+                                    
+                                     </mat-form-field>
+                        </div>
+
+                         
+                <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Avez vous un conjoint    </mat-label>
+                           <mat-select formControlName="app_conjoint">
+                               <mat-option value="Oui">Oui</mat-option>
+                               <mat-option value="Non">Non</mat-option>
+                           </mat-select>
+                       </mat-form-field>
+                
+                <mat-form-field appearance="outline" class="col">
+                            <mat-label>Si Oui, participe t il.elle aux dépenses du foyer ?</mat-label>
+                           <mat-select formControlName="participation_conjoint">
+                               <mat-option value="Oui">Oui</mat-option>
+                               <mat-option value="Non">Non</mat-option>
+                           </mat-select>
+                       </mat-form-field> 
+                
+                </div>
+
+                 
+
+                <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Arrivez-vous à épargner de l'argent après vos dépenses en fin de mois ?</mat-label>
+                           <mat-select formControlName="app_epargne">
+                               <mat-option value="Oui">Oui</mat-option>
+                               <mat-option value="Non">Non</mat-option>
+                           </mat-select>
+                       </mat-form-field>     
+                       
+                       <mat-form-field appearance="outline" class="col">
+                            <mat-label>Si Oui, à quelle hauteur?</mat-label>
+                           <mat-select formControlName="app_epargne_hateur">
+                               <mat-option value="Très insignifiant">Très insignifiant</mat-option>
+                               <mat-option value="Peu">Peu</mat-option>
+                               <mat-option value="Suffisamment">Suffisamment</mat-option>
+                               <mat-option value="Beaucoup">Beaucoup</mat-option>
+                           </mat-select>
+                       </mat-form-field>              
+                </div>
+
+                <div class="row">
+                                     
+               
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Expérience passée avec une structure financière de crédit</mat-label>
+                   <mat-select formControlName="app_experience">
+                       <mat-option value="Oui">Oui</mat-option>
+                       <mat-option value="Non">Non</mat-option>
+                   </mat-select>
+               </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col">
+                        <mat-label>Si Oui, preciser le type</mat-label>
+                        <mat-select formControlName="app_experience_structure">
+                            <mat-option value="Banque">Banque</mat-option>
+                            <mat-option value="Institution de microfinance">Institution de microfinance</mat-option>
+                            <mat-option value="Tontine">Tontine</mat-option>
+                            <mat-option value="Coopérative">Coopérative</mat-option>
+                            <mat-option value="Autre">Autre</mat-option>
+                        </mat-select>
+                
+    
+                </mat-form-field>
+               
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Si Autre, precisez</mat-label>
+                    <input matInput type="text" placeholder="" formControlName="app_experience_structure_name">
+               </mat-form-field>
+
+            </div>
+
+
+                
+                <div class="row">
+               <mat-form-field appearance="outline" class="col">
+                    <mat-label>Si Oui,avez-vous rembourser totalement ce crédit ?</mat-label>
+                    <mat-select formControlName="app_experience_statut">
+                       <mat-option value="Oui, c'est remboursé intégralement">Oui, c'est remboursé intégralement</mat-option>
+                       <mat-option value="Non, le remboursement est en cours">Non, le remboursement est en cours</mat-option>
+                       <mat-option value="Non, j'ai eu des problèmes">Non, j'ai eu des problèmes</mat-option>
+                   </mat-select>
+                    
+
+
+               </mat-form-field>
+
+                </div>
+                        <div class="row">
+                            <button mat-button matStepperNext  type="submit" class="col-1 bg-primary text-white shadow" *ngIf="!is_old_client ">Suivant</button>
+                          </div>
+                
+                
+                
+                
+            </div> 
+            
+                   
+                  </form>
+                </mat-step>
+            
+            
+                  <!-- ----------------------------------------------Endorser details ----------------------------------------------------------------------------------- -->
+            
+                <mat-step [stepControl]="secondFormGroup">
+                  <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Details sur l'avaliseur</ng-template>
+                     
+                        <div class="row">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col" >
+                                    <mat-label>Nom</mat-label>
+                                    <input matInput type="text" placeholder="Ex:Nicolas" formControlName="first_name">
+                                
+                    
+                                    <!-- Error div -->
+                                    <div 
+                                    *ngIf="
+                                    secondFormGroup.controls.first_name.errors?.['minlength'] || 
+                                    secondFormGroup.controls.first_name.errors?.['maxlength']" 
+                                    class="error_div">
+                                        Veuillez entrer un nom compris entre 2 et 100 caracteres
+                                    </div>
+                                    <!-- /Error div -->
+                                </mat-form-field>
+            
+                                <mat-form-field appearance="outline" class="col" >
+                                    <mat-label>Prénom</mat-label>
+                                    <input matInput type="text" placeholder="Ex:Cage" formControlName="last_name">
+                               
+                                <!-- Error div -->
+                                <div 
+                                *ngIf="
+                                secondFormGroup.controls.last_name.errors?.['minlength'] || 
+                                secondFormGroup.controls.last_name.errors?.['maxlength']" 
+                                class="error_div">
+                                    Veuillez entrer un prenom compris entre 2 et 100 caracteres
+                                </div>
+                                <!-- /Error div -->
+            
+                            </mat-form-field>
+            
+                            </div>
+                        
+                            <div class="row">
+                                <mat-form-field class="col">
+                                <mat-label >Genre</mat-label>
+                                <mat-select formControlName="gender">
+                                    <mat-option  value="F">Feminin</mat-option>
+                                    <mat-option  value="M">Masculin</mat-option>
+                                </mat-select>
+                                </mat-form-field>
+                
+                                    <mat-form-field class="col">
+                                    <mat-label>Date de naissance</mat-label>
+                                    <input matInput [matDatepicker]="picker1" formControlName="d_naissance">
+                                
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker1" ></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1 ></mat-datepicker>
+                                    </mat-form-field>
+                            </div>
+                
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col">
+                                <mat-label>Profession</mat-label>
+                                <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="profession">
+                               
+                                <!-- Error div -->
+                                <div 
+                                *ngIf="
+                                secondFormGroup.controls.profession.errors?.['minlength'] || 
+                                secondFormGroup.controls.profession.errors?.['maxlength']" 
+                                class="error_div">
+                                    Le nombre de caractere doit etre compris entre 2 et 100
+                                </div>
+                                <!-- /Error div -->
+             </mat-form-field>
+                                
+                <mat-form-field appearance="outline" class="col">
+                    <mat-label>Téléphone</mat-label>
+                    <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="phone_number">
+                    
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    secondFormGroup.controls.phone_number.errors?.['minlength'] || 
+                    secondFormGroup.controls.phone_number.errors?.['maxlength']" 
+                    class="error_div">
+                        Le nombre de caractere doit etre compris entre 2 et 20
+                    </div>
+                    <!-- /Error div -->
+                </mat-form-field>
+                
+                            </div>
+                
+                              
+                
+                
+                
+                            <div class="row">
+                            
+                                 
+                            
+                                    <mat-form-field appearance="outline" class="col">
+                                        <mat-label>Référence de la carte d'identification nationale</mat-label>
+                                        <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="endorser_nic_number">
+                                   
+                                        <!-- Error div -->
+                                        <div 
+                                        *ngIf="
+                                        secondFormGroup.controls.point.errors?.['minlength'] || 
+                                        secondFormGroup.controls.point.errors?.['maxlength']" 
+                                        class="error_div">
+                                            Le nombre de caractère doit etre compris entre 2 et 100
+                                        </div>
+                                        <!-- /Error div -->
+                                     </mat-form-field>
+                                
+
+                             <div class="col">
+                            
+                                <button type="button" mat-raised-button (click)="fileInput2.click()" [class]="img_name=='Aucune image'? '':'green'" class="">{{img_name2}} </button>
+                                <input    (change)="onFileSelected('endorser')" #fileInput2 type="file" id="file2" formControlName="endorser_nic_image"  accept=".png,.PNG,.jpg,.JPG,.jpeg,.JPEG" hidden>
+                           </div>
+                            
+
+                            </div>
+                
+                
+                        
+                        <div class="row">
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Pays</mat-label>
+                                <mat-select formControlName="state"> 
+
+
+
+                                    <mat-option value="Burkina Faso" selected="selected">Burkina Faso</mat-option>
+    
+                                    <mat-option value="Afghanistan">Afghanistan </mat-option>
+                                    <mat-option value="Afrique_Centrale">Afrique_Centrale </mat-option>
+                                    <mat-option value="Afrique_du_sud">Afrique_du_Sud </mat-option>
+                                    <mat-option value="Albanie">Albanie </mat-option>
+                                    <mat-option value="Algerie">Algerie </mat-option>
+                                    <mat-option value="Allemagne">Allemagne </mat-option>
+                                    <mat-option value="Andorre">Andorre </mat-option>
+                                    <mat-option value="Angola">Angola </mat-option>
+                                    <mat-option value="Anguilla">Anguilla </mat-option>
+                                    <mat-option value="Arabie_Saoudite">Arabie_Saoudite </mat-option>
+                                    <mat-option value="Argentine">Argentine </mat-option>
+                                    <mat-option value="Armenie">Armenie </mat-option>
+                                    <mat-option value="Australie">Australie </mat-option>
+                                    <mat-option value="Autriche">Autriche </mat-option>
+                                    <mat-option value="Azerbaidjan">Azerbaidjan </mat-option>
+                                    
+                                    <mat-option value="Bahamas">Bahamas </mat-option>
+                                    <mat-option value="Bangladesh">Bangladesh </mat-option>
+                                    <mat-option value="Barbade">Barbade </mat-option>
+                                    <mat-option value="Bahrein">Bahrein </mat-option>
+                                    <mat-option value="Belgique">Belgique </mat-option>
+                                    <mat-option value="Belize">Belize </mat-option>
+                                    <mat-option value="Benin">Benin </mat-option>
+                                    <mat-option value="Bermudes">Bermudes </mat-option>
+                                    <mat-option value="Bielorussie">Bielorussie </mat-option>
+                                    <mat-option value="Bolivie">Bolivie </mat-option>
+                                    <mat-option value="Botswana">Botswana </mat-option>
+                                    <mat-option value="Bhoutan">Bhoutan </mat-option>
+                                    <mat-option value="Boznie_Herzegovine">Boznie_Herzegovine </mat-option>
+                                    <mat-option value="Bresil">Bresil </mat-option>
+                                    <mat-option value="Brunei">Brunei </mat-option>
+                                    <mat-option value="Bulgarie">Bulgarie </mat-option>
+                                    <mat-option value="Burkina_Faso">Burkina_Faso </mat-option>
+                                    <mat-option value="Burundi">Burundi </mat-option>
+                                    
+                                    <mat-option value="Caiman">Caiman </mat-option>
+                                    <mat-option value="Cambodge">Cambodge </mat-option>
+                                    <mat-option value="Cameroun">Cameroun </mat-option>
+                                    <mat-option value="Canada">Canada </mat-option>
+                                    <mat-option value="Canaries">Canaries </mat-option>
+                                    <mat-option value="Cap_vert">Cap_Vert </mat-option>
+                                    <mat-option value="Chili">Chili </mat-option>
+                                    <mat-option value="Chine">Chine </mat-option>
+                                    <mat-option value="Chypre">Chypre </mat-option>
+                                    <mat-option value="Colombie">Colombie </mat-option>
+                                    <mat-option value="Comores">Colombie </mat-option>
+                                    <mat-option value="Congo">Congo </mat-option>
+                                    <mat-option value="Congo_democratique">Congo_democratique </mat-option>
+                                    <mat-option value="Cook">Cook </mat-option>
+                                    <mat-option value="Coree_du_Nord">Coree_du_Nord </mat-option>
+                                    <mat-option value="Coree_du_Sud">Coree_du_Sud </mat-option>
+                                    <mat-option value="Costa_Rica">Costa_Rica </mat-option>
+                                    <mat-option value="Cote_d_Ivoire">Côte_d_Ivoire </mat-option>
+                                    <mat-option value="Croatie">Croatie </mat-option>
+                                    <mat-option value="Cuba">Cuba </mat-option>
+                                    
+                                    <mat-option value="Danemark">Danemark </mat-option>
+                                    <mat-option value="Djibouti">Djibouti </mat-option>
+                                    <mat-option value="Dominique">Dominique </mat-option>
+                                    
+                                    <mat-option value="Egypte">Egypte </mat-option>
+                                    <mat-option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </mat-option>
+                                    <mat-option value="Equateur">Equateur </mat-option>
+                                    <mat-option value="Erythree">Erythree </mat-option>
+                                    <mat-option value="Espagne">Espagne </mat-option>
+                                    <mat-option value="Estonie">Estonie </mat-option>
+                                    <mat-option value="Etats_Unis">Etats_Unis </mat-option>
+                                    <mat-option value="Ethiopie">Ethiopie </mat-option>
+                                    
+                                    <mat-option value="Falkland">Falkland </mat-option>
+                                    <mat-option value="Feroe">Feroe </mat-option>
+                                    <mat-option value="Fidji">Fidji </mat-option>
+                                    <mat-option value="Finlande">Finlande </mat-option>
+                                    <mat-option value="France">France </mat-option>
+                                    
+                                    <mat-option value="Gabon">Gabon </mat-option>
+                                    <mat-option value="Gambie">Gambie </mat-option>
+                                    <mat-option value="Georgie">Georgie </mat-option>
+                                    <mat-option value="Ghana">Ghana </mat-option>
+                                    <mat-option value="Gibraltar">Gibraltar </mat-option>
+                                    <mat-option value="Grece">Grece </mat-option>
+                                    <mat-option value="Grenade">Grenade </mat-option>
+                                    <mat-option value="Groenland">Groenland </mat-option>
+                                    <mat-option value="Guadeloupe">Guadeloupe </mat-option>
+                                    <mat-option value="Guam">Guam </mat-option>
+                                    <mat-option value="Guatemala">Guatemala</mat-option>
+                                    <mat-option value="Guernesey">Guernesey </mat-option>
+                                    <mat-option value="Guinee">Guinee </mat-option>
+                                    <mat-option value="Guinee_Bissau">Guinee_Bissau </mat-option>
+                                    <mat-option value="Guinee equatoriale">Guinee_Equatoriale </mat-option>
+                                    <mat-option value="Guyana">Guyana </mat-option>
+                                    <mat-option value="Guyane_Francaise ">Guyane_Francaise </mat-option>
+                                    
+                                    <mat-option value="Haiti">Haiti </mat-option>
+                                    <mat-option value="Hawaii">Hawaii </mat-option>
+                                    <mat-option value="Honduras">Honduras </mat-option>
+                                    <mat-option value="Hong_Kong">Hong_Kong </mat-option>
+                                    <mat-option value="Hongrie">Hongrie </mat-option>
+                                    
+                                    <mat-option value="Inde">Inde </mat-option>
+                                    <mat-option value="Indonesie">Indonesie </mat-option>
+                                    <mat-option value="Iran">Iran </mat-option>
+                                    <mat-option value="Iraq">Iraq </mat-option>
+                                    <mat-option value="Irlande">Irlande </mat-option>
+                                    <mat-option value="Islande">Islande </mat-option>
+                                    <mat-option value="Israel">Israel </mat-option>
+                                    <mat-option value="Italie">italie </mat-option>
+                                    
+                                    <mat-option value="Jamaique">Jamaique </mat-option>
+                                    <mat-option value="Jan Mayen">Jan Mayen </mat-option>
+                                    <mat-option value="Japon">Japon </mat-option>
+                                    <mat-option value="Jersey">Jersey </mat-option>
+                                    <mat-option value="Jordanie">Jordanie </mat-option>
+                                    
+                                    <mat-option value="Kazakhstan">Kazakhstan </mat-option>
+                                    <mat-option value="Kenya">Kenya </mat-option>
+                                    <mat-option value="Kirghizstan">Kirghizistan </mat-option>
+                                    <mat-option value="Kiribati">Kiribati </mat-option>
+                                    <mat-option value="Koweit">Koweit </mat-option>
+                                    
+                                    <mat-option value="Laos">Laos </mat-option>
+                                    <mat-option value="Lesotho">Lesotho </mat-option>
+                                    <mat-option value="Lettonie">Lettonie </mat-option>
+                                    <mat-option value="Liban">Liban </mat-option>
+                                    <mat-option value="Liberia">Liberia </mat-option>
+                                    <mat-option value="Liechtenstein">Liechtenstein </mat-option>
+                                    <mat-option value="Lituanie">Lituanie </mat-option>
+                                    <mat-option value="Luxembourg">Luxembourg </mat-option>
+                                    <mat-option value="Lybie">Lybie </mat-option>
+                                    
+                                    <mat-option value="Macao">Macao </mat-option>
+                                    <mat-option value="Macedoine">Macedoine </mat-option>
+                                    <mat-option value="Madagascar">Madagascar </mat-option>
+                                    <mat-option value="Madère">Madère </mat-option>
+                                    <mat-option value="Malaisie">Malaisie </mat-option>
+                                    <mat-option value="Malawi">Malawi </mat-option>
+                                    <mat-option value="Maldives">Maldives </mat-option>
+                                    <mat-option value="Mali">Mali </mat-option>
+                                    <mat-option value="Malte">Malte </mat-option>
+                                    <mat-option value="Man">Man </mat-option>
+                                    <mat-option value="Mariannes du Nord">Mariannes du Nord </mat-option>
+                                    <mat-option value="Maroc">Maroc </mat-option>
+                                    <mat-option value="Marshall">Marshall </mat-option>
+                                    <mat-option value="Martinique">Martinique </mat-option>
+                                    <mat-option value="Maurice">Maurice </mat-option>
+                                    <mat-option value="Mauritanie">Mauritanie </mat-option>
+                                    <mat-option value="Mayotte">Mayotte </mat-option>
+                                    <mat-option value="Mexique">Mexique </mat-option>
+                                    <mat-option value="Micronesie">Micronesie </mat-option>
+                                    <mat-option value="Midway">Midway </mat-option>
+                                    <mat-option value="Moldavie">Moldavie </mat-option>
+                                    <mat-option value="Monaco">Monaco </mat-option>
+                                    <mat-option value="Mongolie">Mongolie </mat-option>
+                                    <mat-option value="Montserrat">Montserrat </mat-option>
+                                    <mat-option value="Mozambique">Mozambique </mat-option>
+                                    
+                                    <mat-option value="Namibie">Namibie </mat-option>
+                                    <mat-option value="Nauru">Nauru </mat-option>
+                                    <mat-option value="Nepal">Nepal </mat-option>
+                                    <mat-option value="Nicaragua">Nicaragua </mat-option>
+                                    <mat-option value="Niger">Niger </mat-option>
+                                    <mat-option value="Nigeria">Nigeria </mat-option>
+                                    <mat-option value="Niue">Niue </mat-option>
+                                    <mat-option value="Norfolk">Norfolk </mat-option>
+                                    <mat-option value="Norvege">Norvege </mat-option>
+                                    <mat-option value="Nouvelle_Caledonie">Nouvelle_Caledonie </mat-option>
+                                    <mat-option value="Nouvelle_Zelande">Nouvelle_Zelande </mat-option>
+                                    
+                                    <mat-option value="Oman">Oman </mat-option>
+                                    <mat-option value="Ouganda">Ouganda </mat-option>
+                                    <mat-option value="Ouzbekistan">Ouzbekistan </mat-option>
+                                    
+                                    <mat-option value="Pakistan">Pakistan </mat-option>
+                                    <mat-option value="Palau">Palau </mat-option>
+                                    <mat-option value="Palestine">Palestine </mat-option>
+                                    <mat-option value="Panama">Panama </mat-option>
+                                    <mat-option value="Papouasie_Nouvelle_Guinee">Papouasie_Nouvelle_Guinee </mat-option>
+                                    <mat-option value="Paraguay">Paraguay </mat-option>
+                                    <mat-option value="Pays_Bas">Pays_Bas </mat-option>
+                                    <mat-option value="Perou">Perou </mat-option>
+                                    <mat-option value="Philippines">Philippines </mat-option>
+                                    <mat-option value="Pologne">Pologne </mat-option>
+                                    <mat-option value="Polynesie">Polynesie </mat-option>
+                                    <mat-option value="Porto_Rico">Porto_Rico </mat-option>
+                                    <mat-option value="Portugal">Portugal </mat-option>
+                                    
+                                    <mat-option value="Qatar">Qatar </mat-option>
+                                    
+                                    <mat-option value="Republique_Dominicaine">Republique_Dominicaine </mat-option>
+                                    <mat-option value="Republique_Tcheque">Republique_Tcheque </mat-option>
+                                    <mat-option value="Reunion">Reunion </mat-option>
+                                    <mat-option value="Roumanie">Roumanie </mat-option>
+                                    <mat-option value="Royaume_Uni">Royaume_Uni </mat-option>
+                                    <mat-option value="Russie">Russie </mat-option>
+                                    <mat-option value="Rwanda">Rwanda </mat-option>
+                                    
+                                    <mat-option value="Sahara Occidental">Sahara Occidental </mat-option>
+                                    <mat-option value="Sainte_Lucie">Sainte_Lucie </mat-option>
+                                    <mat-option value="Saint_Marin">Saint_Marin </mat-option>
+                                    <mat-option value="Salomon">Salomon </mat-option>
+                                    <mat-option value="Salvador">Salvador </mat-option>
+                                    <mat-option value="Samoa_Occidentales">Samoa_Occidentales</mat-option>
+                                    <mat-option value="Samoa_Americaine">Samoa_Americaine </mat-option>
+                                    <mat-option value="Sao_Tome_et_Principe">Sao_Tome_et_Principe </mat-option>
+                                    <mat-option value="Senegal">Senegal </mat-option>
+                                    <mat-option value="Seychelles">Seychelles </mat-option>
+                                    <mat-option value="Sierra Leone">Sierra Leone </mat-option>
+                                    <mat-option value="Singapour">Singapour </mat-option>
+                                    <mat-option value="Slovaquie">Slovaquie </mat-option>
+                                    <mat-option value="Slovenie">Slovenie</mat-option>
+                                    <mat-option value="Somalie">Somalie </mat-option>
+                                    <mat-option value="Soudan">Soudan </mat-option>
+                                    <mat-option value="Sri_Lanka">Sri_Lanka </mat-option>
+                                    <mat-option value="Suede">Suede </mat-option>
+                                    <mat-option value="Suisse">Suisse </mat-option>
+                                    <mat-option value="Surinam">Surinam </mat-option>
+                                    <mat-option value="Swaziland">Swaziland </mat-option>
+                                    <mat-option value="Syrie">Syrie </mat-option>
+                                    
+                                    <mat-option value="Tadjikistan">Tadjikistan </mat-option>
+                                    <mat-option value="Taiwan">Taiwan </mat-option>
+                                    <mat-option value="Tonga">Tonga </mat-option>
+                                    <mat-option value="Tanzanie">Tanzanie </mat-option>
+                                    <mat-option value="Tchad">Tchad </mat-option>
+                                    <mat-option value="Thailande">Thailande </mat-option>
+                                    <mat-option value="Tibet">Tibet </mat-option>
+                                    <mat-option value="Timor_Oriental">Timor_Oriental </mat-option>
+                                    <mat-option value="Togo">Togo </mat-option>
+                                    <mat-option value="Trinite_et_Tobago">Trinite_et_Tobago </mat-option>
+                                    <mat-option value="Tristan da cunha">Tristan de cuncha </mat-option>
+                                    <mat-option value="Tunisie">Tunisie </mat-option>
+                                    <mat-option value="Turkmenistan">Turmenistan </mat-option>
+                                    <mat-option value="Turquie">Turquie </mat-option>
+                                    
+                                    <mat-option value="Ukraine">Ukraine </mat-option>
+                                    <mat-option value="Uruguay">Uruguay </mat-option>
+                                    
+                                    <mat-option value="Vanuatu">Vanuatu </mat-option>
+                                    <mat-option value="Vatican">Vatican </mat-option>
+                                    <mat-option value="Venezuela">Venezuela </mat-option>
+                                    <mat-option value="Vierges_Americaines">Vierges_Americaines </mat-option>
+                                    <mat-option value="Vierges_Britanniques">Vierges_Britanniques </mat-option>
+                                    <mat-option value="Vietnam">Vietnam </mat-option>
+                                    
+                                    <mat-option value="Wake">Wake </mat-option>
+                                    <mat-option value="Wallis et Futuma">Wallis et Futuma </mat-option>
+                                    
+                                    <mat-option value="Yemen">Yemen </mat-option>
+                                    <mat-option value="Yougoslavie">Yougoslavie </mat-option>
+                                    
+                                    <mat-option value="Zambie">Zambie </mat-option>
+                                    <mat-option value="Zimbabwe">Zimbabwe </mat-option>
+    
+                                </mat-select>
+                         </mat-form-field>
+                         
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Ville</mat-label>
+                                <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="city">
+                           
+            
+                            <!-- Error div -->
+                            <div 
+                            *ngIf="
+                            secondFormGroup.controls.city.errors?.['minlength'] || 
+                            secondFormGroup.controls.city.errors?.['maxlength']" 
+                            class="error_div">
+                                Le nombre de caractère doit etre compris entre 2 et 100
+                            </div> </mat-form-field>
+                            <!-- /Error div -->
+                            <mat-form-field appearance="outline" class="col">
+                                <mat-label>Addresse / Secteur</mat-label>
+                                <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="address">
+                           
+                            <!-- Error div -->
+                            <div 
+                            *ngIf="
+                            secondFormGroup.controls.address.errors?.['minlength'] || 
+                            secondFormGroup.controls.address.errors?.['maxlength']" 
+                            class="error_div">
+                                Le nombre de caractère doit etre compris entre 2 et 100
+                            </div>
+                            <!-- /Error div -->
+                             </mat-form-field>
+                
+                        </div>
+                         
+                        <div class="row">
+                            <button mat-button matStepperPrevious class="col-1 bg-light">Retour</button>
+                            <button mat-button matStepperNext type="submit" class="col-1 bg-primary text-white shadow">Suivant</button>
+                          </div>
+                        </div>
+                    
+                  </form>
+                </mat-step>
+            
+            
+                  <!-- ----------------------------------------------Loan details ---------------------------------------------------- -->
+            
+                <mat-step [stepControl]="thirdFormGroup">
+                 
+                  <form [formGroup]="thirdFormGroup">
+                       <ng-template matStepLabel>Details sur le crédit</ng-template>
+                
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Formule du Crédit</mat-label>
+                            <mat-select formControlName="loan_type" (valueChange)="load_loans_list($event)">
+                                <mat-option  value="Formule Classique">Formule Classique</mat-option>
+                                <mat-option  value="Formule 2">Formule 2</mat-option>  
+                            </mat-select>
+                         </mat-form-field>
+                    </div>
+
+
+
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Montant</mat-label>
+                            <mat-select formControlName="loan_amount" (valueChange)="load_loan_details($event)">
+                                <mat-option *ngFor="let loans of loan_list"  value="{{loans.Pret?loans.Pret:loans.loan_limit}}"> {{loans.Pret?loans.Pret:loans.loan_limit}} FCFA</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+            
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Temps supplementaire:</mat-label>
+                            <mat-select formControlName="during_supp" (valueChange)="load_extension_details($event)">
+                                <mat-option *ngFor="let i of extension_duree"  value="{{i}}"> {{i}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+            
+                    </div>
+
+
+                    <div class="row">
+                        <ul style="list-style: none; margin:10px;padding:10px">
+                            <li  >Pourcentage: {{loan_rate}} </li>
+                            <li>Montant a rembourser: {{total_payment}} </li>
+                            <li>Type de duree de remboursement: {{during_type}} </li>
+                            <li>Duree: {{nbre_semaine}}</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="row" hidden>
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Pourcentage</mat-label>
+                            <input matInput type="number"   formControlName="loan_rate" min="0" max="1" placeholder="Ex:0.6%"   [value]="loan_rate">
+                        </mat-form-field>
+                         
+                    </div>
+                    <div class="row" hidden>
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Montant a rembourser</mat-label>
+                            <input matInput type="number"   formControlName="loan_amount"   [value]="total_payment">
+                        </mat-form-field>
+                    </div>
+            
+                     
+                   <div class="row" hidden>
+                    <mat-form-field appearance="outline" class="col"> 
+                        <mat-label>Type de duree de remboursement</mat-label>
+                        <input matInput type="text"   formControlName="type_duree"    >
+
+                        
+                        </mat-form-field>
+                   </div>
+            
+                   
+                    <div class="row" hidden>
+                        <mat-form-field appearance="outline" class="col">
+                            <mat-label>Duree</mat-label>
+                            <input matInput type="number" placeholder="Ex: 176" formControlName="loan_delay"   [value]="nbre_semaine">
+                            
+                        </mat-form-field>
+                    </div>
+            
+            
+                  
+            
+            
+                    <div>
+                        <button mat-button matStepperPrevious class="col-1 bg-light m-1">Retour</button>
+                        <button mat-button matStepperNext type="submit" class="m-1 col-1 bg-primary text-white shadow">Suivant</button>
+
+                    </div>
+                  </form>
+            
+                  
+                </mat-step>
+
+                <mat-step [stepControl]="lastFormGroup">
+                  <ng-template matStepLabel>Recapitulatifs</ng-template>
+                  <form [formGroup]="lastFormGroup">
+                   
+                   
+                    <div class="example-action-buttons">
+                      <button mat-button (click)="accordion.openAll()">Tout etendre</button>
+                      <button mat-button (click)="accordion.closeAll()">Tout reduire</button>
+                    </div>
+
+                    <mat-accordion class="example-headers-align" multi  [ngClass]="!is_light_mode? 'dark-accordion':''"> 
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                           Applicant
+                          </mat-panel-title> 
+                          <mat-icon>account_circle</mat-icon>
+                        </mat-expansion-panel-header>
+                    
+                        <mat-panel-description>
+                          <ul class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                            <li><span>Nom :</span>{{firstFormGroup.value.app_first_name}}</li>
+                            <li><span>Prénom :</span>{{firstFormGroup.value.app_last_name}}</li>
+                            <li><span>Genre :</span>{{firstFormGroup.value.app_gender}}</li>
+                            <li><span>Date de naissance :</span>{{firstFormGroup.value.app_d_naissance}}</li>
+                            <li><span>Téléphone :</span>{{firstFormGroup.value.app_phone_number}}</li>
+                            <li><span>Reference de la piece :</span>{{firstFormGroup.value.app_nic_number}}</li>
+                            <li><span>Secteur Primaire :</span>{{firstFormGroup.value.app_profession}}</li>
+                            <li><span>Secteur secondaire :</span>{{firstFormGroup.value.app_secondary_profession}}</li>
+                            <li><span>Avez vous un conjoint? </span>{{firstFormGroup.value.app_conjoint}}</li>
+                            <li><span>Si Oui est que votre conjoint participe aux depenses? </span>{{firstFormGroup.value.participation_conjoint}} </li>
+                            <li><span>Arrivez vous a epargne? </span>{{firstFormGroup.value.app_epargne}}</li>
+                            <li><span>Avez vous rembourser :</span>{{firstFormGroup.value.app_experience_statut}}</li>
+                            <li><span>Tranche de l'epargne :</span>{{firstFormGroup.value.app_epargne_hateur}}</li>
+                            <li><span>Avez deja eu une experience avec une strucutre? </span>{{firstFormGroup.value.app_experience_structure}}</li>
+                            <li><span>Si oui quelle type de structure :</span>{{firstFormGroup.value.app_experience_structure}}</li>
+                            <li><span>Si Autre, structure :</span>{{firstFormGroup.value.app_experience_structure_name}}</li>
+                            <li><span>Téléphone de bureau :</span>{{firstFormGroup.value.app_business_line}}</li>
+                            
+                        </ul>
+                       </mat-panel-description>
+                    
+                      </mat-expansion-panel>
+                       
+
+
+
+
+                      
+                    
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                           Avaliseur
+                          </mat-panel-title>
+                          <mat-icon>account_circle</mat-icon>
+                           
+                        </mat-expansion-panel-header>
+                    
+                        <mat-panel-description>
+                          <ul>
+                            <li><span>Nom :</span>: {{secondFormGroup.value.first_name}}</li>
+                            <li><span>Prénom :</span>: {{secondFormGroup.value.last_name}}</li>
+                            <li><span>Genre :</span>: {{secondFormGroup.value.gender}}</li>
+                            <li><span>Date de naissance :</span>{{secondFormGroup.value.d_naissance}}</li>
+                            <li><span>Téléphone :</span>{{secondFormGroup.value.phone_number}}</li>
+                            <li><span>Reference de la piece :</span>{{secondFormGroup.value.endorser_nic_number}}</li>
+                            <li><span>Profession :</span>{{secondFormGroup.value.profession}}</li>
+                          </ul>
+                          
+                        
+                       </mat-panel-description>
+                         
+                      </mat-expansion-panel>
+
+
+
+
+
+
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                          Nouvelle demande de credit
+                          </mat-panel-title>
+                          <mat-icon>add</mat-icon>
+                        </mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <ul style="list-style: none; margin:10px;padding:10px">
+                                <li  >Pourcentage:{{loan_rate}}</li>
+                                <li>Montant a rembourser:{{total_payment}}</li>
+                                <li>Type de duree de remboursement:{{during_type}}</li>
+                                <li>Duree{{nbre_semaine}}</li>
+                                
+                            </ul>
+                        </mat-panel-description>
+                        
+                         
+                      </mat-expansion-panel>
+
+                    </mat-accordion>
+ <hr>
+                    <button mat-button (click)="stepper.reset()" class="col-2 bg-warning text-white m-1">Recommencer</button>
+
+                    <button mat-button matStepperPrevious class="col-1 bg-light m-1">Retour</button>
+
+                    <button mat-button (click)="valider()" class="col-1 bg-success text-white m-1" *ngIf="!validate">Valider</button>
+                                
+                </form>
+            
+                  
+                </mat-step>
+
+                 
+              </mat-stepper>
+              
+         </div>
+    </div>
+</div>
+
+
+

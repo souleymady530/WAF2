@@ -1,0 +1,202 @@
+
+.nombre{
+    padding: 10px;
+}
+.nombre,.img
+{
+    font-size: 3.3em;
+    color:white
+   }
+   .my_card{
+   height: 100%;
+   border-radius: 5px;
+   box-shadow: 3px 3px 3px rgb(20,20,50);
+   border:solid 3px white;
+   }
+.titre{color:white}
+
+
+.dark-container .my_card
+ {
+    box-shadow: 3px 3px 3px black;
+
+    
+}
+
+#green
+{
+    background-color: rgb(83, 87, 105);
+}
+#yellow 
+{
+    background-color: rgb(92, 101, 146);
+}
+#red
+{
+    background-color: rgb(80, 116, 201);
+}
+
+#blue 
+{
+    background-color: rgb(84,108,166);
+}
+
+
+ 
+
+.widget-container  .widget 
+{
+    width: 365px;
+    height: 175px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #fff;
+    margin: 10px;
+    box-shadow: 5px 5px 5px #939393;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    
+   
+    
+    
+}
+
+
+.widget-container 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:20px;
+}
+
+.logo img
+{
+    width:400px;    
+    position:relative;
+    left:30%;
+}
+
+.icon 
+{
+    width: 100px;
+    font-size: 60px;
+    text-align: center;
+     
+   
+}
+.top 
+{
+    font-size: 30px;
+    
+}
+
+.bottom
+{
+    font-size: 20px;
+    margin-top: 10px;
+ }
+
+  
+ .light-container .min-carte{
+    padding:35px;
+    margin: 5px;
+    background-color: white;
+    
+    box-shadow: 3px 3px 3px rgb(241,241,243);
+ }
+
+ .light-container .min-carte .right_div {
+    width: 100%;
+ }
+ .light-container .min-carte .right_div i{
+    font-size: 4em;
+    
+    color:blue;
+ }
+ .light-container .min-carte .number{
+    font-size: 6em;
+ }
+ 
+h1{
+    
+}
+
+
+
+.echeance:hover{
+    cursor: pointer;
+}
+ .dark-accordion{
+    background-color:rgb(20,20,50);
+    color: white;
+  }
+
+ .card{
+
+ }
+
+ .dark-min-carte .flex-row-reverse:hover{
+    background-color: rgb(241,241,243);
+    color:black;
+ }
+ .dark-min-carte .flex-row-reverse{
+    color: white;
+    border:solid 1px rgb(127, 127, 184);
+
+ }
+ .light-container .flex-row-reverse:hover
+ {
+    background-color: rgb(242,242,242);
+    
+ }
+ .flex-row-reverse
+ {
+    cursor: pointer;
+    
+ }
+
+ .dark{
+    color: orange;
+ }
+
+ .dark-widget{
+    color: orange;
+}
+
+
+.dark-min-carte .right_div {
+    width: 100%;
+    font-size: 4em;
+    
+    color:blue;
+ }
+  
+ .dark-min-carte .number{
+    font-size: 6em;
+ }
+
+
+
+.dark-min-carte
+{
+    padding:35px;
+    margin: 5px;
+    background-color:rgb(20,20,50);
+    border:solid 1px rgb(127, 127, 184);
+    color: white;
+    box-shadow: 3px 3px 3px black;
+}
+
+.dark-expension{
+   background-color: rgb(127, 127, 184);
+   color:white;
+   
+}
+ 
+/*
+border:rgb(29,29,66);
+background-color:rgb(20,20,50);
+
+*/

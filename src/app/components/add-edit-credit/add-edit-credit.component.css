@@ -1,0 +1,19 @@
+ 
+#content
+{
+   min-height: 700px;
+      padding:10px;
+      overflow-y: hidden;
+}
+
+#content .row .row {
+    height:30px;
+   margin :20px;
+ }
+
+  
+ .error_div{
+   width:60%;
+   color:red;
+
+ }

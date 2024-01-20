@@ -1,0 +1,13 @@
+
+.dark-container{
+   
+    border:solid 1px rgb(127, 127, 184);
+    color: white;
+    box-shadow: 3px 3px 3px black;
+  }
+  
+  .dark-container table td,.dark-container table th,.dark-container mat-paginator,.dark-container .filtre, .dark-container mat-paginator{
+    background-color:rgb(20,20,50);
+    color: white;
+  }
+  

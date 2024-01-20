@@ -1,0 +1,175 @@
+<div class="row">
+    <div class="col-12 m-2 p-4" [ngClass]="!is_light_mode? 'dark-container':'border   bg-white'">
+        <div class="row details">
+         Demande envoyée le:{{ date_creation }}  par :{{agent_name }}
+        </div>
+        <hr>
+        <div class="row">
+            <input type="button" class="col-3 m-1 btn text-white btn-danger" value="Geler la demander" *ngIf="loan.loan_statut==1 && is_man" (click)="geler_demander(loan.id)">
+            <input type="button" class="col-3 m-1 btn text-white btn-primary" value="Generer le contrat" *ngIf="loan.loan_statut==1 && is_man" (click)="generer_contrat(loan.id)">
+            <input type="button" class="col-3 m-1 offset-1 text-white btn btn-info" value="Voir le contrat generé" *ngIf="loan.loan_statut==2" (click)="show_pdf(loan.contrat_non_signe)">
+            <input type="button" class="col-3 m-1 offset-1 text-white btn btn-info" value="Importer Le contrat signé" *ngIf="loan.loan_statut==2" (click)="import_pdf()">
+            <input type="button" class="col-3 m-1 offset-1 text-white  btn btn-info" value="Voir le contrat signé" *ngIf="loan.loan_statut>=3" (click)="show_pdf(loan.contrat_signe)">
+            <input type="button" class="col-3 m-1 offset-1 text-white btn btn-success" value="Accorder le pret" *ngIf="loan.loan_statut==3 && is_man" (click)="valider_pret()">
+            <input type="button" class="col-3 m-1 offset-1 text-white btn btn-success" value="Activer les echeances" *ngIf="loan.loan_statut==4" (click)="generer_les_echeances()">
+         </div>
+         
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 p-5 border">
+              <h1>Informations sur l'applicant</h1><br>  
+              <div class="row app_div">
+                    
+                    <ul class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                        <li><span>Nom :</span>{{loan.applicant.first_name}}</li>
+                        <li><span>Prénom :</span>{{loan.applicant.last_name}}</li>
+                        <li><span>Genre :</span>{{loan.applicant.gender}}</li>
+                        <li><span>Date de naissance :</span>{{loan.applicant.d_naissance}}</li>
+                        <li><span>Telephone :</span>{{loan.applicant.phone_number}}</li>
+                        <li><span>Reference de la piece :</span>{{loan.applicant.nic_number}}</li>
+                        <li><span>Secteur Primaire :</span>{{loan.applicant.profession}}</li>
+                        <li><span>Secteur secondaire :</span>{{loan.applicant.app_secondary_profession}}</li>
+                        <li><span>Avez vous un conjoint? </span>{{loan.applicant.app_conjoint}}</li>
+                        <li><span>Si Oui est que votre conjoint participe aux depenses? </span>{{loan.applicant.participation_conjoint}} </li>
+                        <li><span>Arrivez vous a epargne? </span>{{loan.applicant.app_epargne}}</li>
+                        <li><span>Avez vous rembourser :</span>{{loan.applicant.app_experience_statut}}</li>
+                        <li><span>Tranche de l'epargne :</span>{{loan.applicant.app_epargne_hateur}}</li>
+                        <li><span>Avez deja eu une experience avec une strucutre? </span>{{loan.applicant.app_experience_structure}}</li>
+                        <li><span>Si oui quelle type de structure :</span>{{loan.applicant.app_experience_structure}}</li>
+                        <li><span>Si Autre, structure :</span>{{loan.applicant.app_experience_structure_name}}</li>
+                        <li><span>telephone de bureau :</span>{{loan.applicant.business_line}}</li>
+                        
+                    </ul>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12" >
+                        <div class="img_div " (click)="show_img(loan.applicant.nic_image)"><img src="{{app_nic_img}}" alt="image piece"></div>
+                       <br> 
+                        <div class="row text-center" style="font-size:1.2em">
+                            <div class="row "></div>
+                            
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center p-3 border mb-2" title="score sup: {{loan.loan_score_supp}}">
+                               
+                                <div class="h1">{{loan.applicant.indice_age+loan.applicant.indice_charge+loan.loan_score+loan.loan_score_supp}} </div> <br><h3>Indice solvabilité </h3>
+                            </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border p-1  " title="Indice Age {{loan.indice_age}}">
+                                   
+                                    <span class="h3"> {{loan.applicant.indice_age}}</span><br> 
+                                    Age 
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border p-1 " title="Indice charge / indice participation conjointe {{loan.indice_charge}}">
+                                   
+                                     <span class="h3">{{ loan.applicant.indice_charge}}</span><br> Participation 
+                                    </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border p-1 " title="Score sur le payement des echéances {{loan.score}}">
+                                    
+                                    <span class="h3">{{loan.loan_score}}</span><br>Score  
+                                </div>
+                               
+                          
+                            
+                            
+                        </div>
+                        
+                       
+                    </div>
+                </div> 
+
+<hr><h1>Informations sur l'avaliseur</h1><br>
+
+                <div class="row endorser_div">
+                    
+                    <ul class="col-lg-9 col-md-9 col-sm-12 col-xs-12 " >
+                        <li><span>Nom :</span>: {{loan.endorser.first_name}}</li>
+                        <li><span>Prénom :</span>: {{loan.endorser.last_name}}</li>
+                        <li><span>Genre :</span>: {{loan.endorser.gender}}</li>
+                        <li><span>Date de naissance :</span>{{loan.endorser.d_naissance}}</li>
+                        <li><span>Telephone :</span>{{loan.endorser.phone_number}}</li>
+                        <li><span>Reference de la piece :</span>{{loan.endorser.endorser_nic_number}}</li>
+                        <li><span>Profession :</span>{{loan.endorser.profession}}</li>
+                        
+                    </ul>
+                    <div class=" col-lg-3 col-md-3 col-xs-12 col-sm-12 img_div " (click)="show_img(loan.endorser.endorser_nic_image)">
+                        <img src="{{endorser_nic_img}}" alt="image piece">
+                    </div>
+                </div>
+                <hr>
+                <h1>Informations sur le crédit</h1><br>
+                <div class="row">
+                    
+                    <ul>
+                        <li><span>Formule</span>: {{loan.loan_type}}</li>
+                        <li><span>Pret</span>: {{loan.loan_amount}}</li>
+                        <li><span>Emprunt Numero:</span>:1</li>
+                        <li><span>Taux</span>: {{loan.loan_rate}}</li>
+                        <li><span>Somme a rembourser:</span> {{loan.loan_amount+loan.loan_rate*loan.loan_amount}} FCFA</li>
+                        <li><span>Type de duree:</span> {{loan.type_duree?loan.type_duree:loan.type_duree}}</li>
+                        <li><span>Nombre:</span> {{loan.loan_delay}}</li>
+                        <li><span>Tranche/echeance:</span> {{(loan.loan_amount+loan.loan_rate*loan.loan_amount)/loan.loan_delay | number}} </li>
+                        <li><span>Statut:</span> {{loan.loan_statut==1? "En cours de traitement":""}}</li>
+                    </ul> 
+                    <h2 class="text-center">Liste des Echeances</h2> <br>
+                    <input type="button" class="btn btn-primary col-4 m-2" value="Faire un versement" (click)="make_repayment()" *ngIf="loan.loan_statut==5 && !is_all_ok">
+
+                    <div class="echeance_panel row  p-5" *ngIf="loan.loan_statut==5" style="overflow-y: scroll;height:400px" [ngClass]="!is_light_mode? 'dark-echeance-pan':'shadow'" >
+                   
+                        <div class="row">
+                            <div class="col-2">
+                                <input type="button" value="Imprimer" class="btn btn-warning" routerLink="/Print/{{loan.id}}">
+                            </div>
+                        </div>
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 echeance border m-3" *ngFor="let echeance of toutes_les_echeances" [ngClass]="echeance.statut? 'bg-primary text-white':''">
+                                <div class="row">
+                                     <div class="col ">Echeance :{{echeance.numero}}</div>
+                                     <div class="col-4">{{echeance.date_delai_payement}}</div>
+                                     <input *ngIf="is_man && echeance.statut" type="button" value="-" class="text-white col-2 text-center btn btn-warning" (click)="reinitialize_echeance(echeance.numero)" hidden>
+
+                                    <hr>
+                                   
+                                </div>
+                                <div class="row" >
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 icon"><i class="fa fa-money"></i></div>
+                                    <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 text">
+                                         <span class="row montant">{{echeance.somme_rembourser}} / {{echeance.montant_a_payer}}</span>
+                                        <div class="row progress">
+                                            <mat-progress-bar mode="determinate" value="{{echeance.payement_progress}}"  ></mat-progress-bar>
+                                         </div>
+                                            <br>
+                                          <div class="row" [ngClass]="echeance.retard<=-3 ? 'bg-danger text-white':''">
+                                           
+                                            Retard de {{echeance.retard}} Jours.
+                                          </div>
+                                           
+                                    
+                                    </div>
+                                </div> 
+
+
+
+
+                            </div>
+                            
+                            
+                            
+                    </div>
+                    <div class="row flex reverse-row" hidden>
+                        <input type="button" value="Generer un Etat" class="btn btn-primary col-3">
+                    </div>
+                </div>
+                
+            </div>
+       
+
+            <div class="col-lg-3 col-md-3 ms-4 col-sm-12 col-xs-12 border">
+                <h1 class="text-center">Antécedant ({{old_credits_size}}) </h1>
+                <div class="empty m-4 border bg-warning text-white p-4" *ngIf="!old_credit">
+                    Ce client n'a pas d antecedant de crédit.
+                </div>
+                <div class="row" *ngFor="let old_loan of old_credit">
+                    <div class="col-10 offset-1 border mt-2 p-2 border">
+                        {{old_loan.created_at}} - {{old_loan.loan_amount}}
+                        <br>
+                        <input type="button" value="Details" (click)="redirect_to_view(old_loan.id)" class=" col-6 btn btn-info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,305 @@
+
+
+
+<div class="row" [ngClass]="!is_light_mode? 'dark-container':'light-container'">
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12   p-3">
+        <div class="col-12   p-2 pt-4 text-center my_card" id="blue">
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nombre h1"><i class="sidenav-link-icon" class="fa-solid fa-sack-dollar"></i> {{total_credit}} FCFA </div>  
+             
+            <div class="col-12 titre text-center">Crédit accordé</div>   
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12   p-3">
+        <div class="col-12     p-2 pt-4 text-center my_card" id="red">
+           
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nombre h1"><i class="sidenav-link-icon" class="fa fa-users"></i> {{nbre_client}}</div>  
+            
+            <div class="col-12 titre text-center">Clients</div>   
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12   p-3" >
+        <div class="col-12   p-2 pt-4 text-center my_card" id="yellow">
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nombre h1"><i class="sidenav-link-icon" class="fa fa-users"></i> {{late_echeance.length}}</div>  
+            
+            <div class="col-12 titre text-center"> Client en retard</div>   
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12   p-3">
+        <div class="col-12    p-2 pt-4 text-center my_card " id="green">
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nombre h1"><i class="sidenav-link-icon" class="fa fa-percent"></i> {{pourcentage | number: '1.0-2'}}</div>  
+            
+            <div class="col-12 titre text-center"> Demandes rejetées</div>   
+        </div>
+    </div>
+
+    
+
+</div>
+
+
+
+
+
+<section [ngClass]="!is_light_mode? 'dark-container':'light-container'">
+    
+
+<div class="body row" style="padding-top:50px;" >
+  
+    <div class="row   p-3">
+ 
+        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12   offset-lg-1 offset-md-1"> 
+            <app-loans-per-profession class="row graphe"></app-loans-per-profession>
+            <app-loans-per-mounth class="graphe " hidden></app-loans-per-mounth>
+        </div>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12  offset-lg-1 offset-md-1 ">     
+         
+            <app-loan-per-formule class="graphe " ></app-loan-per-formule>
+        </div>
+
+    </div>
+    <div class="row mt-4 mb-4">
+
+        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12   offset-lg-1 offset-md-1 "> 
+            <app-loans-per-agent></app-loans-per-agent>
+        </div>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12  offset-lg-1 offset-md-1" >    
+            
+            <app-loans-per-sex    ></app-loans-per-sex>
+        </div>
+        
+    </div>
+
+    <div class="row text-center" [ngClass]="!is_light_mode? 'text-white':''">
+       
+        <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12 offset-lg-1 offset-md-1 ">
+            <div class="row">
+                <h1>Formule Classique et Formule 2</h1>
+            </div>
+             <div class="row">
+                <div class="col-5  min-carte  " [ngClass]="!is_light_mode? 'dark-min-carte':'border'">
+                     <div class="row">
+                         <span class="number mb-4">
+                            {{nbre_credits_statut1}}
+                        </span>
+                        
+                        <span class="text mb-2 mt-4">
+                           Demandes en attentes  
+                        </span>
+                   
+                     </div>
+                     <div class="row  p-2 flex-row-reverse " (click)="view()" (click)="redirect_to_loans()"  hidden>
+                        <div class="col-4 "> 
+                            Voir
+                            <i class="fa fa-angle-right">
+                               
+                            </i>
+                        </div>
+                     </div>
+                       
+                    
+                         
+                    
+                </div>
+                <div class="col-5 offset-1  min-carte " [ngClass]="!is_light_mode? 'dark-min-carte':'border'">
+                    
+                    <div class="row">
+                        <span class="number mb-4">
+                            {{nbre_credits_accordes}}
+                       </span>
+                       
+                       <span class="text mb-2 mt-4">
+                          Credit accordés  
+                       </span>
+                  
+                    </div>
+                    <div class="row  p-2 flex-row-reverse" (click)="redirect_to_loans()"  hidden>
+                       <div class="col-4 "> 
+                           Voir
+                           <i class="fa fa-angle-right">
+                              
+                           </i>
+                       </div>
+                    </div>
+                      
+                    
+                </div>
+    
+            </div>
+            <div class="row">
+                <div class="col-5  min-carte  " [ngClass]="!is_light_mode? 'dark-min-carte':'border'">
+                    
+                    <div class="row">
+                        <span class="number mb-4">
+                            {{nbre_credits_statut2}}
+                       </span>
+                       
+                       <span class="text mb-2 mt-4">
+                          En Atente de signature
+                       </span>
+                  
+                    </div>
+                    <div class="row  p-2 flex-row-reverse" (click)="redirect_to_loans()"  hidden>
+                       <div class="col-4 "> 
+                           Voir
+                           <i class="fa fa-angle-right">
+                              
+                           </i>
+                       </div>
+                    </div>
+                      
+                    
+                </div>
+
+
+                <div class="col-5 offset-1  min-carte  " [ngClass]="!is_light_mode? 'dark-min-carte':'border'">
+                   
+                    <div class="row">
+                        <span class="number mb-4">
+                            {{nbre_credits_statut3}}
+                       </span>
+                       
+                       <span class="text mb-2 mt-4">
+                         Contrat de credit signés
+                       </span>
+                  
+                    </div>
+                    <div class="row  p-2 flex-row-reverse" (click)="redirect_to_loans()"  hidden >
+                       <div class="col-4 "> 
+                           Voir
+                           <i class="fa fa-angle-right">
+                              
+                           </i>
+                       </div>
+                    </div>
+                      
+                    
+                </div>
+    
+            </div>
+            
+
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+             <h1>Retard de payement</h1>
+              <app-view-retards></app-view-retards>
+           
+
+            
+                         
+        </div>
+
+        
+
+
+         
+    </div>
+     
+    
+        
+        
+  </div>
+
+
+</section>
+
+ <!--
+
+    <div class="row">
+    <app-loans-per-agent class="col-lg-4 col-md-4 offset-lg-1 offset-md-1  col-sm-12 col-xs-12 graphe border shadow"></app-loans-per-agent>
+</div>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+    
+            
+
+             
+    <div class="row" hidden>
+        <app-loans-per-profession class="col-lg-5 col-md-5 col-sm-12 col-xs-12 graphe"></app-loans-per-profession>
+        <app-loans-per-sex class="col-lg-5 col-md-5 col-sm-12 col-xs-12 graphe"></app-loans-per-sex>
+
+    </div>
+
+
+
+
+
+    <mat-accordion class="example-headers-align" multi  hidden > 
+                <mat-expansion-panel [ngClass]="!is_light_mode? 'dark-expension':'bg-white'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h2>Echeance Aujourd Huit ({{today_echeance.length}})</h2>
+                    </mat-panel-title> 
+                    
+                  </mat-expansion-panel-header>
+              
+                  <mat-panel-description>
+                    <div class="row">
+                        <div class="echeance col-lg-12 col-md-12 col-sm-12 col-xs-12 p-2 border bg-info" *ngFor="let echeance of today_echeance" (click)="redirect_loan_details(echeance.credit.id)">
+    
+                            {{echeance.echeance.montant_a_payer }}FCFA / {{echeance.echeance.date_delai_payement}}
+                        </div>
+                   </div>
+                 </mat-panel-description>
+              
+                </mat-expansion-panel>
+                 
+
+
+
+
+                
+              
+                <mat-expansion-panel [ngClass]="!is_light_mode? 'dark-expension':'bg-white'">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h2>Echeance En retard ({{late_echeance.length}})</h2>
+                    </mat-panel-title>
+                    
+                     
+                  </mat-expansion-panel-header>
+              
+                  <mat-panel-description>
+                    
+                    <div class="row">
+                        <div class="echeance col-10 p-2 border bg-warning" *ngFor="let echeance of late_echeance" (click)="redirect_loan_details(echeance.credit.id)">
+                            {{echeance.credit.applicant.first_name }} {{echeance.credit.applicant.last_name }} / En retard de : {{echeance.retard }} d'echeances
+                        </div>
+                   </div>
+                 </mat-panel-description>
+                   
+                </mat-expansion-panel>
+
+
+
+
+
+
+                 
+
+              </mat-accordion>
+
+
+
+ -->

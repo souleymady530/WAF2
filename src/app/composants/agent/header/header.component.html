@@ -1,0 +1,37 @@
+<div class="header col-12  {{theme}}">
+    <div class="row">
+        <div class="col-1 offset-lg-8 offset-md-5 offset-sm-4  offset-xs-4  widget widget-theme">
+            <mat-slide-toggle (click)="dark_mode()" [checked]="active_dark"></mat-slide-toggle>
+        </div>
+
+         
+
+
+
+        <div class="col-1 widget widget-message ">
+            <div class="red_circle" *ngIf="has_new_nitif"></div>
+            <span class="material-icons" (click)="active_notif()">
+                notifications
+                </span>
+                <div class="card contenu notif_container" [hidden]="is_notif_active" style="overflow-y: scroll;">
+                    <div class="card-header">
+                        Mes Notifications
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let notification of liste_notif">
+                            {{notification.details}}
+                          </li>
+                    </ul>
+                  </div>
+        </div>
+
+        <div class="col-1 widget widget-profil">
+            <span class="material-icons"  (click)="redirect_to_view()">
+                        account_circle
+                        </span>
+                        <br>
+        </div>
+
+
+    </div>
+</div>

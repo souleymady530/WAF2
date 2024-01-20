@@ -1,0 +1,10 @@
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="agents" routerLinkActive="active" *ngIf="is_admin">Les Agents</button>
+  <button mat-menu-item routerLink="applicants" routerLinkActive="active" >Les Demandeurs</button>
+  <button mat-menu-item routerLink="credits" routerLinkActive="active" >Les Credits Alloués</button>
+  <button mat-menu-item routerLink="remboursements" routerLinkActive="active" >Les Remboursements</button>
+  <button mat-menu-item routerLink="" routerLinkActive="active" >Mes Paramètres</button>
+  <button mat-menu-item routerLink="" routerLinkActive="active" >Deconnexions</button>
+ </mat-menu>
+ 

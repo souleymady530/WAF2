@@ -1,0 +1,28 @@
+ 
+  <mat-card>
+    <mat-card-header>
+      <div class="logo">
+        <img src="../../../assets/images/logo WAF.jpg" alt="logo" width="80">
+    </div>
+      <h1>Connexion</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <form action="">
+        <mat-form-field>
+          <mat-label> {{ "Username" | translate}}</mat-label>
+          <input matInput placeholder="{{ 'Username' | translate}}" name="username" [(ngModel)]="username">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> {{ "Password" | translate}}</mat-label>
+          <input matInput placeholder="{{ 'Password' | translate}}" name="password" [(ngModel)]="password" type="password">
+        </mat-form-field>
+        <button id="btn-login" mat-raised-button color="primary" (click)="login()"> {{"Login"| translate}} </button>
+        <mat-error *ngIf="wrongCredentials"> Invalid Credentials. Please try again...</mat-error>
+      </form>
+    </mat-card-content>
+  </mat-card>
+    <div class="footer">
+      WAF (Wari for AFrica) v1.0 - @2023 all rights reserved - Powered By Neerelab Technology
+    </div>
+ 
+

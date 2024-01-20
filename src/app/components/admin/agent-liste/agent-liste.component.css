@@ -1,0 +1,42 @@
+.container-fluid 
+{
+    padding:20px;
+    max-width:1480px;
+    min-height:100%;
+ }
+
+.dark-container{
+   
+  border:solid 1px rgb(127, 127, 184);
+  color: white;
+ }
+
+.dark-container table td,.dark-container table th,.dark-container mat-paginator,.dark-container .filtre{
+  background-color:rgb(20,20,50);
+  color: white;
+}
+
+
+.dark-btn{
+  background-color:rgb(20,20,50);
+  color: white;
+  border:solid 1px blue;
+}
+
+ 
+.dark-container .form, .dark-container input,.dark-container mat-label{
+  background-color:rgb(20,20,50);
+  color: white;
+}
+.dark-container ::ng-deep .mat-step-header .mat-step-label
+{
+  color: white;
+}
+
+.dark-container .mat-form-field-appearance-outline .mat-form-field-outline{
+  color:solid 1px red;
+}
+
+.dark-container .mat-form-field-appearance-outline .mat-form-field-outline {
+  color:white;
+}

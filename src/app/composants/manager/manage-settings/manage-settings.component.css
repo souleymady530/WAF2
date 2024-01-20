@@ -1,0 +1,158 @@
+.light-container  .nav-liste
+{
+     background-color: white;
+     border:solid 1px rgb(242,242,242);
+     height:400px ;
+}
+
+.dark-container  .nav-pills .active{
+    border:solid 1px rgb(127, 127, 184);
+    border-right:solid 3px blue;
+    background-color:rgb(20,20,50); 
+}
+
+/*
+border:rgb(29,29,66);
+background-color:rgb(20,20,50);
+
+*/
+.dark-container  .nav-pills
+{
+     
+     height:400px ;
+     border:solid 1px rgb(127, 127, 184);
+     
+}
+.dark-bg{
+    background-color:rgb(20,20,50); 
+    color:white;
+    border:solid 1px rgb(127, 127, 184);;
+}
+.dark-bg,.table-darked {
+    background-color:rgb(20,20,50); 
+    color:white;
+}
+
+
+.light-container .nav-liste .nav-link{
+     border-radius: 0px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: black;
+    text-align: left;
+}
+
+.dark-container .nav-liste .nav-link{
+     border-radius: 0px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: white;
+    text-align: left;
+    
+
+}
+
+
+ .tab-pane .text{
+      
+     margin: 15%;
+     
+     width: 60%;
+     
+ }
+ .tab-pane
+ {
+     min-height: 600px;
+}
+
+.light-container .nav .active{
+    background-color: white;
+     
+    border-radius:0px;
+    border: 1px solid rgb(242,242,242);
+    border-right:solid 5px blue;
+    color: blue;
+}
+.light-container #myTabContent .active
+{
+background-color: aliceblue;
+
+}
+
+.light-container .nav-tabs .active{
+     background-color: aliceblue;
+     border-right:solid 0px blue;
+     border-top:solid 5px blue;
+}
+
+.dark-container tr th{
+    background-color: rgb(127, 127, 184);
+    color: white;
+}
+.dark-container td
+{
+    background-color: rgb(20,20,50);
+    color:white;
+    font-weight: bold;
+}
+.light-container td
+{
+     background-color: white;
+     font-weight: bold;
+}
+
+.light-container .emprunt1_cell{background-color: rgb(243, 40, 40);color: white}
+.light-container .emprunt2_cell{ background-color: rgb(175, 9, 9);color: white}
+.light-container .emprunt3_cell{background-color: maroon;color: white;}
+.light-container .emprunt_normal_cell{background-color: white;}
+
+.dark-container .emprunt1_cell{background-color: rgb(243, 40, 40);color: white}
+.dark-container .emprunt2_cell{ background-color: rgb(175, 9, 9);color: white}
+.dark-container .emprunt3_cell{background-color: maroon;color: white;}
+.dark-container .emprunt_normal_cell{background-color: rgb(20,20,50);}
+
+.box{
+     width: 360px;
+      height: 150px;
+     align-self: center;
+     font-size: 1.5em;
+     color: orange;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     padding-left: 10px;
+ 
+     .icon{
+         width: 20%;
+         font-size: 2em;
+         color: orange;
+     }
+
+ }
+
+  
+
+
+ .dark-container{
+   
+    
+    color: white;
+     
+  }
+
+  .dark-container .form, .dark-container input,.dark-container mat-label ,.dark-container section mat-checkbox{
+    background-color:rgb(20,20,50);
+    color: white;
+  }
+  
+  .dark-container .mat-form-field-appearance-outline .mat-form-field-outline{
+    color:solid 1px red;
+  }
+
+  .bg-darked{
+    background-color: rgb(20,20,50);
+  }
+  
+ 
+   
+  

@@ -1,0 +1,191 @@
+
+<div class="form bg-white">
+    <h1>Formulaire Agent</h1>
+    <div class="row">
+        <div class="row">
+             <button type="button" mat-raised-button (click)="fileInput.click()" style="width: 250px;" class="col">Photo de profile</button>
+             <input   (change)="onFileSelected()" #fileInput type="file" id="file" formControlName="profile_image"  hidden>
+             <span [class]="img_name=='Aucune image'? '':'green'" class="col"> {{img_name}}</span>
+        </div>
+ 
+ 
+         <div class="row">
+             <mat-form-field appearance="outline" class="col" >
+                 <mat-label>Username</mat-label>
+                 <input matInput type="text" placeholder="Ex:Nicolas" formControlName="username">
+             </mat-form-field>
+          
+ 
+             <div  *ngIf="errors_tab.user.username?.username" class="error_div">
+                  {{errors_tab.user.username}}
+             </div>
+ 
+         </div>
+ 
+         <div class="row">
+             
+ 
+             <mat-form-field appearance="outline" class="col" >
+                 <mat-label>Email</mat-label>
+                 <input matInput type="text" placeholder="Ex:Nicolas" formControlName="email">
+             </mat-form-field>
+               <!-- Error div -->
+               <div 
+               *ngIf="
+               agent_form.controls.email.errors?.['email']  " 
+               class="error_div">
+                   Veuillez entrer une adresse email valide
+               </div>
+           <!-- /End Error div -->
+         </div>
+         <div class="row">
+             <mat-form-field appearance="outline" class="col" >
+                 <mat-label>First Name</mat-label>
+                 <input matInput type="text" placeholder="Ex:Nicolas" formControlName="first_name">
+             </mat-form-field>
+              <!-- Error div -->
+              <div 
+              *ngIf="
+              agent_form.controls.first_name.errors?.['minlength'] || 
+              agent_form.controls.first_name.errors?.['maxlength']" 
+              class="error_div">
+              Le nombre de caractere doit etre superieur ou egale a 2
+              </div>
+          <!-- /End Error div -->
+ 
+ 
+             
+             <mat-form-field appearance="outline" class="col" >
+                 <mat-label>Last Name</mat-label>
+                 <input matInput type="text" placeholder="Ex:Cage" formControlName="last_name">
+             </mat-form-field>
+             <!-- Error div -->
+             <div 
+             *ngIf="
+             agent_form.controls.last_name.errors?.['minlength'] || 
+             agent_form.controls.last_name.errors?.['maxlength']" 
+             class="error_div">
+                 Le nombre de caractere doit etre superieur ou egale a 2
+             </div>
+             <!-- /End Error div -->
+             
+         </div>
+         <div class="row">
+             <mat-form-field appearance="outline" class="col" >
+                 <mat-label>Password</mat-label>
+                 <input matInput type="password" placeholder="Ex:Nicolas" formControlName="password">
+             </mat-form-field>
+ 
+             <mat-form-field appearance="outline" class="col" >
+                 <mat-label>Password</mat-label>
+                 <input matInput type="password" placeholder="Ex:Cage" formControlName="password2">
+             </mat-form-field>
+         </div>
+         <div class="row">
+             <mat-form-field class="col">
+             <mat-label >Genre</mat-label>
+             <mat-select formControlName="gender">
+                 <mat-option  value="M">Masculin</mat-option>
+                 <mat-option  value="F">Feminin</mat-option>
+             </mat-select>
+             </mat-form-field>
+ 
+             <mat-form-field class="col">
+                 <mat-label>Date de naissance</mat-label>
+                 <input matInput [matDatepicker]="picker" formControlName="d_naissance">
+                 <mat-hint>MM/DD/YYYY</mat-hint>
+                 <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                 <mat-datepicker #picker ></mat-datepicker>
+               </mat-form-field>
+         </div>
+         <div class="row">
+             
+             <mat-form-field appearance="outline" class="col">
+                 <mat-label>Telephone</mat-label>
+                 <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="phone_number">
+               </mat-form-field>
+                 <!-- Error div -->
+              <div 
+              *ngIf="
+              agent_form.controls.phone_number.errors?.['minlength'] || 
+              agent_form.controls.phone_number.errors?.['maxlength']" 
+              class="error_div">
+              Le nombre de caractere doit etre superieur ou egale a 8
+              </div>
+          <!-- /End Error div -->
+         </div>
+         <div class="row">
+             <mat-form-field appearance="outline" class="col">
+                 <mat-label>Numero Nic</mat-label>
+                 <input matInput type="text" placeholder="Ex: XX XX XX" formControlName="nic_number" >
+             </mat-form-field>
+              <!-- /End Error div -->
+             <div 
+              *ngIf="
+              agent_form.controls.nic_number.errors?.['minlength'] || 
+              agent_form.controls.nic_number.errors?.['maxlength']" 
+              class="error_div">
+              Le nombre de caractere doit etre superieur ou egale a 8
+              </div>
+          <!-- /End Error div -->
+           </div>
+         
+         <div class="row">
+             <mat-form-field appearance="outline" class="col">
+                 <mat-label>Pays</mat-label>
+                 <input matInput type="text" placeholder="Ex:Burkina Fasa" formControlName="state">
+             </mat-form-field>
+             <!-- /End Error div -->
+             <div 
+             *ngIf="
+             agent_form.controls.state.errors?.['minlength'] || 
+             agent_form.controls.state.errors?.['maxlength']" 
+             class="error_div">
+             Le nombre de caractere doit etre superieur ou egale a 8
+             </div>
+             <!-- /End Error div -->
+             <mat-form-field appearance="outline" class="col">
+                 <mat-label>Ville</mat-label>
+                 <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="city">
+             </mat-form-field>
+                 <!-- /End Error div -->
+                 <div 
+                 *ngIf="
+                 agent_form.controls.city.errors?.['minlength'] || 
+                 agent_form.controls.city.errors?.['maxlength']" 
+                 class="error_div">
+                 Le nombre de caractere doit etre superieur ou egale a 8
+                 </div>
+                 <!-- /End Error div -->
+         </div>
+         <div class="row">
+             <mat-form-field appearance="outline" class="col">
+                 <mat-label>Addresse</mat-label>
+                 <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="address">
+             </mat-form-field>
+                 <!-- /End Error div -->
+                 <div 
+                 *ngIf="
+                 agent_form.controls.address.errors?.['minlength'] || 
+                 agent_form.controls.address.errors?.['maxlength']" 
+                 class="error_div">
+                 Le nombre de caractere doit etre superieur ou egale a 8
+                 </div>
+                 <!-- /End Error div -->
+             <mat-form-field appearance="outline" class="col">
+                 <mat-label>Agence</mat-label>
+                 <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="point">
+             </mat-form-field>
+               <!-- /End Error div -->
+               <div 
+               *ngIf="
+               agent_form.controls.point.errors?.['minlength'] || 
+               agent_form.controls.point.errors?.['maxlength']" 
+               class="error_div">
+               Le nombre de caractere doit etre superieur ou egale a 8
+               </div>
+               <!-- /End Error div -->
+         </div>
+ </div>
+</div>
+ 

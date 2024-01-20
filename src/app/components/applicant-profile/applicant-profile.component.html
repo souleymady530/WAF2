@@ -1,0 +1,57 @@
+<div mat-dialog-title>
+     <div class="logo">
+       <h1>  <img src="../../../assets/images/logo save africa-02.png" alt="" id="logo_save"> Details sur le credit</h1>
+     </div>
+     
+</div>
+<hr>
+ <div mat-dialog-content id="content">
+    <div class="row">
+        <div class="col-4 img-container">
+            <h4 class="">Details sur l applicant</h4>
+            <img src="../../../assets/images/devault_user.png" alt="">
+            <br>
+            {{data.applicant.first_name}} <br>
+            {{data.applicant.last_name}} <br>
+            {{data.applicant.d_naissance}} <br>
+
+        </div>
+
+        <div class="col-4 img-container">
+            <h4 class="">Details sur l avale</h4>
+            <br>
+            {{data.endorser.first_name}} <br>
+            {{data.endorser.last_name}} <br>
+            {{data.endorser.d_naissance}} <br>
+         </div>
+
+        <div class="col-4 img-container bg-light">
+            <h4 class="">Details sur le credit</h4>
+            <div class="row graphe-container">
+                <div class="col-3 card-icon">
+                    <span class="material-icons">
+                        euro_symbol
+                        </span>
+                </div>
+                <div class="col-9 graphe p-4">
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <strong>Montant: {{data.loan_amount}}</strong>  <br>
+                <strong>Taux: {{data.loan_rate}} </strong><br>
+                <strong>Temps de Remboursement {{data.loan_delay }}</strong> <br>
+            </div>
+         </div>
+
+    </div>
+    
+ </div>
+ <hr>
+<div mat-dialog-actions class="actions">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+ </div>
+
+ 

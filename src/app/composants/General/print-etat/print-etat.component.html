@@ -1,0 +1,58 @@
+<section *ngIf="is_ok" class="bg-white"  (onload)="print()"> <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 offset-1">
+      <ul class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="list-style: none;">
+        <li><span>Nom :</span>{{loan.applicant.first_name}}</li>
+        <li><span>Prénom :</span>{{loan.applicant.last_name}}</li>
+        <li><span>Genre :</span>{{loan.applicant.gender}}</li>
+        <li><span>Date de naissance :</span>{{loan.applicant.d_naissance}}</li>
+        <li><span>Telephone :</span>{{loan.applicant.phone_number}}</li>
+        <li><span>Reference de la piece :</span>{{loan.applicant.nic_number}}</li>        
+    </ul>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 offset-lg-5 offset-md-5"><img src="../../../../assets/images/logo WAF.jpg" width="120"></div>
+</div>
+<div class="row text-center">
+    <h1>Etat des echeances: {{to_day}}</h1>
+</div>
+
+<div class="row">
+    <div class="col-10 offset-1">
+        <table class="table" onload=" window.print()">
+            <caption>Etat des echeances:: {{to_day}}</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Etat du</th>
+                <th scope="col">Date Dernier Payement</th>
+                <th scope="col">A Rembourser</th>
+                <th scope="col">Montant Payer</th>
+                <th scope="col">Payer?</th>
+                <th scope="col">Retard?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let echeance of tab_echeance">
+                  <td>{{echeance.numero }}</td>
+                  <td>{{echeance.date_delai_payement }}  </td>
+                  <td>{{echeance.date_dernier_payement }}  </td>
+                  <td>{{echeance.montant_a_payer }}  </td>
+                  <td>{{echeance.somme_rembourser}}   </td>
+                  <td>{{echeance.statut? 'Oui':'Non'}}   </td>
+                  <td>{{echeance.retard }}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div></section>
+<div *ngIf="!is_ok">
+  Pas de donnees pour le moment
+</div>
+<script>
+ function mk_print(){
+   print('JHello')
+   
+     
+ }
+ mk_print()
+</script>

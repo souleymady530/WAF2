@@ -1,0 +1,424 @@
+{
+  "manager": [
+    {
+      "user": {
+        "username": "manageurTest",
+        "first_name": "Teste",
+        "last_name": "Manageur",
+        "email": "testmanageur@htomail.fr",
+        "is_agent": false,
+        "is_manager": true,
+        "password": "123123Az",
+        "password2": "123123Az"
+      },
+      "gender": "M",
+      "d_naissance": "2023-08-08T00:00:00.000Z",
+      "phone_number": "2264324231324323",
+      "is_autorise": true,
+      "id": 1
+    },
+    {
+      "user": {
+        "username": "abakar225",
+        "first_name": "Ouedraogo",
+        "last_name": "Abakar",
+        "email": "ouedraogobakar@gmail.com",
+        "is_agent": false,
+        "is_manager": true,
+        "password": "123123Az",
+        "password2": "123123Az"
+      },
+      "gender": "M",
+      "d_naissance": "2023-08-07T00:00:00.000Z",
+      "phone_number": "2264323423422342",
+      "is_autorise": true,
+      "id": 2
+    },
+    {
+      "user": {
+        "username": "TestManag227",
+        "first_name": "Managa",
+        "last_name": "Ouedraogo",
+        "email": "manageur@gmail.com",
+        "is_agent": false,
+        "is_manager": true,
+        "password": "123123Az",
+        "password2": "123123Az"
+      },
+      "gender": "M",
+      "phone_number": "22642442342",
+      "is_autorise": true,
+      "id": 3
+    }
+  ],
+  "agent": [
+    {
+      "user": {
+        "username": "agentTest123",
+        "first_name": "test",
+        "last_name": "agent",
+        "email": "testagent@yahoo.fr",
+        "is_agent": true,
+        "is_manager": false,
+        "password": "123123Az",
+        "password2": "123123Az"
+      },
+      "gender": "F",
+      "d_naissance": "2023-08-08T00:00:00.000Z",
+      "profile_image": "iamges/photo.png",
+      "nic_number": "B5056688",
+      "phone_number": "22652342352313232",
+      "location": {
+        "address": "cissin",
+        "city": "Oyuaga",
+        "state": "Burkna Faso",
+        "point": "cissin"
+      },
+      "id": 1
+    },
+    {
+      "user": {
+        "username": "  Sergeo530",
+        "first_name": "Serges",
+        "last_name": "Ouedraog",
+        "email": "oserges530@gmail.com",
+        "is_agent": true,
+        "is_manager": false,
+        "password": "123123Az",
+        "password2": "123123Az"
+      },
+      "gender": "M",
+      "d_naissance": "1993-10-13T00:00:00.000Z",
+      "profile_image": "",
+      "nic_number": "B5058844",
+      "phone_number": "22654918686",
+      "location": {
+        "address": "Cissin",
+        "city": "Ouaga",
+        "state": "Burkina Faso",
+        "point": {
+          "type": "Point",
+          "coordinates": [
+            0,
+            0
+          ]
+        }
+      },
+      "id": 2
+    }
+  ],
+  "loans": [
+    {
+      "applicant": {
+        "email": "serges@gmail.com",
+        "first_name": "Filwende",
+        "last_name": "Souley Mady Ouedraog",
+        "gender": "M",
+        "d_naissance": "2023-02-14T00:00:00.000Z",
+        "phone_number": "226 54 91 67 57",
+        "nic_number": "B50566888",
+        "profile_image": "sdsd",
+        "location": {
+          "address": "Kwame Nkuruma",
+          "city": "Ouagadougou",
+          "state": "Burkina Faso",
+          "point": "Kwame Nkuruma"
+        },
+        "wave_phone_number": "226 543 23 4234",
+        "profession": "sdfdgdfdf",
+        "revenue": "3232",
+        "profile": null,
+        "business_line": "32342324233",
+        "created_at": "2023-08-13"
+      },
+      "endorser": {
+        "first_name": "dfddfdf",
+        "last_name": "wrawegsd",
+        "gender": "F",
+        "d_naissance": "2023-08-08T00:00:00.000Z",
+        "phone_number": "sdasd",
+        "nic_image": "rethgerh",
+        "profession": "afsdsdf",
+        "location": {
+          "address": "erger",
+          "city": "erherher",
+          "state": "erherh",
+          "point": "gergerg"
+        }
+      },
+      "recommending_agent": 1,
+      "is_active": true,
+      "loan_amount": 232,
+      "loan_rate": 0.6,
+      "loan_delay": 365,
+      "repayment_amount": 2342323,
+      "id": 3
+    },
+    {
+      "applicant": {
+        "email": "applicant",
+        "first_name": "sdsd",
+        "last_name": "sdsad",
+        "gender": "Masculin",
+        "d_naissance": "2023-08-14T00:00:00.000Z",
+        "phone_number": "sadad",
+        "nic_number": "asdasd",
+        "profile_image": "sdsdsd",
+        "location": {
+          "address": "Kwame Nkuruma",
+          "city": "Ouagadougou",
+          "state": "Burkina Faso",
+          "point": "Kwame Nkuruma"
+        },
+        "wave_phone_number": "sdsd",
+        "profession": " asdasd",
+        "revenue": " ssd",
+        "profile": " ",
+        "business_line": " asdasfa",
+        "created_at": "2023-08-10"
+      },
+      "endorser": {
+        "first_name": "asdda",
+        "last_name": "sdaasdas",
+        "gender": "Feminin",
+        "d_naissance": "2023-08-21T00:00:00.000Z",
+        "phone_number": "asdvsdvsd",
+        "nic_image": "asdvasd",
+        "profession": "asdvsvsd",
+        "location": {
+          "address": "Kwame Nkuruma",
+          "city": "Ouagadougou",
+          "state": "Burkina Faso",
+          "point": "Kwame Nkuruma"
+        }
+      },
+      "recommending_agent": 1,
+      "is_active": true,
+      "loan_amount": 323,
+      "loan_rate": 2323,
+      "repayment_amount": 2312590,
+      "id": 1
+    },
+    {
+      "applicant": {
+        "email": "sergessavadogo@gmail1.com",
+        "first_name": "serges",
+        "last_name": "Ouedraogo",
+        "gender": "M",
+        "d_naissance": "1993-06-15T00:00:00.000Z",
+        "phone_number": "226435323523",
+        "nic_number": "B5056688",
+        "profile_image": "images/photo.png",
+        "address": "Kwame Nkuruma",
+        "city": "Ouagadougou",
+        "state": "Burkina Faso",
+        "point": "Kwame Nkuruma",
+        "wave_phone_number": "+2265423523",
+        "profession": "Commercant",
+        "revenue": "545 000",
+        "profile": null,
+        "business_line": "+22432235242323",
+        "created_at": "2023-08-22"
+      },
+      "endorser": {
+        "first_name": "Latif",
+        "last_name": "Adama",
+        "gender": "F",
+        "d_naissance": "1997-07-17T00:00:00.000Z",
+        "phone_number": "+226 54 23 52 32",
+        "nic_image": "image/file.png",
+        "profession": "Vendeur",
+        "address": "Kwame Nkuruma",
+        "city": "Ouagadougou",
+        "state": "Burkina Faso",
+        "point": "Kwame Nkuruma"
+      },
+      "recommending_agent": 1,
+      "is_active": true,
+      "loan_amount": 2300000,
+      "loan_rate": 0.8,
+      "loan_delay": 365,
+      "repayment_amount": 244344534346634430,
+      "created_at": "2023-08-22",
+      "id": 4
+    },
+    {
+      "applicant": {
+        "email": "souleymaneouedraogo@hotmail.com",
+        "first_name": "Souleymane",
+        "last_name": "Ouedraogo",
+        "gender": "M",
+        "d_naissance": "1996-09-23T00:00:00.000Z",
+        "phone_number": "226 23 41 43 12",
+        "nic_number": "B5056699",
+        "profile_image": "image/foto.png",
+        "location": {
+          "address": "Cissi",
+          "city": "Ouagadougou",
+          "state": "Burkina Faso",
+          "point": "Pissy"
+        },
+        "wave_phone_number": "2243343123423423",
+        "profession": "Agent de sante",
+        "revenue": "250 000",
+        "profile": null,
+        "business_line": "228432423443124",
+        "created_at": "2023-08-23"
+      },
+      "endorser": {
+        "first_name": "Porgo",
+        "last_name": "Alassane",
+        "gender": "M",
+        "d_naissance": "1987-01-01T00:00:00.000Z",
+        "phone_number": "226 543 423 52323",
+        "nic_image": "iamges/dffw",
+        "profession": "Commercant",
+        "location": {
+          "address": "CIssin",
+          "city": "Ouagadougou",
+          "state": "Burkina Faso",
+          "point": "Pissy"
+        }
+      },
+      "recommending_agent": 1,
+      "is_active": true,
+      "loan_amount": 2300000,
+      "loan_rate": 0.3,
+      "loan_delay": 720,
+      "repayment_amount": 234033049234,
+      "id": 5
+    },
+    {
+      "applicant": {
+        "email": "oserges530@gmail.com",
+        "first_name": "Sergeo",
+        "last_name": "Ouedraogo",
+        "gender": "M",
+        "d_naissance": "1998-02-10T00:00:00.000Z",
+        "phone_number": "22654016757",
+        "nic_number": "B5056688",
+        "profile_image": "images/foto_cnib.png",
+        "location": {
+          "address": "Pissy",
+          "city": "Ouagadougou",
+          "state": "Burkian Faso",
+          "point": "Pissy"
+        },
+        "wave_phone_number": "226 54 91 67 57",
+        "profession": "Developpeur",
+        "revenue": "255000",
+        "profile": null,
+        "business_line": "226 01 60 43 54",
+        "created_at": "2023-08-23"
+      },
+      "endorser": {
+        "first_name": "Savadogo",
+        "last_name": "Salimata",
+        "gender": "F",
+        "d_naissance": "1990-09-01T00:00:00.000Z",
+        "phone_number": "226 43 43 54 24",
+        "nic_image": "images/foto_sali.png",
+        "profession": "Commercante",
+        "location": {
+          "address": "Cissin",
+          "city": "Ouagadougou",
+          "state": "Burkina Faso",
+          "point": "Cissin"
+        }
+      },
+      "recommending_agent": 1,
+      "is_active": true,
+      "loan_amount": 2500000,
+      "loan_rate": 0.5,
+      "loan_delay": 365,
+      "repayment_amount": 266534242323,
+      "id": 6
+    }
+  ],
+  "payements": [],
+  "notifications": [],
+  "secteur": [
+    {
+      "Agriculture": {
+        "0": "Maraichage",
+        "1": "Culture ",
+        "2": "Culture céréalière",
+        "3": "2"
+      },
+      "id": 1
+    },
+    {
+      "Artisanat": {
+        "0": "Boucherie",
+        "1": "Maçonnerie",
+        "2": "Menuiserie",
+        "3": "Plomberie",
+        "4": "Electricité",
+        "5": "Manœuvres bâtiment",
+        "6": "Couture",
+        "7": "Coiffure",
+        "8": "Boulangerie",
+        "9": "Réparateurs (bicyclette, motocyclette)",
+        "10": "Garagiste",
+        "11": "Autre (à préciser)"
+      },
+      "id": 2
+    },
+    {
+      "Elevage": {
+        "0": "Aviculture",
+        "1": "Elevage bovin",
+        "2": "Elevage ovin",
+        "3": "Elevage caprin",
+        "4": "Autre"
+      },
+      "id": 3
+    },
+    {
+      "Salariat Public": {
+        "0": "Cadre",
+        "1": "Chauffeur",
+        "2": "Ménagère",
+        "3": "Planton",
+        "4": "Autre"
+      },
+      "id": 4
+    },
+    {
+      "Restauration": {
+        "0": "Kiosque - petit restaurant",
+        "1": "Maquis",
+        "2": "Restaurant moyen",
+        "3": "Autre"
+      },
+      "id": 5
+    },
+    {
+      "Salariat Privé": {
+        "0": "Cadre",
+        "1": "Chauffeur",
+        "2": "Ménagère",
+        "3": "Planton",
+        "4": "Autre"
+      },
+      "id": 6
+    },
+    {
+      "Commerce": {
+        "0": "Commercialisation de légumes",
+        "1": "Commercialisation fruits",
+        "2": "Commercialisation de savon",
+        "3": "Commercialisation de charbon",
+        "4": "Commercialisation de vêtements",
+        "5": "Commercialisation de poulets",
+        "6": "Commercialisation de poissons",
+        "7": "Commercialisation de viande (mouton, bœuf…)",
+        "8": "Commercialisation de pièces détachées",
+        "9": "Divers produits alimentaires (œufs, conserves, huile…)",
+        "10": "Quincaillerie - électroménager",
+        "11": "Autre "
+      },
+      "id": 7
+    }
+  ]
+}

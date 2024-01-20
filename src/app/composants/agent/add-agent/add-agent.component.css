@@ -1,0 +1,71 @@
+
+
+
+.matInput { 
+ 
+ }
+
+
+.row
+{
+    display: flex;
+    gap: 10px;
+}
+  #content
+  {
+    padding: 5px;
+    overflow-x: hidden;
+    width:500px;
+    height: 100%;;
+  }
+
+  .actions 
+  {
+    padding: 0px 25px 20px;
+   
+  }
+
+
+  
+
+h1{
+    width:100%;text-align:center;
+    font-weight:bold;
+    text-decoration: underline;
+
+}
+
+ 
+
+.green{
+  color: green;
+}
+
+ /**
+  border:solid 1px rgb(127, 127, 184);
+      color:rgb(84,108,166);
+
+ */
+
+ 
+.dark-container .form{
+  border:solid 1px rgb(127, 127, 184);
+  padding:2px;
+}
+.dark-container .form, .dark-container input,.dark-container mat-label{
+  background-color:rgb(20,20,50);
+  color: white;
+}
+.dark-container ::ng-deep .mat-step-header .mat-step-label
+{
+  color: white;
+}
+
+.dark-container .mat-form-field-appearance-outline .mat-form-field-outline{
+  color:solid 1px red;
+}
+
+.dark-container .mat-form-field-appearance-outline .mat-form-field-outline {
+  color:white;
+}
+ 

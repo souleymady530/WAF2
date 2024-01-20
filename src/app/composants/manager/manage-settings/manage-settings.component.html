@@ -1,0 +1,467 @@
+ 
+<div class="row">
+  
+
+<div class="d-flex  align-items-start panel_settings " [ngClass]="!is_light_mode? 'dark-container':'light-container'">
+
+  <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 nav nav-liste flex-column nav-pills me-3    " id="v-pills-tab" role="tablist" aria-orientation="vertical" >
+  <br>  <h2 class="text-center ">Parametres</h2>
+
+    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" >Les Formules</button>
+    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Les secteurs</button>
+   
+    <button class="nav-link" id="v-pills-manageurs-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageurs" type="button" role="tab" aria-controls="v-pills-manageurs" aria-selected="false">Les Manageurs</button>
+    <button class="nav-link" id="v-pills-agents-tab" data-bs-toggle="pill" data-bs-target="#v-pills-agents" type="button" role="tab" aria-controls="v-pills-agents" aria-selected="false">Les Agents</button>
+   
+    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Mon Profile</button>
+    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Sauvegarde</button>
+
+
+
+
+
+  </div>
+
+
+  <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 tab-content    " id="v-pills-tabContent"  [ngClass]="!is_light_mode? 'dark-container':'border bg-white'">
+    <div class="tab-pane  fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" [ngClass]="!is_light_mode? 'dark-container':'border bg-white'">
+      <div class="row p-3" >
+        
+        <ul class="nav nav-tabs ms-3 " id="myTab" role="tablist">
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link  active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Formule 1</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Formule 2</button>
+          </li>
+
+        </ul>
+
+
+        <div class="tab-content" id="myTabContent"   [ngClass]="!is_light_mode? 'dark-bg':'border bg-white'">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"  >
+            
+          <div class="row">
+            
+            <input type="button" value="Ajouter un pret" class="btn btn-primary col-3 offset-6 mt-2" (click)="open_add_form(1)">
+            
+          </div>
+          <div class="row p-3 " style="overflow-x: scroll;">
+           
+
+          <table class="table bg-white table-bordered table-stripped table-responsive" >
+            <thead class="text-primary">
+              <tr>
+                <th>Niveau</th>
+                <th>Pret</th>
+                <th class="emprunt1_cell">Taux 1er Emprunt (%)</th>
+                <th class="emprunt2_cell">Taux 2eme Emprunt (%)</th>
+                <th class="emprunt3_cell">Taux 3eme Emprunt (%)</th>
+                <th class="emprunt_normal_cell">Taux Normal Emprunt (%)</th>
+                <th class="emprunt1_cell">Duree Hebo 1er Emprunt</th>
+                <th  class="emprunt2_cell">Duree Hebo 2eme Emprunt</th>
+                <th class="emprunt3_cell">Duree Hebo 3eme Emprunt</th>
+                <th class="emprunt_normal_cell">Duree Hebo Normal</th>
+                <th class="emprunt_normal_cell">Duree En Mois</th>
+                
+                
+                
+                <th class="emprunt1_cell">Option 1</th>
+
+                <th class="emprunt2_cell">Option 2</th>
+                <th class="emprunt2_cell">Option 3</th>
+
+                <th class="emprunt3_cell">Option 4</th>
+                <th class="emprunt3_cell">Option 5</th>
+
+                <th class="emprunt_normal_cell">Option 6</th>
+                <th class="emprunt_normal_cell">Option 7</th>
+                <th class="emprunt_normal_cell">Penalité</th>
+
+
+
+
+
+                
+                <th>Actions</th>
+                <th class="emprunt_normal_cell" hidden> <button  class="btn  col-1 offset-1" (click)="open_add_form(1)"><i class="fa fa-ellipsis-h"></i></button></th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              
+              <tr *ngFor="let pret of formule_1" class="text-center">
+                  <td *ngIf=!pret.is_add>{{pret.Palier}}</td>
+                  <td *ngIf=!pret.is_add>{{pret.Pret}}</td>
+                  <td *ngIf=!pret.is_add class="emprunt1_cell">{{pret.TauxEmprunt1*100 | number: '1.0-2'  }}</td>
+                  <td *ngIf=!pret.is_add class="emprunt2_cell">{{pret.TauxEmprunt2 *100 | number: '1.0-2' }} </td>
+                  <td *ngIf=!pret.is_add class="emprunt3_cell">{{pret.TauxEmprunt3*100 | number: '1.0-2' }}</td>
+                  <td *ngIf=!pret.is_add class="emprunt_normal_cell">{{pret.TauxNormal*100 | number: '1.0-2'  }}</td>
+                  <td *ngIf=!pret.is_add class="emprunt1_cell">{{pret.DureeHebdoEmprunt1}}</td>
+                  <td *ngIf=!pret.is_add class="emprunt2_cell">{{pret.DureeHebdoEmprunt2}}</td>
+                  <td *ngIf=!pret.is_add class="emprunt3_cell">{{pret.DureeHebdoEmprunt3}}</td>
+                  <td *ngIf=!pret.is_add class="emprunt_normal_cell">{{pret.DureeHebdoNormale}}</td>
+
+                  <td *ngIf=!pret.is_add class="emprunt_normal_cell">{{pret.DureeEnMoisNormale}}</td>
+                  <td *ngIf=!pret.is_add  class="emprunt1_cell">{{pret.Option1}}</td>
+
+                  <td *ngIf=!pret.is_add  class="emprunt2_cell">{{pret.Option2}}</td>
+
+                  <td *ngIf=!pret.is_add  class="emprunt2_cell">{{pret.Option3}}</td>
+                  <td *ngIf=!pret.is_add  class="emprunt3_cell">{{pret.Option4}}</td>
+
+                  <td *ngIf=!pret.is_add  class="emprunt3_cell">{{pret.Option5}}</td>
+                  <td *ngIf=!pret.is_add  class="emprunt_normal_cell">{{pret.Option6}}</td>
+
+                  <td *ngIf=!pret.is_add  class="emprunt_normal_cell">{{pret.Option7}}</td>
+                  <td *ngIf=!pret.is_add  class="emprunt_normal_cell">2%</td>
+ 
+                  <td *ngIf=!pret.is_add>---------</td>
+ 
+
+
+                  
+                  <td *ngIf=pret.is_add >{{pret.name}}</td>
+                  <td *ngIf=pret.is_add>{{pret.loan_limit}}</td>
+                  <td *ngIf=pret.is_add class="emprunt1_cell">{{pret.rateOne | number: '1.0-2'  }}</td>
+                  <td *ngIf=pret.is_add class="emprunt2_cell">{{pret.rateTwo | number: '1.0-2' }} </td>
+                  <td *ngIf=pret.is_add class="emprunt3_cell">{{pret.rateThree | number: '1.0-2' }}</td>
+                  <td *ngIf=pret.is_add class="emprunt_normal_cell">{{pret.rateNormal | number: '1.0-2'  }}</td>
+                  <td *ngIf=pret.is_add class="emprunt1_cell">{{pret.DurationInWeekOne}}</td>
+                  <td *ngIf=pret.is_add class="emprunt2_cell">{{pret.DurationInWeekTwo}}</td>
+                  <td *ngIf=pret.is_add class="emprunt3_cell">{{pret.DurationInWeekThree}}</td>
+                  <td *ngIf=pret.is_add class="emprunt_normal_cell">{{pret.DurationInMounth}}</td>
+
+                  
+                  <td *ngIf=pret.is_add class="emprunt_normal_cell">{{pret.DurationInWeekNormal}}</td>
+                  <td *ngIf=pret.is_add  class="emprunt1_cell">{{pret.Option1}}</td>
+
+                  <td *ngIf=pret.is_add  class="emprunt2_cell">{{pret.Option2}}</td>
+
+                  <td *ngIf=pret.is_add  class="emprunt2_cell">{{pret.Option3}}</td>
+                  <td *ngIf=pret.is_add  class="emprunt3_cell">{{pret.Option4}}</td>
+
+                  <td *ngIf=pret.is_add  class="emprunt3_cell">{{pret.Option5}}</td>
+                  <td *ngIf=pret.is_add  class="emprunt_normal_cell">{{pret.Option6}}</td>
+
+                  <td *ngIf=pret.is_add  class="emprunt_normal_cell">{{pret.Option7}}</td>
+                  <td *ngIf=pret.is_add  class="emprunt_normal_cell">{{pret.penalite}}</td>
+
+
+                  <td *ngIf=pret.is_add>
+                    
+                   
+                    <button mat-icon-button (click)="delete_level(pret.id,1)" color="warn" >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                     
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         
+
+          
+         
+
+        </div>
+            
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+              <input type="button" value="Ajouter un pret" class="btn btn-primary col-3 offset-8 mt-2" (click)="open_add_form(2)">
+            </div>
+            <div class="row p-3 m-1">
+            <table class="table bg-white table-bordered table-stripped table-responsive">
+              <thead class="text-primary">
+                <tr>
+                  <th>Niveau</th>
+                  <th>Pret</th>
+                  <th class="emprunt1_cell">Taux 1er au 6eme Emprunt (%)</th>
+                  <th>Taux Normal Emprunt (%)</th>
+                  <th>Duree En Mois</th> 
+                  <th>Restitution hebdomadaire</th>
+                  <th>Restitution Mensuel</th>
+                  <th>Penalité</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pret of formule_2" class="text-center">
+                    <td *ngIf=!pret.is_add>{{pret.Palier}}</td>
+                    <td *ngIf=!pret.is_add>{{pret.Pret}}</td>
+                    <td *ngIf=!pret.is_add class="emprunt1_cell">{{pret.TauxEmprunt1a6*100 | number: '1.0-2'  }}</td>
+                    <td *ngIf=!pret.is_add>{{pret.TauxNormal *100 | number: '1.0-2' }} </td>
+                    <td *ngIf=!pret.is_add>{{pret.DureeMois}} </td>
+                    <td *ngIf=!pret.is_add>{{pret.Option1}}</td>
+                    <td *ngIf=!pret.is_add>{{pret.Option2}}</td>
+                    <td *ngIf=!pret.is_add>2.50%</td>
+                    <td *ngIf=!pret.is_add>---------</td>
+
+
+                    <td *ngIf=pret.is_add>{{pret.name}}</td>
+                    <td *ngIf=pret.is_add>{{pret.loan_limit}}</td>
+                    <td *ngIf=pret.is_add class="emprunt1_cell">{{pret.TauxEmprunt1a6*100 | number: '1.0-2'  }}</td>
+                    <td *ngIf=pret.is_add >{{pret.TauxNormal *100 | number: '1.0-2' }} </td>
+                    <td *ngIf=pret.is_add>{{pret.DureeMois}} </td>
+                    <td *ngIf=pret.is_add>{{pret.Option1}}</td>
+                    <td *ngIf=pret.is_add>{{pret.Option2}}</td>
+                    <td *ngIf=pret.is_add>{{pret.penalite}}</td>
+                    <td *ngIf=pret.is_add>
+                     
+                      <button mat-icon-button (click)="delete_level(pret.id,2)" color="warn" >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+
+                    </td>
+                    <!--
+                       "is_add": true,
+      "name": "Premium",
+      "loan_limit": 3000000,
+      "loan_rate": 30,
+      "normal_loan_rate": 20,
+      "Option1": 325000,
+      "Option2": 300000,
+      "id": 4
+                    -->
+                   
+                </tr>
+              </tbody>
+            </table>
+           
+  
+            
+           
+  
+          </div>
+            
+          </div>
+         </div>
+
+
+
+        
+          
+        
+      </div>
+    </div>
+    <!-- Secteurs et sous secteurs -->
+    <div class="tab-pane fade p-3" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" [ngClass]="!is_light_mode? 'text-white':'border bg-white'">
+      <div class=" "  [ngClass]="!is_light_mode? 'dark-bg text-white':'border bg-white'">
+          <div class="row p-3">
+            <h1 class="text-center">Les Secteurs et sous secteurs</h1>
+              <div class=" ">
+                <button type="button" mat-raised-button (click)="supprimer()"   class="col-3    bg-warning text-white" *ngIf="all_secteur_in_bd.length>0" hidden>Reinitialiser les secteur</button>
+
+                  
+
+              </div>
+              <div class="col-10 offset-1">
+                <div class="table_empty bg-warning" *ngIf="tableau.length==0">
+                    Veuillez Charger un fichier contenant les secteurs d activite. Telecharger le <a href="../../../../assets/Fichiers/secteurs.xlsx">modele</a> de fichier attendus. <br>Une fois le fichier chargécliquez sur Enregistrer pour l'enregistrer en dans la base de donnée.
+                    <button type="button" mat-raised-button (click)="fileInput.click()"   class="col-3 offset-1   ">Charger un nouveau fichier</button>
+                  <input   (change)="read($event)" #fileInput type="file" id="file"   hidden>
+                </div>
+
+                <div style="overflow-x: scroll;" *ngIf="sheet_name_tab.length>0">
+
+
+                  <table class="table table-condensed table-responsive   table-striped"  [ngClass]="!is_light_mode? 'text-white':'border bg-white'" >
+                      <thead>
+                          <tr >
+                            <th scope="col" *ngFor="let name of sheet_name_tab">{{name}}</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr >
+                          
+                            <td *ngFor="let row of tableau">{{row}}</td>
+                            
+                          </tr>
+                          
+                        </tbody>
+                    </table>
+                  </div>
+                    <br>
+                    <button type="button" mat-raised-button (click)="importer()"   class="col-3 col-sm-6 col-xs-16 mx-3 bg-success mb-3 text-white" *ngIf="is_file_imported" >Enregistrer les changements</button>
+              </div>
+          </div>       
+    </div>
+    
+    </div>
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" [ngClass]="!is_light_mode? 'dark-container text-white':'border bg-white'">
+      <div class="text border p-3 text-center bg-warning text-white b">
+        Fonctionnalite en cours de creation.
+    </div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" [ngClass]="!is_light_mode? 'dark-container text-white':'border bg-white'">
+     
+
+<div class="panel col-8   offset-1 p-4   mt-3 mb-3" [ngClass]="!is_light_mode? 'dark-form dark-bg text-white ':'border bg-white'">
+  <div class="row header    mx-2 text-center text-primary p-2 ">
+      <h1 style="color: rgb(84,108,166);">Modifier mon profile</h1>
+  </div>
+  <br>
+  <div class="row form" [ngClass]="!is_light_mode? 'dark-form text-white ':'border bg-white'">
+      <form  [formGroup]="man_form" (ngSubmit)="submit_add_formule_1()">
+          <div class="row">
+              <div class="row">
+                  <section class="example-section">
+                      
+                       <mat-checkbox class="example-margin" color="primary" formControlName="is_autorised" checked="{{manager_data.is_autorised}}">Activer le compte?</mat-checkbox>
+                  </section>
+            </div>
+      
+              <div class="row">
+                  <mat-form-field appearance="outline" class="col" >
+                      <mat-label>Username</mat-label>
+                      <input matInput type="text" placeholder="Ex:Nicolas" formControlName="username" [value]="manager_data.username">
+                  </mat-form-field>
+                   <!-- Error div -->
+                   <div 
+                   *ngIf="
+                   man_form.controls['username'].errors?.['minlength'] || 
+                   man_form.controls['username'].errors?.['maxlength']" 
+                   class="error_div">
+                   Le nombre de caractere doit etre superieur ou egale a 2
+                   </div>
+      
+       
+      
+               <!-- /End Error div -->
+              </div>
+              <div class="row">
+                  <mat-form-field appearance="outline" class="col" >
+                      <mat-label>Email</mat-label>
+                      <input matInput type="text"  [value]="manager_data.email" formControlName="email">
+                  </mat-form-field>
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    man_form.controls['email'].errors?.['email'] " 
+                    class="error_div">
+                   Veuillez entrer une adresse email valide
+                    </div>
+                <!-- /End Error div -->
+              </div>
+              <div class="row">
+                  <mat-form-field appearance="outline" class="col" >
+                      <mat-label>First Name</mat-label>
+                      <input matInput type="text" [value]="manager_data.first_name"  formControlName="first_name">
+                  </mat-form-field>
+                          <!-- Error div -->
+                          <div 
+                          *ngIf="
+                          man_form.controls['first_name'].errors?.['minlength'] || 
+                          man_form.controls['first_name'].errors?.['maxlength']" 
+                          class="error_div">
+                          Le nombre de caractere doit etre superieur ou egale a 2
+                          </div>
+                          <!-- /End Error div -->
+                  <mat-form-field appearance="outline" class="col" >
+                      <mat-label>Last Name</mat-label>
+                      <input matInput type="text" [value]="manager_data.last_name" formControlName="last_name">
+                  </mat-form-field>
+                   <!-- Error div -->
+                   <div 
+                   *ngIf="
+                   man_form.controls['last_name'].errors?.['minlength'] || 
+                   man_form.controls['last_name'].errors?.['maxlength']" 
+                   class="error_div">
+                   Le nombre de caractere doit etre superieur ou egale a 2
+                   </div>
+               <!-- /End Error div -->
+              </div>
+              <div class="row">
+                  <mat-form-field appearance="outline" class="col" >
+                      <mat-label>Password</mat-label>
+                      <input matInput type="password" [value]="manager_data.password" formControlName="password">
+                  </mat-form-field>
+                      <!-- Error div -->
+                      <div 
+                      *ngIf="
+                      man_form.controls['password'].errors?.['minlength'] || 
+                      man_form.controls['password'].errors?.['maxlength']" 
+                      class="error_div">
+                      Le nombre de caractere doit etre superieur ou egale a 8
+                      </div>
+                      <!-- /End Error div -->
+                  <mat-form-field appearance="outline" class="col" >
+                      <mat-label>Password</mat-label>
+                      <input matInput type="password"  [value]="manager_data.password" formControlName="password2">
+                  </mat-form-field>
+              </div>
+              <div class="row">
+                  <mat-form-field class="col">
+                  <mat-label >Genre </mat-label>
+                  <mat-select formControlName="gender">
+                      <mat-option  value="M">Masculin</mat-option>
+                      <mat-option  value="F">Feminin</mat-option>
+                       
+                  </mat-select>
+                  </mat-form-field>
+      
+                  <mat-form-field class="col">
+                      <mat-label>Date de naissance</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="d_naissance" [value]="manager_data.d_naissance">
+                       <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                      <mat-datepicker #picker ></mat-datepicker>
+                    </mat-form-field>
+              </div>
+              <div class="row">
+                  
+                  <mat-form-field appearance="outline" class="col">
+                      <mat-label>Telephone</mat-label>
+                      <input matInput type="text" [value]="manager_data.phone_number" formControlName="phone_number">
+                    </mat-form-field>
+                    <!-- Error div -->
+                    <div 
+                    *ngIf="
+                    man_form.controls['phone_number'].errors?.['minlength'] || 
+                    man_form.controls['phone_number'].errors?.['maxlength']" 
+                    class="error_div">
+                    Le nombre de caractere doit etre superieur ou egale a 8
+                    </div>
+                    <!-- /End Error div -->
+              </div>
+
+      </div>
+                      <button mat-raised-button color="primary" type="submit"> Enregistrer </button>
+
+  </form>
+  </div>
+  <div class="row bg-light footer">
+  </div>
+</div>
+
+
+    </div>
+
+    <div class="tab-pane fade" id="v-pills-manageurs" role="tabpanel" aria-labelledby="v-pills-manageurs-tab" [ngClass]="!is_light_mode? 'dark-container text-white':'border bg-white'">
+     
+
+       
+         <app-manager-lister></app-manager-lister>
+       
+      
+      
+          </div>
+          <div class="tab-pane fade" id="v-pills-agents" role="tabpanel" aria-labelledby="v-pills-agents-tab" [ngClass]="!is_light_mode? 'dark-container':'border bg-white'">
+     
+               
+            
+              <app-agent-liste></app-agent-liste>
+           
+            
+            
+                </div>
+  </div>
+</div>
+
+
+</div>
+
+

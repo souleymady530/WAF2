@@ -1,0 +1,67 @@
+ 
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12    offset-lg-2 offset-md-2" [ngClass]="!is_light_mode? 'dark-accordion dark-min-liste text-white border':'bg-white border'">
+         <div class="col-12 text-center">
+          <h2>Formule Classique</h2>
+    
+          <table class="table table-responsive table-condensed table-stripped" [ngClass]="!is_light_mode? 'dark-container text-white':''" *ngIf="late_formule_1.length>0">
+          <caption>Suivit des retards</caption>
+          <thead>
+            <tr>
+              
+              <th scope="col">Applicant</th>
+              <th scope="col">Credit</th>
+              <th scope="col">Nombre d'echeance en retard</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let loan of late_formule_1" (click)="view_details(loan.credit.id)">
+               
+              <td>{{loan.credit.applicant.first_name}} {{loan.credit.applicant.last_name}}</td>
+              <td>{{loan.credit.loan_amount}}</td>
+              <td>{{loan.retard}}</td>
+              <td> <input type="button" value="Voir" class="btn btn-primary" (click)="view_details(loan.credit.id)"></td>
+            </tr>
+             
+          </tbody>
+          
+        </table>
+        <div class="m-2 no_data h6 text-success" *ngIf="late_formule_1.length==0">
+          Pas de retard pour le moment
+    </div>
+     </div>
+     </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12   offset-lg-2 offset-md-2 mt-3" [ngClass]="!is_light_mode? 'dark-accordion dark-min-liste text-white border':'bg-white border'">
+         <div class="col-12 text-center"><h2>Formule 2</h2>
+          
+         <table class="table   table-responsive table-condensed table-stripped" [ngClass]="!is_light_mode? 'dark-container text-white ':''" *ngIf="late_formule_2.length>0">
+          <caption>Suivit des retards</caption>
+          <thead>
+            <tr>
+              
+              <th scope="col">Applicant</th>
+              <th scope="col">Credit</th>
+              <th scope="col">Nombre d'echeance en retard</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let loan of late_formule_2" (click)="view_details(loan.credit.id)">
+               
+              <td>{{loan.credit.applicant.first_name}}  {{loan.credit.applicant.last_name}}</td>
+              <td>{{loan.credit.loan_amount}}</td>
+              <td>{{loan.retard}}</td>
+              <td> <input type="button" value="Voir" class="btn btn-primary" (click)="view_details(loan.credit.id)"></td>
+            </tr>
+             
+          </tbody>
+        </table>  
+        <div class="m-2 no_data h6 text-success" *ngIf="late_formule_2.length==0">
+          Pas de retard pour le moment
+    </div>
+      </div>
+       </div>
+    
+     
+
+ 

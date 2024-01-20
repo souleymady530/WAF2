@@ -1,0 +1,14 @@
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #b8b8b8;
+  }
+
+  
+:root
+{
+    --color-blue:#48489b;
+    --color-black:rgb(34,36,46);
+}

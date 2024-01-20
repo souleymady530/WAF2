@@ -1,0 +1,845 @@
+<div class="container-fluid " [ngClass]="!is_light_mode? 'dark-container':'bg-white border'">
+  <div class="row p-3">
+        
+    <ul class="nav nav-tabs ms-3 " id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link  active" id="state1-tab" data-bs-toggle="tab" data-bs-target="#state1" type="button" role="tab" aria-controls="state1" aria-selected="true">Demandes ({{data_source?data_source.data.length:0}})</button>
+      </li>
+      
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="state2-tab" data-bs-toggle="tab" data-bs-target="#state2" type="button" role="tab" aria-controls="state2" aria-selected="false">Attente de signature ({{data_source1?data_source1.data.length:0}})</button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link   " id="state3-tab" data-bs-toggle="tab" data-bs-target="#state3" type="button" role="tab" aria-controls="state3" aria-selected="true">Prets Signés ({{data_source2?data_source2.data.length:0}})</button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="state4-tab" data-bs-toggle="tab" data-bs-target="#state4" type="button" role="tab" aria-controls="state4" aria-selected="false">Prets accordés ({{data_source3?data_source3.data.length:0}})</button>
+      </li>
+      
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="state5-tab" data-bs-toggle="tab" data-bs-target="#state5" type="button" role="tab" aria-controls="state5" aria-selected="false">En cours de remboursement ({{data_source4?data_source4.data.length:0}})</button>
+      </li>
+      
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="state6-tab" data-bs-toggle="tab" data-bs-target="#state6" type="button" role="tab" aria-controls="state5" aria-selected="false">Les demandes Rejeteés({{data_source_geler?data_source_geler.data.length:0}})</button>
+      </li>
+      
+    </ul>
+
+
+    <div class="tab-content" id="myTabContent">
+       <!------------------------Demandees ------------------------------->
+      <div class="tab-pane fade show active" id="state1" role="tabpanel" aria-labelledby="state1-tab">
+       
+        <div class="row p-3 ">
+          <div class="row">
+            <h1>Liste des crédits envoyées au manageur et en attente</h1>
+          </div>
+            <div class="row justify-content-end">
+              <button (click)="add()" class="col-2  btn btn-primary">Ajouter</button>
+              <button (click)="add_for_old_client()" class="col-2 offset-1 btn btn-info text-white">Ancien Client</button>
+                
+                 
+            </div>
+            <br>
+            <div class="row">
+              
+                <mat-form-field class="col-4">
+                    <mat-label>Filtrer</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nicolas Cage" #input>
+                  </mat-form-field>
+                  
+                  <div class="main-body">
+                    <table mat-table [dataSource]="data_source" matSort>
+                  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit actifs</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                        
+                            
+                       
+                          <span *ngIf="!row.is_active" class="material-icons" style="color: rgb(255, 0, 0);">flag</span>
+        
+        
+                          <span *ngIf="row.is_active" class="material-icons" style="color: rgb(0, 128, 55);">flag</span>
+                          </td>
+                      </ng-container>
+                  
+            
+                      
+                      <ng-container matColumnDef="applicant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applicant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.first_name}}  {{row.applicant.last_name}}  </td>
+                      </ng-container>
+            
+            
+                   
+                   
+                       
+                      
+        
+        
+                      <ng-container matColumnDef="loan_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_amount}}  </td>
+                      </ng-container>
+        
+        
+                      <!-- -->
+                      
+                      <ng-container matColumnDef="loan_rate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_rate}}  </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="indice_initial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Indice Initial</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.indice_age+row.applicant.indice_charge}} </td>
+                      </ng-container>
+                  
+
+                      <ng-container matColumnDef="repayment_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant De Remboursement </th>
+                        <td mat-cell *matCellDef="let row"> {{row.repayment_amount}}  </td>
+                      </ng-container>
+        
+                    
+                       
+                  
+                   
+                  
+                     
+                  
+                      <!-- -->
+                      
+                   
+                      
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer - Editer --Voir Valider</th>
+                        <td mat-cell *matCellDef="let row">
+                          <input type="button" class="col-3 m-1 btn text-white btn-danger" value="Geler" *ngIf="row.loan_statut==1 && is_man" (click)="geler_demander(row)">
+
+                          <!-- 
+                          <button *ngIf="!row.is_active" mat-icon-button (click)="delete_applicant(row.id)" color="warn" >
+                            <mat-icon>delete</mat-icon>
+                          </button>
+        -->
+                          <button *ngIf="!row.is_active" mat-icon-button color="primary" (click)="redirect_edit_form(row.id)">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+        
+                          <button  mat-icon-button color="primary" (click)="view_details(row.id)" >
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+        
+                          
+        
+                          
+        
+                       
+                         
+                            
+                           
+                           
+                        </td>
+                           
+                      </ng-container>
+                      
+                  
+            
+                        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="12">No data matching the filter "{{input.value}}"</td>
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" class="filtre"  ></mat-paginator>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+      </div>
+       <!------------------------/demandees ------------------------------->
+
+      <!------------------------ verification et decisions ------------------------------->
+      <div class="tab-pane fade" id="state2" role="tabpanel" aria-labelledby="state2-tab">
+        <div class="row p-3 m-1">
+          <div class="row">
+            <h1>Liste des crédits en attente de signature du client</h1>
+          </div>
+             
+            <br>
+            <div class="row">
+              
+                <mat-form-field class="col-4">
+                    <mat-label>Filtrer</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nicolas Cage" #input2>
+                  </mat-form-field>
+                  
+                  <div class="main-body">
+                    <table mat-table [dataSource]="data_source1" matSort>
+                  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit actifs</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                        
+                            
+                       
+                          <span *ngIf="!row.is_active" class="material-icons" style="color: rgb(255, 0, 0);">flag</span>
+        
+        
+                          <span *ngIf="row.is_active" class="material-icons" style="color: rgb(0, 128, 55);">flag</span>
+                          </td>
+                      </ng-container>
+                  
+            
+                      
+                      <ng-container matColumnDef="applicant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applicant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.first_name}}  {{row.applicant.last_name}}  </td>
+                      </ng-container>
+            
+            
+                   
+                   
+                       
+                      
+        
+        
+                      <ng-container matColumnDef="loan_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_amount}}  </td>
+                      </ng-container>
+        
+        
+                      <!-- -->
+                      
+                      <ng-container matColumnDef="loan_rate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_rate}}  </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="indice_initial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Indice Initial</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.indice_age+row.applicant.indice_charge}} </td>
+                      </ng-container>
+                  
+
+                  
+                      <ng-container matColumnDef="repayment_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant De Remboursement </th>
+                        <td mat-cell *matCellDef="let row"> {{row.repayment_amount}}  </td>
+                      </ng-container>
+         
+
+                      <ng-container matColumnDef="statut_remboursement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remboursment Progress </th>
+                        <td mat-cell *matCellDef="let row">  
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                      </ng-container>
+                  
+                   
+                  
+                     
+                  
+                      <!-- -->
+                      
+                   
+                      <!-- -->
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer - Editer --Voir Valider</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                          
+        
+                          <button  mat-icon-button color="primary" (click)="view_details(row.id)"  >
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+        
+                          
+                          
+        
+                          
+        
+                       
+                         
+                            
+                           
+                           
+                        </td>
+                           
+                      </ng-container>
+                      
+                  
+            
+                        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row filtre" *matNoDataRow>
+                        <td class="mat-cell " colspan="12">No data matching the filter "{{input2.value}}"</td>
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" class="filtre"></mat-paginator>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+      </div>
+       <!------------------------ / verification et decisions ------------------------------->
+
+        <!------------------------ en attente signature ------------------------------->     
+      <div class="tab-pane fade " id="state3" role="tabpanel" aria-labelledby="state3-tab">
+        <div class="row p-3 ">
+          <div class="row">
+            <h1>Liste des crédits (Contrat signés par le client)</h1>
+          </div>
+            
+            <br>
+            <div class="row">
+              
+                <mat-form-field class="col-4">
+                    <mat-label>Filtrer</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nicolas Cage" #input3>
+                  </mat-form-field>
+                  
+                  <div class="main-body">
+                    <table mat-table [dataSource]="data_source2" matSort>
+                  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit actifs</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                        
+                            
+                       
+                          <span *ngIf="!row.is_active" class="material-icons" style="color: rgb(255, 0, 0);">flag</span>
+        
+        
+                          <span *ngIf="row.is_active" class="material-icons" style="color: rgb(0, 128, 55);">flag</span>
+                          </td>
+                      </ng-container>
+                  
+            
+                      
+                      <ng-container matColumnDef="applicant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applicant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.first_name}}  {{row.applicant.last_name}}  </td>
+                      </ng-container>
+            
+            
+                   
+                   
+                       
+                      
+        
+        
+                      <ng-container matColumnDef="loan_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_amount}}  </td>
+                      </ng-container>
+        
+        
+                      <!-- -->
+                      
+                      <ng-container matColumnDef="loan_rate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_rate}}  </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="indice_initial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Indice Initial</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.indice_age+row.applicant.indice_charge}} </td>
+                      </ng-container>
+                  
+
+                  
+                      <ng-container matColumnDef="repayment_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant De Remboursement </th>
+                        <td mat-cell *matCellDef="let row"> {{row.repayment_amount}}  </td>
+                      </ng-container>
+
+                      
+        
+                      <ng-container matColumnDef="statut_remboursement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remboursment Progress </th>
+                        <td mat-cell *matCellDef="let row">  
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                      </ng-container>
+                  
+                   
+                  
+                     
+                  
+                      <!-- -->
+                      
+                   
+                      <!-- -->
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer - Editer --Voir Valider</th>
+                        <td mat-cell *matCellDef="let row">
+                         
+                          <button  mat-icon-button color="primary"  (click)="view_details(row.id)">
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+        
+                           
+        
+                          
+        
+                       
+                         
+                            
+                           
+                           
+                        </td>
+                           
+                      </ng-container>
+                      
+                  
+            
+                        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row filtre" *matNoDataRow>
+                        <td class="mat-cell" colspan="12">No data matching the filter "{{input3.value}}"</td>
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" class="filtre"></mat-paginator>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+      </div>
+      <!------------------------/en attente signature ------------------------------->
+
+      <!----------------------accordees ------------------------------->
+      <div class="tab-pane fade" id="state4" role="tabpanel" aria-labelledby="state4-tab">
+        <div class="row p-3 m-1">
+          <div class="row">
+            <h1>Liste des crédits accordés en cours de remboursement</h1>
+          </div>
+             
+            <br>
+            <div class="row">
+              
+                <mat-form-field class="col-4">
+                    <mat-label>Filtrer</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nicolas Cage" #input4>
+                  </mat-form-field>
+                  
+                  <div class="main-body">
+                    <table mat-table [dataSource]="data_source3" matSort>
+                  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit actifs</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                        
+                            
+                       
+                          <span *ngIf="!row.is_active" class="material-icons" style="color: rgb(255, 0, 0);">flag</span>
+        
+        
+                          <span *ngIf="row.is_active" class="material-icons" style="color: rgb(0, 128, 55);">flag</span>
+                          </td>
+                      </ng-container>
+                  
+            
+                      
+                      <ng-container matColumnDef="applicant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applicant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.first_name}}  {{row.applicant.last_name}}  </td>
+                      </ng-container>
+            
+            
+                   
+                   
+                       
+                      
+        
+        
+                      <ng-container matColumnDef="loan_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_amount}}  </td>
+                      </ng-container>
+        
+        
+                      <!-- -->
+                      
+                      <ng-container matColumnDef="loan_rate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_rate}}  </td>
+                      </ng-container>
+                  
+                      
+                      <ng-container matColumnDef="indice_initial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Indice Initial</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.indice_age+row.applicant.indice_charge}} </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="repayment_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant De Remboursement </th>
+                        <td mat-cell *matCellDef="let row"> {{row.repayment_amount}}  </td>
+                      </ng-container>
+         
+
+
+                      <ng-container matColumnDef="statut_remboursement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remboursment Progress </th>
+                        <td mat-cell *matCellDef="let row">  
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                      </ng-container>
+                  
+                   
+                  
+                     
+                  
+                      <!-- -->
+                      
+                   
+                      <!-- -->
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer - Editer --Voir Valider</th>
+                        <td mat-cell *matCellDef="let row">
+                           
+        
+                          <button  mat-icon-button color="primary" (click)="view_details(row.id)" >
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+        
+                           
+        
+                          
+        
+                       
+                         
+                            
+                           
+                           
+                        </td>
+                           
+                      </ng-container>
+                      
+                  
+            
+                        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row filtre" *matNoDataRow>
+                        <td class="mat-cell" colspan="12">No data matching the filter "{{input4.value}}"</td>
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" class="filtre"></mat-paginator>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="state5" role="tabpanel" aria-labelledby="state5-tab">
+        <div class="row p-3 m-1">
+          <div class="row">
+            <h1>En cours de remboursement</h1>
+          </div>
+             
+            <br>
+            <div class="row">
+              
+                <mat-form-field class="col-4">
+                    <mat-label>Filtrer</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nicolas Cage" #input5>
+                  </mat-form-field>
+                  
+                  <div class="main-body">
+                    <table mat-table [dataSource]="data_source4" matSort>
+                  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit actifs</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                        
+                            
+                       
+                          <span *ngIf="!row.is_active" class="material-icons" style="color: rgb(255, 0, 0);">flag</span>
+        
+        
+                          <span *ngIf="row.is_active" class="material-icons" style="color: rgb(0, 128, 55);">flag</span>
+                          </td>
+                      </ng-container>
+                  
+            
+                      
+                      <ng-container matColumnDef="applicant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applicant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.first_name}}  {{row.applicant.last_name}}  </td>
+                      </ng-container>
+            
+            
+                   
+                   
+                       
+                      
+        
+        
+                      <ng-container matColumnDef="loan_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_amount}}  </td>
+                      </ng-container>
+        
+        
+                      <!-- -->
+                      
+                      <ng-container matColumnDef="loan_rate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_rate}}  </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="indice_initial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Indice Initial</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.indice_age+row.applicant.indice_charge}} </td>
+                      </ng-container>
+                  
+
+                      <ng-container matColumnDef="repayment_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant De Remboursement </th>
+                        <td mat-cell *matCellDef="let row"> {{row.repayment_amount}}  </td>
+                      </ng-container>
+
+                     
+        
+                      <ng-container matColumnDef="statut_remboursement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remboursment Progress </th>
+                        <td mat-cell *matCellDef="let row">  
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                      </ng-container>
+                  
+                   
+                  
+                     
+                  
+                      <!-- -->
+                      
+                   
+                      <!-- -->
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer - Editer --Voir Valider</th>
+                        <td mat-cell *matCellDef="let row">
+                           
+        
+                          <button  mat-icon-button color="primary" (click)="view_details(row.id)">
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+        
+                           
+        
+                          
+        
+                       
+                         
+                            
+                           
+                           
+                        </td>
+                           
+                      </ng-container>
+                      
+                  
+            
+                        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row filtre" *matNoDataRow>
+                        <td class="mat-cell" colspan="12">No data matching the filter "{{input5.value}}"</td>
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" class="filtre"></mat-paginator>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="state6" role="tabpanel" aria-labelledby="state6-tab">
+        <div class="row p-3 m-1">
+          <div class="row">
+            <h1>Liste des demandes gelées</h1>
+          </div>
+             
+            <br>
+            <div class="row">
+              
+                <mat-form-field class="col-4">
+                    <mat-label>Filtrer</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Nicolas Cage" #input6>
+                  </mat-form-field>
+                  
+                  <div class="main-body">
+                    <table mat-table [dataSource]="data_source_geler" matSort>
+                  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit actifs</th>
+                        <td mat-cell *matCellDef="let row">
+                          
+                        
+                            
+                       
+                          <span *ngIf="!row.is_active" class="material-icons" style="color: rgb(255, 0, 0);">flag</span>
+        
+        
+                          <span *ngIf="row.is_active" class="material-icons" style="color: rgb(0, 128, 55);">flag</span>
+                          </td>
+                      </ng-container>
+                  
+            
+                      
+                      <ng-container matColumnDef="applicant">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applicant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.first_name}}  {{row.applicant.last_name}}  </td>
+                      </ng-container>
+            
+            
+                   
+                   
+                       
+                      
+        
+        
+                      <ng-container matColumnDef="loan_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_amount}}  </td>
+                      </ng-container>
+        
+        
+                      <!-- -->
+                      
+                      <ng-container matColumnDef="loan_rate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux</th>
+                        <td mat-cell *matCellDef="let row"> {{row.loan_rate}}  </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="indice_initial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Indice Initial</th>
+                        <td mat-cell *matCellDef="let row"> {{row.applicant.indice_age+row.applicant.indice_charge}} </td>
+                      </ng-container>
+                  
+                  
+                      <ng-container matColumnDef="repayment_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant De Remboursement </th>
+                        <td mat-cell *matCellDef="let row"> {{row.repayment_amount}}  </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="statut_remboursement">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Remboursment Progress </th>
+                        <td mat-cell *matCellDef="let row">  
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                      </ng-container>
+                  
+                   
+                  
+                     
+                  
+                      <!-- -->
+                      
+                   
+                      <!-- -->
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer - Editer --Voir Valider</th>
+                        <td mat-cell *matCellDef="let row">
+                           
+        
+                          <button  mat-icon-button color="primary" (click)="view_details(row.id)">
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+        
+                           
+        
+                          
+        
+                       
+                         
+                            
+                           
+                           
+                        </td>
+                           
+                      </ng-container>
+                      
+                  
+            
+                        
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row filtre" *matNoDataRow>
+                        <td class="mat-cell" colspan="12">No data matching the filter "{{input6.value}}"</td>
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" class="filtre"></mat-paginator>
+                  </div>
+                  
+                  
+            </div>
+        </div>
+      </div>
+       <!------------------------/accordees ------------------------------->
+     </div>
+
+
+
+    
+      
+    
+  </div>
+
+
+
+
+    
+    
+      
+      
+      
+      
+      </div>
+      

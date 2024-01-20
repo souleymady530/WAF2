@@ -1,0 +1,113 @@
+
+
+<div id="content-main">
+    <div mat-dialog-title>
+        <h1>Ajouter/Editer un niveau(Formule 1)</h1>
+    </div>
+    <form  [formGroup]="level_form" (ngSubmit)="formule_submit_add()">
+        <div mat-dialog-content id="content">
+
+            <div class="row "  >
+                <mat-form-field >
+                  <mat-label>Niveau</mat-label>
+                  <input matInput #input  formControlName="name">
+                  
+                </mat-form-field>
+            </div>
+            
+            <div class="row ">
+                <mat-form-field >
+                  <mat-label>Pret</mat-label>
+                  <input matInput #input type="number" min="0" formControlName="loan_limit">
+                  
+                </mat-form-field>
+            </div>
+
+
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Pourcentage 1er emprunt</mat-label>
+                <input type="number" min="0" matInput #input  formControlName="rateOne">
+                
+              </mat-form-field>
+            </div>
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Pourcentage 2eme emprunt</mat-label>
+                <input type="number" min="0" matInput #input  formControlName="rateTwo">
+                
+              </mat-form-field>
+            </div>
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Pourcentage 3eme emprunt</mat-label>
+                <input type="number" min="0" matInput #input  formControlName="rateThree">
+                
+              </mat-form-field>
+            </div>
+
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Pourcentage emprunt normal</mat-label>
+                <input type="number" min="0" matInput    formControlName="rateNormal">
+                
+              </mat-form-field>
+            </div>
+
+
+
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Duree Hebdo 1er Emprunt</mat-label>
+                <input type="number" min="0" matInput  formControlName="DurationInWeekOne" >
+                
+              </mat-form-field>
+            </div>
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Duree Hebdo 2em Emprunt</mat-label>
+                <input type="number" min="0" matInput  formControlName="DurationInWeekTwo" >
+                
+              </mat-form-field>
+            </div>
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Duree Hebdo 3em Emprunt</mat-label>
+                <input type="number" min="0" matInput  formControlName="DurationInWeekThree" >
+                
+              </mat-form-field>
+            </div>
+
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Duree Hebdo Normal</mat-label>
+                <input type="number" min="0" matInput  formControlName="DurationInWeekNormal" >
+                
+              </mat-form-field>
+            </div>
+
+            <div class="row ">
+              <mat-form-field >
+                <mat-label>Duree Mensuel</mat-label>
+                <input type="number" min="0" matInput  formControlName="DurationInMounth" >
+                
+              </mat-form-field>
+            </div>
+
+
+             
+            
+       
+            
+            
+            <!--- 1er emprunt  -->  
+            
+            <!--- fin Normale  -->
+            <div mat-dialog-actions class="actions">
+              <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+              <button mat-raised-button color="primary" type="submit"> {{data ? "Update":"Save"}} </button>
+          </div>
+
+        </div>
+    </form>
+</div>

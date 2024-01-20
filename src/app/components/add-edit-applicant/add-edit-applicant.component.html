@@ -1,0 +1,139 @@
+<div mat-dialog-title>
+    <h1>Formulaire-Agent</h1>
+</div>
+
+
+
+
+
+
+<form  [formGroup]="app_form" (ngSubmit)="submit_form()">
+<div mat-dialog-content class="content">
+    <div class="row">
+         
+        
+        <div class="row">
+            <mat-form-field appearance="outline" class="col" >
+                <mat-label>Email</mat-label>
+                <input matInput type="text" placeholder="Ex:Nicolas" formControlName="email">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col" >
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" placeholder="Ex:Nicolas" formControlName="first_name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col" >
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" placeholder="Ex:Cage" formControlName="last_name">
+            </mat-form-field>
+        </div>
+        
+        <div class="row">
+            <mat-form-field class="col">
+            <mat-label >Genre</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option  value="Masculin">Masculin</mat-option>
+                <mat-option  value="Feminin">Feminin</mat-option>
+                <mat-option  value="Autre">Autre</mat-option>
+            </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col">
+                <mat-label>Date de naissance</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="d_naissance">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div class="row">
+            
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Telephone</mat-label>
+                <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="phone_number">
+              </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Numero Nic</mat-label>
+                <input matInput type="text" placeholder="Ex: XX XX XX" formControlName="nic_number" >
+            </mat-form-field>
+        
+          </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="">
+                <mat-label>Repertoire de la photo</mat-label>
+                <input matInput type="url" placeholder="Ex:Cage" formControlName="profile_image">
+            </mat-form-field>
+        </div> 
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Pays</mat-label>
+                <input matInput type="text" placeholder="Ex:Burkina Fasa" formControlName="state">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Ville</mat-label>
+                <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="city">
+            </mat-form-field>
+
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Addresse</mat-label>
+                <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="address">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Agence</mat-label>
+                <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="point">
+            </mat-form-field>
+        </div>
+
+
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Numero de telephone wave</mat-label>
+                <input matInput type="text" placeholder="" formControlName="wave_phone_number">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Numero de telephone de bureau</mat-label>
+                <input matInput type="text" placeholder="" formControlName="business_line">
+            </mat-form-field>
+        </div>
+
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Profession</mat-label>
+                <input matInput type="text" placeholder="" formControlName="profession">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Salaire</mat-label>
+                <input matInput type="text" placeholder="" formControlName="revenue">
+            </mat-form-field>
+        </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+<div mat-dialog-actions class="actions">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit"> {{data ? "Update":"Save"}} </button>
+</div>
+
+</form>
+ 

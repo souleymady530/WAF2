@@ -1,0 +1,11 @@
+#pdf_container{
+    width:790px;
+    height:1300px;
+}
+ 
+.bg-darked{
+    color: white;
+    background-color:rgb(20,20,50);
+    border:solid 1px white;
+
+  }

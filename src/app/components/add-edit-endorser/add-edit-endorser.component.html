@@ -1,0 +1,115 @@
+<div mat-dialog-title>
+    <h1>Formulaire-Endorser</h1>
+</div>
+<form  [formGroup]="endorser_form" (ngSubmit)="submit_form()">
+<div mat-dialog-content class="content">
+    <div class="row">
+         <!--
+               "id": "number",
+        "location": {
+          "address": "string",
+          "city": "string",
+          "state": "string",
+          "point": "string"
+        },
+        "first_name": "string",
+        "last_name": "string",
+        "gender": "string",
+        "nic_image": "string",
+        "phone_number": "string",
+        "profession": "string",
+        
+      }
+         -->
+         
+       
+        <div class="row">
+            <mat-form-field appearance="outline" class="col" >
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" placeholder="Ex:Nicolas" formControlName="first_name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col" >
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" placeholder="Ex:Cage" formControlName="last_name">
+            </mat-form-field>
+        </div>
+        
+        <div class="row">
+            <mat-form-field class="col">
+            <mat-label >Genre</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option  value="Masculin">Masculin</mat-option>
+                <mat-option  value="Feminin">Feminin</mat-option>
+                <mat-option  value="Autre">Autre</mat-option>
+            </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="col">
+                <mat-label>Date de naissance</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="d_naissance">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+              </mat-form-field>
+        </div>
+
+        <div class="row">
+            
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Profession</mat-label>
+                <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="profession">
+              </mat-form-field>
+        </div>
+
+        <div class="row">
+            
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Telephone</mat-label>
+                <input matInput type="text" placeholder="Ex:226 XX XX XX XX" formControlName="phone_number">
+              </mat-form-field>
+        </div>
+
+
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Image carte d identite nationale</mat-label>
+                <input matInput type="url"   formControlName="nic_image" >
+            </mat-form-field>
+        
+          </div>
+
+
+      
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Pays</mat-label>
+                <input matInput type="text" placeholder="Ex:Burkina Fasa" formControlName="state">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Ville</mat-label>
+                <input matInput type="text" placeholder="Ex: Ouagdougou " formControlName="city">
+            </mat-form-field>
+
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Addresse</mat-label>
+                <input matInput type="text" placeholder="Ex:Avenue Kwame NKuruma" formControlName="address">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col">
+                <mat-label>Agence</mat-label>
+                <input matInput type="text" placeholder="Ex:Agence de Kwame NKuruma" formControlName="point">
+            </mat-form-field>
+        </div>
+</div>
+</div>
+<div mat-dialog-actions class="actions">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit"> {{data ? "Update":"Save"}} </button>
+</div>
+
+</form>

@@ -1,0 +1,38 @@
+
+.row
+{
+    display: flex;
+    gap: 10px;
+}
+  #content
+  {
+    padding: 5px;
+    overflow-x: hidden;
+    width:500px;
+    height: 100%;;
+  }
+
+  .actions 
+  {
+    padding: 0px 25px 20px;
+   
+  }
+
+
+  
+
+h1{
+    width:100%;text-align:center;
+    font-weight:bold;
+    color:rgb(84,108,166);
+    text-decoration: underline;
+
+}
+
+ 
+
+.green{
+  color: green;
+}
+
+ 

@@ -1,0 +1,6 @@
+{
+  "Username":"Nom d'utilisateur",
+  "Password": "Mot de passe",
+  "Login": "Se connecter",
+  "Popup_text": "Bravo l'item '{{item_name}}' a été choisi."
+}

@@ -1,0 +1,9 @@
+<div mat-dialog-title [ngClass]="!is_light_mode? 'bg-darked text-white':'border bg-white'">Visonneur d'image</div>
+<div mat-dialog-content [ngClass]="!is_light_mode? 'bg-darked text-white':'border bg-white'">
+    <div class="img_container">
+        <img src="{{img_src}}" alt="">
+    </div>
+</div>
+<div mat-dialog-actions [ngClass]="!is_light_mode? 'bg-darked text-white':''">
+    <button mat-dialog-close="true" mat-button type="button" class="bg-danger text-white">Fermer</button>
+ </div>
